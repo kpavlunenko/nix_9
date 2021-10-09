@@ -16,11 +16,12 @@ public class HomeWork {
 
         switch (taskNumber) {
             case 1:
-                SumOfNumbersInARow firstTask = new SumOfNumbersInARow();
-                firstTask.sumOfNumbers();
+                RowsFunction rowSum = new RowsFunction();
+                rowSum.sumOfNumbers();
                 break;
             case 2:
-
+                RowsFunction rowDuplicate = new RowsFunction();
+                rowDuplicate.numberOfDuplicateCharacters();
                 break;
             case 3:
                 EndOfLessons thirdTask = new EndOfLessons();

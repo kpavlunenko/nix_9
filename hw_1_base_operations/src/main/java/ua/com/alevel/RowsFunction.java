@@ -2,11 +2,11 @@ package ua.com.alevel;
 
 import java.util.Scanner;
 
-public class SumOfNumbersInARow {
+public class RowsFunction {
 
     public static void main(String[] args) {
 
-        sumOfNumbers();
+        numberOfDuplicateCharacters();
 
     }
 
@@ -23,5 +23,15 @@ public class SumOfNumbersInARow {
         }
 
         System.out.println("sum = " + sum);
+    }
+
+    public static void numberOfDuplicateCharacters() {
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the row:");
+        String inputRow = input.nextLine();
+        String onlyNumberInRow = inputRow.replaceAll("[^a-z]", "");
+
+        System.out.println("onlyNumberInRow = " + onlyNumberInRow);
     }
 }
