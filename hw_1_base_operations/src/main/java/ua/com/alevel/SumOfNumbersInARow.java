@@ -6,6 +6,12 @@ public class SumOfNumbersInARow {
 
     public static void main(String[] args) {
 
+        sumOfNumbers();
+
+    }
+
+    public static void sumOfNumbers() {
+
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the row with numbers:");
         String inputRow = input.nextLine();
@@ -17,6 +23,5 @@ public class SumOfNumbersInARow {
         }
 
         System.out.println("sum = " + sum);
-
     }
 }
