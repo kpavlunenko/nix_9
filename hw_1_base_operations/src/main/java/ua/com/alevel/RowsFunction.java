@@ -37,6 +37,7 @@ public class RowsFunction {
         Arrays.sort(arrayOfLetters);
 
         Map<String, Integer> countOfLetters = new HashMap<String, Integer>();
+        ArrayList<String> uniqueLetters = new ArrayList<>();
 
         for(int i = 0; i < arrayOfLetters.length; i++) {
 
@@ -46,13 +47,14 @@ public class RowsFunction {
 
             }
             else {
+                uniqueLetters.add(arrayOfLetters[i]);
                 countOfLetters.put(arrayOfLetters[i], 1);
             }
         }
 
         Set<String> keys = countOfLetters.keySet();
 
-        for (String key: keys
+        for (String key: uniqueLetters
              ) {
             System.out.println(key + "-" + countOfLetters.get(key));
         }
