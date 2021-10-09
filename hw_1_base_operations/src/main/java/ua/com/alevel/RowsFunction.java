@@ -1,6 +1,6 @@
 package ua.com.alevel;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class RowsFunction {
 
@@ -30,8 +30,32 @@ public class RowsFunction {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the row:");
         String inputRow = input.nextLine();
-        String onlyNumberInRow = inputRow.replaceAll("[^a-z]", "");
+        String onlyNumberInRow = inputRow.replaceAll("[^a-z A-Z а-я А-Я]", "");
 
-        System.out.println("onlyNumberInRow = " + onlyNumberInRow);
+        String[] arrayOfLetters;
+        arrayOfLetters = onlyNumberInRow.split("");
+        Arrays.sort(arrayOfLetters);
+
+        Map<String, Integer> countOfLetters = new HashMap<String, Integer>();
+
+        for(int i = 0; i < arrayOfLetters.length; i++) {
+
+            if(countOfLetters.containsKey(arrayOfLetters[i])){
+
+                countOfLetters.put(arrayOfLetters[i], countOfLetters.get(arrayOfLetters[i]) + 1);
+
+            }
+            else {
+                countOfLetters.put(arrayOfLetters[i], 1);
+            }
+        }
+
+        Set<String> keys = countOfLetters.keySet();
+
+        for (String key: keys
+             ) {
+            System.out.println(key + "-" + countOfLetters.get(key));
+        }
+
     }
 }
