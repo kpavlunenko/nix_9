@@ -30,7 +30,7 @@ public class RowsFunction {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the row:");
         String inputRow = input.nextLine();
-        String onlyNumberInRow = inputRow.replaceAll("[^a-z A-Z а-я А-Я]", "");
+        String onlyNumberInRow = inputRow.replaceAll("[^a-zA-Zа-яА-Я]", "");
 
         String[] arrayOfLetters;
         arrayOfLetters = onlyNumberInRow.split("");
