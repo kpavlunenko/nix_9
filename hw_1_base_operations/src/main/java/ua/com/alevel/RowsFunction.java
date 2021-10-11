@@ -1,5 +1,8 @@
 package ua.com.alevel;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class RowsFunction {
@@ -12,9 +15,16 @@ public class RowsFunction {
 
     public static void sumOfNumbers() {
 
-        Scanner input = new Scanner(System.in);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the row with numbers:");
-        String inputRow = input.nextLine();
+        String inputRow = "";
+
+        try {
+            inputRow = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String onlyNumberInRow = inputRow.replaceAll("[^0-9]", "");
 
         int sum = 0;
@@ -27,9 +37,16 @@ public class RowsFunction {
 
     public static void numberOfDuplicateCharacters() {
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter the row:");
-        String inputRow = input.nextLine();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter the row with duplicate:");
+        String inputRow = "";
+
+        try {
+            inputRow = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String onlyNumberInRow = inputRow.replaceAll("[^a-zA-Zа-яА-Я]", "");
 
         String[] arrayOfLetters;
