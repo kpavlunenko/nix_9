@@ -52,8 +52,6 @@ public class RowsFunction {
             }
         }
 
-        Set<String> keys = countOfLetters.keySet();
-
         for (String key: uniqueLetters
              ) {
             System.out.println(key + "-" + countOfLetters.get(key));
