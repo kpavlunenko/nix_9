@@ -18,7 +18,7 @@ public class RowsFunction {
         String onlyNumberInRow = inputRow.replaceAll("[^0-9]", "");
 
         int sum = 0;
-        for(int i = 0; i < onlyNumberInRow.length(); i++){
+        for (int i = 0; i < onlyNumberInRow.length(); i++) {
             sum = sum + Character.getNumericValue(onlyNumberInRow.charAt(i));
         }
 
@@ -39,21 +39,20 @@ public class RowsFunction {
         Map<String, Integer> countOfLetters = new HashMap<String, Integer>();
         ArrayList<String> uniqueLetters = new ArrayList<>();
 
-        for(int i = 0; i < arrayOfLetters.length; i++) {
+        for (int i = 0; i < arrayOfLetters.length; i++) {
 
-            if(countOfLetters.containsKey(arrayOfLetters[i])){
+            if (countOfLetters.containsKey(arrayOfLetters[i])) {
 
                 countOfLetters.put(arrayOfLetters[i], countOfLetters.get(arrayOfLetters[i]) + 1);
 
-            }
-            else {
+            } else {
                 uniqueLetters.add(arrayOfLetters[i]);
                 countOfLetters.put(arrayOfLetters[i], 1);
             }
         }
 
-        for (String key: uniqueLetters
-             ) {
+        for (String key : uniqueLetters
+        ) {
             System.out.println(key + "-" + countOfLetters.get(key));
         }
 
