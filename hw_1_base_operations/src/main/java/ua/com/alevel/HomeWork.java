@@ -1,5 +1,8 @@
 package ua.com.alevel;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class HomeWork {
@@ -11,8 +14,16 @@ public class HomeWork {
         System.out.println("3. Find out the end of the lesson");
         System.out.println("Enter number of task:");
 
-        Scanner input = new Scanner(System.in);
-        int taskNumber = input.nextInt();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int taskNumber = 0;
+
+        try {
+            taskNumber = Integer.valueOf(bufferedReader.readLine());
+
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Incoming data is incorrect");
+            e.printStackTrace();
+        }
 
         switch (taskNumber) {
             case 1:
