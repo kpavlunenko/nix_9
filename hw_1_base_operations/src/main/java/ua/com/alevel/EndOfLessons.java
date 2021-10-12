@@ -27,8 +27,8 @@ public class EndOfLessons {
             e.printStackTrace();
         }
 
-        int hour = 0;
-        int minutes = 0;
+        int hour;
+        int minutes;
         hour = numberOfLesson * 45 + numberOfLesson / 2 * 5 + (numberOfLesson - 1) / 2 * 15;
         minutes = hour % 60;
         System.out.println("Lesson ends at: " + (9 + hour / 60) + ":" + minutes);
