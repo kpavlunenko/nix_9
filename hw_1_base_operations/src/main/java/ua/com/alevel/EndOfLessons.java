@@ -15,7 +15,7 @@ public class EndOfLessons {
     public static void findOutTheEndOfTheLesson() {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter number of lesson (1-10):");
+        System.out.println("Enter the number of lesson (1-10):");
 
         int numberOfLesson = 0;
 
