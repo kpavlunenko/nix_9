@@ -47,7 +47,7 @@ public class RowsFunction {
             e.printStackTrace();
         }
 
-        String onlyNumberInRow = inputRow.replaceAll("[^a-zA-Zа-яА-Я]", "");
+        String onlyNumberInRow = inputRow.replaceAll("[^a-z A-Z а-я А-Я]", "");
 
         String[] arrayOfLetters;
         arrayOfLetters = onlyNumberInRow.split("");
