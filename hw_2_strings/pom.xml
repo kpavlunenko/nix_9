@@ -17,6 +17,11 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>string_util</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <properties>

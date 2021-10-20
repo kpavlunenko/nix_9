@@ -14,7 +14,11 @@ public class UsersInterface {
     public static void runProgram() {
 
         System.out.println("You can specify substring or start and end indices to reverse (optional)");
+        System.out.println("For exit enter 0");
         System.out.println("Optional parameters are entered with a separator \",\"");
+        System.out.println("Example:");
+        System.out.println("Hello world,world");
+        System.out.println("Hello world,3,7");
         System.out.println("Enter row which you want to reverse and press enter:");
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -29,9 +33,15 @@ public class UsersInterface {
             e.printStackTrace();
         }
 
-       String reversString = StringFunctions.reverseMethodDefinition(inputRow);
+        if(inputRow.equals("0")) {
+            return;
+        }
 
+        String reversString = StringReverseUtil.reverseMethodDefinition(inputRow);
         System.out.println(reversString);
+        System.out.println("---------------------------");
+
+        runProgram();
 
     }
 }

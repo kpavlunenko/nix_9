@@ -23,6 +23,7 @@
     <modules>
         <module>hw_1_base_operations</module>
         <module>hw_2_strings</module>
+        <module>string_util</module>
     </modules>
 
     <properties>
