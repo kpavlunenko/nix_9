@@ -11,25 +11,20 @@ public class HomeWork {
     }
 
     public static void runProgram() {
-
         System.out.println("-----------------------------------");
         System.out.println("1. Sum of numbers in row;");
         System.out.println("2. Number of duplicate characters");
         System.out.println("3. Find out the end of the lesson");
         System.out.println("0. Exit from program");
         System.out.println("Enter number of task:");
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int taskNumber = 0;
-
         try {
             taskNumber = Integer.valueOf(bufferedReader.readLine());
-
         } catch (NumberFormatException | IOException e) {
             System.out.println("Incoming data is incorrect");
             e.printStackTrace();
         }
-
         switch (taskNumber) {
             case 1:
                 RowsFunction rowSum = new RowsFunction();
