@@ -2,11 +2,12 @@ package ua.com.alevel.db;
 
 import ua.com.alevel.entity.User;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public final class UserDB {
 
-    private  User [] users = new User[10];
+    private User [] users = new User[2];
     private static UserDB instance;
     private static int countOfUsers = 0;
 
@@ -21,22 +22,31 @@ public final class UserDB {
 
     public void create(User user) {
         user.setId(generateId());
-        users[0] = user;
+        users[countOfUsers] = user;
+        countOfUsers++;
+        if(countOfUsers == users.length) {
+            users = Arrays.copyOf(users, countOfUsers + 10);
+        }
     }
 
     public void update(User user) {
-        User currentUser = findUserById(user.getId());
-        currentUser = user;
+        users[findIndexUserInArray(user.getId())] = user;
     }
 
     public void delete(String id) {
-        users[findIndexUserInArray(id)] = null;
+        int idInArray = findIndexUserInArray(id);
+        users[idInArray] = null;
+        for (int i = idInArray; i < countOfUsers - 1; i++) {
+            users[i] = users[i + 1];
+        }
+        users[countOfUsers - 1] = null;
+        countOfUsers--;
     }
 
     private String generateId() {
         String id = UUID.randomUUID().toString();
         for (int i = 0; i < countOfUsers; i++) {
-            if (users[i].getId() == id) {
+            if (users[i].getId().equals(id)) {
                 return generateId();
             }
         }
@@ -49,7 +59,7 @@ public final class UserDB {
 
     public User findUserById(String id) {
         for (int i = 0; i < countOfUsers; i++) {
-            if (users[i].getId() == id) {
+            if (users[i].getId().equals(id)) {
                 return users[i];
             }
         }
@@ -58,7 +68,7 @@ public final class UserDB {
 
     private int findIndexUserInArray(String id) {
         for (int i = 0; i < countOfUsers; i++) {
-            if (users[i].getId() == id) {
+            if (users[i].getId().equals(id)) {
                 return i;
             }
         }

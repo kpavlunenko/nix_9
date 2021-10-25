@@ -1,7 +1,6 @@
 package ua.com.alevel.service;
 
 import ua.com.alevel.dao.UserDao;
-import ua.com.alevel.db.UserDB;
 import ua.com.alevel.entity.User;
 
 public class UserService {

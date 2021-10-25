@@ -43,17 +43,26 @@ public class UserController {
 
     private void crud(String position, BufferedReader reader) {
         switch (position) {
-            case "1" : create(reader); break;
-            case "2" : update(reader); break;
-            case "3" : delete(reader); break;
-            case "4" : findById(reader); break;
-            case "5" : findAll(reader); break;
+            case "1":
+                create(reader);
+                break;
+            case "2":
+                update(reader);
+                break;
+            case "3":
+                delete(reader);
+                break;
+            case "4":
+                findById(reader);
+                break;
+            case "5":
+                findAll();
+                break;
         }
         runNavigation();
     }
 
     private void create(BufferedReader reader) {
-        System.out.println("UserController.create");
         try {
             System.out.println("Please, enter your name");
             String name = reader.readLine();
@@ -70,7 +79,6 @@ public class UserController {
     }
 
     private void update(BufferedReader reader) {
-        System.out.println("UserController.update");
         try {
             System.out.println("Please, enter id");
             String id = reader.readLine();
@@ -90,7 +98,6 @@ public class UserController {
     }
 
     private void delete(BufferedReader reader) {
-        System.out.println("UserController.delete");
         try {
             System.out.println("Please, enter id");
             String id = reader.readLine();
@@ -101,7 +108,6 @@ public class UserController {
     }
 
     private void findById(BufferedReader reader) {
-        System.out.println("UserController.findById");
         try {
             System.out.println("Please, enter id");
             String id = reader.readLine();
@@ -112,14 +118,16 @@ public class UserController {
         }
     }
 
-    private void findAll(BufferedReader reader) {
-        System.out.println("UserController.findAll");
-        User [] users = userService.findAll();
-        if (users != null && users.length != 0) {
-            for (User user : users) {
+    private void findAll() {
+        User[] users = userService.findAll();
+        boolean arrayIsEmpty = true;
+        for (User user : users) {
+            if (user != null) {
+                arrayIsEmpty = false;
                 System.out.println("user = " + user);
             }
-        } else {
+        }
+        if (arrayIsEmpty) {
             System.out.println("users empty");
         }
     }
