@@ -1,10 +1,12 @@
-package ua.com.alevel.controller;
+package ua.com.alevel;
+
+import ua.com.alevel.level1.RowsFunction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InterfaceController {
+public class UserInterface {
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -108,7 +110,7 @@ public class InterfaceController {
     private void numberOfTaskLevelOne(String position, BufferedReader reader) {
         switch (position) {
             case "1":
-                System.out.println("Task 1");
+                RowsFunction.uniqueNumbersInString();
                 break;
             case "2":
                 System.out.println("Task 1");
