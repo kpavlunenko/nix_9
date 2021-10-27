@@ -21,7 +21,7 @@ public class RowsFunction {
         String onlyNumberInRow = inputRow.replaceAll("[^0-9]", "");
         String[] arrayOfLetters;
         arrayOfLetters = onlyNumberInRow.split("");
-        Map<String, Integer> countOfNumbers = new HashMap<String, Integer>();
+        Map<String, Integer> countOfNumbers = new HashMap<>();
         ArrayList<String> uniqueNumbers = new ArrayList<>();
         for (int i = 0; i < arrayOfLetters.length; i++) {
             if (countOfNumbers.containsKey(arrayOfLetters[i])) {
