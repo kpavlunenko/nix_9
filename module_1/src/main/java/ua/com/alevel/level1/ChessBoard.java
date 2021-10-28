@@ -5,7 +5,6 @@ import ua.com.alevel.UserInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +60,6 @@ public class ChessBoard {
         }
         int coordinateX = matchX.get(arrayOfLetters[0]);
         int coordinateY = Character.getNumericValue(arrayOfLetters[1].charAt(0));
-
         Map<String, Integer> coordinate = new HashMap<>();
         coordinate.put("coordinateX", coordinateX);
         coordinate.put("coordinateY", coordinateY - 1);
