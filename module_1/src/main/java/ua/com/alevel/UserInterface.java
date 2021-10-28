@@ -1,6 +1,7 @@
 package ua.com.alevel;
 
 import ua.com.alevel.level1.ChessBoard;
+import ua.com.alevel.level1.GeometricFormulas;
 import ua.com.alevel.level1.RowsFunction;
 
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ public class UserInterface {
         ModuleInterface(reader);
     }
 
-    private void ModuleInterface(BufferedReader reader) {
+    private static void ModuleInterface(BufferedReader reader) {
         String position;
         try {
             runModuleNavigation();
@@ -31,7 +32,7 @@ public class UserInterface {
         }
     }
 
-    private void runModuleNavigation() {
+    private static void runModuleNavigation() {
         System.out.println();
         System.out.println("Enter level of module:");
         System.out.println("to choose  level 1, please enter 1");
@@ -41,7 +42,7 @@ public class UserInterface {
         System.out.println();
     }
 
-    private void levelOfModule(String position, BufferedReader reader) {
+    private static void levelOfModule(String position, BufferedReader reader) {
         switch (position) {
             case "1":
                 LevelOneInterface(reader);
@@ -59,7 +60,7 @@ public class UserInterface {
         runModuleNavigation();
     }
 
-    public void LevelOneInterface(BufferedReader reader) {
+    public static void LevelOneInterface(BufferedReader reader) {
         String position;
         try {
             runLevelOneNavigation();
@@ -74,7 +75,7 @@ public class UserInterface {
         }
     }
 
-    private void LevelTwoInterface(BufferedReader reader) {
+    private static void LevelTwoInterface(BufferedReader reader) {
         String position;
         try {
             runLevelTwoNavigation();
@@ -89,7 +90,7 @@ public class UserInterface {
         }
     }
 
-    private void runLevelOneNavigation() {
+    private static void runLevelOneNavigation() {
         System.out.println();
         System.out.println("Enter task number of level 1:");
         System.out.println("to choose  task 1, please enter 1");
@@ -99,7 +100,7 @@ public class UserInterface {
         System.out.println();
     }
 
-    private void runLevelTwoNavigation() {
+    private static void runLevelTwoNavigation() {
         System.out.println();
         System.out.println("Enter task number of level 2:");
         System.out.println("to choose  task 1, please enter 1");
@@ -108,7 +109,7 @@ public class UserInterface {
         System.out.println();
     }
 
-    private void numberOfTaskLevelOne(String position, BufferedReader reader) {
+    private static void numberOfTaskLevelOne(String position, BufferedReader reader) {
         switch (position) {
             case "1":
                 RowsFunction.uniqueNumbersInString();
@@ -117,13 +118,13 @@ public class UserInterface {
                 ChessBoard.knightStep();
                 break;
             case "3":
-                System.out.println("Task 3");
+                GeometricFormulas.areaOfATriangle();
                 break;
         }
         runLevelOneNavigation();
     }
 
-    private void numberOfTaskLevelTwo(String position, BufferedReader reader) {
+    private static void numberOfTaskLevelTwo(String position, BufferedReader reader) {
         switch (position) {
             case "1":
                 System.out.println("Task 1");

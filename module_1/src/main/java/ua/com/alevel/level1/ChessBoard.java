@@ -30,7 +30,7 @@ public class ChessBoard {
             e.printStackTrace();
         }
         if (inputRow.equals("0")) {
-            new UserInterface().LevelOneInterface(bufferedReader);
+            UserInterface.LevelOneInterface(bufferedReader);
         }
         String onlyNumberInRow = inputRow.replaceAll("[^1-8A-H]", "");
 
