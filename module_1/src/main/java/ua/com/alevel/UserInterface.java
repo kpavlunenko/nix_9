@@ -1,5 +1,6 @@
 package ua.com.alevel;
 
+import ua.com.alevel.level1.ChessBoard;
 import ua.com.alevel.level1.RowsFunction;
 
 import java.io.BufferedReader;
@@ -58,7 +59,7 @@ public class UserInterface {
         runModuleNavigation();
     }
 
-    private void LevelOneInterface(BufferedReader reader) {
+    public void LevelOneInterface(BufferedReader reader) {
         String position;
         try {
             runLevelOneNavigation();
@@ -113,7 +114,7 @@ public class UserInterface {
                 RowsFunction.uniqueNumbersInString();
                 break;
             case "2":
-                System.out.println("Task 1");
+                ChessBoard.knightStep();
                 break;
             case "3":
                 System.out.println("Task 3");
