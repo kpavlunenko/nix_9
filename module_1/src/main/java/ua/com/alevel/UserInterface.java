@@ -1,9 +1,10 @@
 package ua.com.alevel;
 
+import ua.com.alevel.game.Game;
 import ua.com.alevel.level1.ChessBoard;
 import ua.com.alevel.level1.GeometricFormulas;
 import ua.com.alevel.level1.RowsFunction;
-import ua.com.alevel.level2.Tree;
+import ua.com.alevel.tree.Tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class UserInterface {
         System.out.println("Enter level of module:");
         System.out.println("to choose  level 1, please enter 1");
         System.out.println("to choose  level 2, please enter 2");
-        System.out.println("to choose  level 3, please enter 3");
+        System.out.println("to choose  level 3 (game of life), please enter 3");
         System.out.println("if you want exit, please enter 0");
         System.out.println();
     }
@@ -52,7 +53,7 @@ public class UserInterface {
                 LevelTwoInterface(reader);
                 break;
             case "3":
-                LevelOneInterface(reader);
+                Game.runGame();
                 break;
             case "0":
                 System.exit(0);
@@ -94,9 +95,9 @@ public class UserInterface {
     private static void runLevelOneNavigation() {
         System.out.println();
         System.out.println("Enter task number of level 1:");
-        System.out.println("to choose  task 1, please enter 1");
-        System.out.println("to choose  task 2, please enter 2");
-        System.out.println("to choose  task 3, please enter 3");
+        System.out.println("to choose  task 1 (unique numbers in row), please enter 1");
+        System.out.println("to choose  task 2 (Knight step), please enter 2");
+        System.out.println("to choose  task 3 (Area of ABC), please enter 3");
         System.out.println("if you want exit, please enter 0");
         System.out.println();
     }
@@ -104,8 +105,8 @@ public class UserInterface {
     private static void runLevelTwoNavigation() {
         System.out.println();
         System.out.println("Enter task number of level 2:");
-        System.out.println("to choose  task 1, please enter 1");
-        System.out.println("to choose  task 2, please enter 2");
+        System.out.println("to choose  task 1 (Validate row), please enter 1");
+        System.out.println("to choose  task 2 (max deep in tree), please enter 2");
         System.out.println("if you want exit, please enter 0");
         System.out.println();
     }
