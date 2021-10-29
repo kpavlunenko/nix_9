@@ -3,6 +3,7 @@ package ua.com.alevel;
 import ua.com.alevel.level1.ChessBoard;
 import ua.com.alevel.level1.GeometricFormulas;
 import ua.com.alevel.level1.RowsFunction;
+import ua.com.alevel.level2.Tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -130,7 +131,7 @@ public class UserInterface {
                 RowsFunction.validateRow();
                 break;
             case "2":
-                System.out.println("Task 2");
+                new Tree().maxDeepOfTree();
                 break;
         }
         runLevelTwoNavigation();
