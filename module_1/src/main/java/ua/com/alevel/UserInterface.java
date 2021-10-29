@@ -127,7 +127,7 @@ public class UserInterface {
     private static void numberOfTaskLevelTwo(String position, BufferedReader reader) {
         switch (position) {
             case "1":
-                System.out.println("Task 1");
+                RowsFunction.validateRow();
                 break;
             case "2":
                 System.out.println("Task 2");
