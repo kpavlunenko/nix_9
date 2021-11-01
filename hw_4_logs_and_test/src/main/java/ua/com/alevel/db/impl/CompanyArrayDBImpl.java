@@ -10,7 +10,7 @@ public class CompanyArrayDBImpl implements CompanyDB {
 
     private Company [] companies = new Company[2];
     private static CompanyArrayDBImpl instance;
-    private static int countOfCompanies = 0;
+    private static int countOfItems = 0;
 
     private CompanyArrayDBImpl() {
         companies = new Company[2];
@@ -24,11 +24,11 @@ public class CompanyArrayDBImpl implements CompanyDB {
     }
 
     public void create (Company company) {
-        company.setId(GenerateIdUtil.generateId(companies, countOfCompanies));
-        companies[countOfCompanies] = company;
-        countOfCompanies++;
-        if(countOfCompanies == companies.length) {
-            companies = Arrays.copyOf(companies, countOfCompanies + 10);
+        company.setId(GenerateIdUtil.generateId(companies, countOfItems));
+        companies[countOfItems] = company;
+        countOfItems++;
+        if(countOfItems == companies.length) {
+            companies = Arrays.copyOf(companies, countOfItems + 10);
         }
     }
 
@@ -39,15 +39,15 @@ public class CompanyArrayDBImpl implements CompanyDB {
     public void delete(String id) {
         int idInArray = findIndexCompanyInArray(id);
         companies[idInArray] = null;
-        for (int i = idInArray; i < countOfCompanies - 1; i++) {
+        for (int i = idInArray; i < countOfItems - 1; i++) {
             companies[i] = companies[i + 1];
         }
-        companies[countOfCompanies - 1] = null;
-        countOfCompanies--;
+        companies[countOfItems - 1] = null;
+        countOfItems--;
     }
 
     public Company findById(String id) {
-        for (int i = 0; i < countOfCompanies; i++) {
+        for (int i = 0; i < countOfItems; i++) {
             if (companies[i].getId().equals(id)) {
                 return companies[i];
             }
@@ -60,7 +60,7 @@ public class CompanyArrayDBImpl implements CompanyDB {
     }
 
     private int findIndexCompanyInArray(String id) {
-        for (int i = 0; i < countOfCompanies; i++) {
+        for (int i = 0; i < countOfItems; i++) {
             if (companies[i].getId().equals(id)) {
                 return i;
             }

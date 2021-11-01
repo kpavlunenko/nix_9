@@ -18,7 +18,7 @@ public class Customer extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Company{" +
+        return "Customer{" +
                 "id='" + super.getId() + '\'' +
                 ", name='" + name + '\'' +
                 '}';

@@ -1,5 +1,6 @@
-package ua.com.alevel.controller;
+package ua.com.alevel.controller.impl;
 
+import ua.com.alevel.controller.BaseController;
 import ua.com.alevel.entity.Company;
 import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.service.impl.CompanyServiceImpl;
@@ -8,21 +9,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class CompanyController {
+public class CompanyControllerImpl implements BaseController {
 
     private final CompanyService companyService = new CompanyServiceImpl();
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("-------------------");
+        System.out.println("Entity Company");
         System.out.println("select your option");
         String position;
         try {
             runNavigation();
             while ((position = reader.readLine()) != null) {
-                crud(position, reader);
-                position = reader.readLine();
                 if (position.equals("0")) {
-                    System.exit(0);
+                    break;
                 }
                 crud(position, reader);
             }
