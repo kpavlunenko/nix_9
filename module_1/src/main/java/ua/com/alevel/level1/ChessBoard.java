@@ -11,7 +11,7 @@ import java.util.Map;
 public class ChessBoard {
 
     public static void knightStep() {
-        Map <String, Integer> coordinate = getKnightCoordinate();
+        Map <String, Integer> coordinate = getKnightCoordinate(-1,-1);
         doKnightStep(coordinate.get("coordinateX"), coordinate.get("coordinateY"));
     }
 
@@ -19,7 +19,45 @@ public class ChessBoard {
         return x >= 0 && x < 8 && y >= 0 && y < 8;
     }
 
-    private static Map getKnightCoordinate() {
+    private static void showDesk(int coordinateX, int coordinateY) {
+        String rowOfDesk;
+        Map<Integer, String> matchX = new HashMap<>();
+        matchX.put(0,"A");
+        matchX.put(1, "B");
+        matchX.put(2, "C");
+        matchX.put(3, "D");
+        matchX.put(4, "E");
+        matchX.put(5, "F");
+        matchX.put(6, "G");
+        matchX.put(7, "H");
+        for (int i = 0; i < 9; ++i) {
+            rowOfDesk = "";
+            for (int j = 0; j < 9; j++) {
+                if (i==8) {
+                    if (j == 0) {
+                        rowOfDesk = rowOfDesk + "  ";
+                    } else {
+                        rowOfDesk = rowOfDesk + matchX.get(j-1) + " ";
+                    }
+                } else {
+                    if (j == 0) {
+                        rowOfDesk = rowOfDesk + (8 - i);
+                    } else {
+                        if(coordinateY == (7 - i) && coordinateX == (j -1)) {
+                            rowOfDesk = rowOfDesk + "|" + "@";
+                        } else {
+                            rowOfDesk = rowOfDesk + "|" + "_";
+                        }
+                    }
+                }
+            }
+
+            System.out.println(rowOfDesk);
+        }
+    }
+
+    private static Map getKnightCoordinate(int coordinateX, int coordinateY) {
+        showDesk(coordinateX, coordinateY);
         System.out.println("Enter the knight position. Intervals: A-H, 1-8 (example B2):");
         System.out.println("if you want exit, please enter 0");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -58,8 +96,8 @@ public class ChessBoard {
             System.out.println("----------------------");
             knightStep();
         }
-        int coordinateX = matchX.get(arrayOfLetters[0]);
-        int coordinateY = Character.getNumericValue(arrayOfLetters[1].charAt(0));
+        coordinateX = matchX.get(arrayOfLetters[0]);
+        coordinateY = Character.getNumericValue(arrayOfLetters[1].charAt(0));
         Map<String, Integer> coordinate = new HashMap<>();
         coordinate.put("coordinateX", coordinateX);
         coordinate.put("coordinateY", coordinateY - 1);
@@ -79,7 +117,7 @@ public class ChessBoard {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("--------------------");
         System.out.println("Current knight position:" + matchX.get(coordinateX) + (coordinateY + 1));
-        Map <String, Integer> coordinate = getKnightCoordinate();
+        Map <String, Integer> coordinate = getKnightCoordinate(coordinateX, coordinateY);
         int[][] possibleMoves = getAllMovesOfKnight(coordinateX, coordinateY);
         for(int i = 0; i < 8; i++) {
             if(possibleMoves[i][0] == coordinate.get("coordinateX") && possibleMoves[i][1] == coordinate.get("coordinateY")) {
