@@ -1,12 +1,13 @@
 package ua.com.alevel.controller.impl;
 
-import ua.com.alevel.controller.BaseController;
 import ua.com.alevel.controller.CustomerAgreementController;
 import ua.com.alevel.entity.CustomerAgreement;
 import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.service.CustomerAgreementService;
 import ua.com.alevel.service.CustomerService;
+import ua.com.alevel.service.impl.CompanyServiceImpl;
 import ua.com.alevel.service.impl.CustomerAgreementServiceImpl;
+import ua.com.alevel.service.impl.CustomerServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,20 +16,8 @@ import java.io.InputStreamReader;
 public class CustomerAgreementControllerImpl implements CustomerAgreementController {
 
     private final CustomerAgreementService customerAgreementService = new CustomerAgreementServiceImpl();
-    private CustomerService customerService;
-    private CompanyService companyService;
-
-    public CustomerAgreementService getService() {
-        return customerAgreementService;
-    }
-
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-
-    public void setCompanyService(CompanyService companyService) {
-        this.companyService = companyService;
-    }
+    private final CustomerService customerService = new CustomerServiceImpl();
+    private final CompanyService companyService = new CompanyServiceImpl();
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -89,12 +78,12 @@ public class CustomerAgreementControllerImpl implements CustomerAgreementControl
             customerAgreement.setName(name);
             System.out.println("Please, enter id of customer");
             String customerId = reader.readLine();
-            customerAgreement.setCustomer(this.customerService.findById(customerId));
+            customerAgreement.setCustomer(customerService.findById(customerId));
             System.out.println("Please, enter id of company");
             String companyId = reader.readLine();
-            customerAgreement.setCompany(this.companyService.findById(companyId));
+            customerAgreement.setCompany(companyService.findById(companyId));
             customerAgreementService.create(customerAgreement);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -103,19 +92,19 @@ public class CustomerAgreementControllerImpl implements CustomerAgreementControl
         try {
             System.out.println("Please, enter id");
             String id = reader.readLine();
-            System.out.println("Please, enter company name");
+            System.out.println("Please, enter customer agreement name");
             String name = reader.readLine();
             CustomerAgreement customerAgreement = new CustomerAgreement();
             customerAgreement.setId(id);
             customerAgreement.setName(name);
             System.out.println("Please, enter id of customer");
             String customerId = reader.readLine();
-            customerAgreement.setCustomer(this.customerService.findById(customerId));
+            customerAgreement.setCustomer(customerService.findById(customerId));
             System.out.println("Please, enter id of company");
             String companyId = reader.readLine();
-            customerAgreement.setCompany(this.companyService.findById(companyId));
+            customerAgreement.setCompany(companyService.findById(companyId));
             customerAgreementService.update(customerAgreement);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -125,7 +114,7 @@ public class CustomerAgreementControllerImpl implements CustomerAgreementControl
             System.out.println("Please, enter id");
             String id = reader.readLine();
             customerAgreementService.delete(id);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -136,7 +125,7 @@ public class CustomerAgreementControllerImpl implements CustomerAgreementControl
             String id = reader.readLine();
             CustomerAgreement customerAgreement = customerAgreementService.findById(id);
             System.out.println("Customer agreement = " + customerAgreement);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }

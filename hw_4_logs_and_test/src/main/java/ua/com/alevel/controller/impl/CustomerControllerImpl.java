@@ -1,6 +1,5 @@
 package ua.com.alevel.controller.impl;
 
-import ua.com.alevel.controller.BaseController;
 import ua.com.alevel.controller.CustomerController;
 import ua.com.alevel.entity.Customer;
 import ua.com.alevel.service.CustomerService;
@@ -13,10 +12,6 @@ import java.io.InputStreamReader;
 public class CustomerControllerImpl implements CustomerController {
 
     private final CustomerService customerService = new CustomerServiceImpl();
-
-    public CustomerService getService() {
-        return customerService;
-    }
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -76,7 +71,7 @@ public class CustomerControllerImpl implements CustomerController {
             Customer customer = new Customer();
             customer.setName(name);
             customerService.create(customer);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -91,7 +86,7 @@ public class CustomerControllerImpl implements CustomerController {
             customer.setId(id);
             customer.setName(name);
             customerService.update(customer);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -101,7 +96,7 @@ public class CustomerControllerImpl implements CustomerController {
             System.out.println("Please, enter id");
             String id = reader.readLine();
             customerService.delete(id);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -112,7 +107,7 @@ public class CustomerControllerImpl implements CustomerController {
             String id = reader.readLine();
             Customer customer = customerService.findById(id);
             System.out.println("customer = " + customer);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }

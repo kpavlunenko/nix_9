@@ -3,7 +3,9 @@ package ua.com.alevel.service.impl;
 import ua.com.alevel.dao.CompanyDao;
 import ua.com.alevel.dao.impl.CompanyDaoImpl;
 import ua.com.alevel.entity.Company;
+import ua.com.alevel.entity.CustomerAgreement;
 import ua.com.alevel.service.CompanyService;
+import ua.com.alevel.service.CustomerAgreementService;
 
 public class CompanyServiceImpl implements CompanyService {
 
@@ -21,7 +23,22 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void delete(String id) {
-        companyDao.delete(id);
+        CustomerAgreementService customerAgreementService = new CustomerAgreementServiceImpl();
+        CustomerAgreement[] customerAgreements = customerAgreementService.findAll();
+        boolean allowToDelete = true;
+        for (int i = 0; i < customerAgreements.length; i++) {
+            if (customerAgreements[i] != null && customerAgreements[i].getCompany().getId().equals(id)) {
+                if(allowToDelete){
+                    System.out.println("For current company exist customer agreements, operation 'delete' isn't allowed!");
+                    System.out.println("You need to delete next agreements:");
+                    allowToDelete = false;
+                }
+                System.out.println(customerAgreements[i].getId());
+            }
+        }
+        if(allowToDelete) {
+            companyDao.delete(id);
+        }
     }
 
     @Override

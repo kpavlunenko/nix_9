@@ -37,9 +37,10 @@ public class CustomerAgreement extends BaseEntity {
     @Override
     public String toString() {
         return "CustomerAgreement{" +
-                "name=" + name +
-                ", company=" + company +
-                ", customer='" + customer + '\'' +
+                "id=" + super.getId() +
+                ", name=" + name +
+                ", company=" + company.getName() +
+                ", customer='" + customer.getName() + '\'' +
                 '}';
     }
 }

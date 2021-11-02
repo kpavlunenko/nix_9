@@ -1,6 +1,5 @@
 package ua.com.alevel.controller.impl;
 
-import ua.com.alevel.controller.BaseController;
 import ua.com.alevel.controller.CompanyController;
 import ua.com.alevel.entity.Company;
 import ua.com.alevel.service.CompanyService;
@@ -13,10 +12,6 @@ import java.io.InputStreamReader;
 public class CompanyControllerImpl implements CompanyController {
 
     private final CompanyService companyService = new CompanyServiceImpl();
-
-    public CompanyService getService() {
-        return companyService;
-    }
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -76,7 +71,7 @@ public class CompanyControllerImpl implements CompanyController {
             Company company = new Company();
             company.setName(name);
             companyService.create(company);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -91,7 +86,7 @@ public class CompanyControllerImpl implements CompanyController {
             company.setId(id);
             company.setName(name);
             companyService.update(company);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -101,7 +96,7 @@ public class CompanyControllerImpl implements CompanyController {
             System.out.println("Please, enter id");
             String id = reader.readLine();
             companyService.delete(id);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
@@ -112,7 +107,7 @@ public class CompanyControllerImpl implements CompanyController {
             String id = reader.readLine();
             Company company = companyService.findById(id);
             System.out.println("company = " + company);
-        } catch (IOException e) {
+        } catch (IOException|RuntimeException e) {
             System.out.println("problem: = " + e.getMessage());
         }
     }
