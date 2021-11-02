@@ -6,7 +6,6 @@ import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.service.CustomerAgreementService;
 import ua.com.alevel.service.CustomerService;
 import ua.com.alevel.service.impl.CustomerAgreementServiceImpl;
-import ua.com.alevel.service.impl.CustomerServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -107,7 +106,13 @@ public class CustomerAgreementControllerImpl implements BaseController {
             String name = reader.readLine();
             CustomerAgreement customerAgreement = new CustomerAgreement();
             customerAgreement.setId(id);
-            //customerAgreement.setName(name);
+            customerAgreement.setName(name);
+            System.out.println("Please, enter id of customer");
+            String customerId = reader.readLine();
+            customerAgreement.setCustomer(this.customerService.findById(customerId));
+            System.out.println("Please, enter id of company");
+            String companyId = reader.readLine();
+            customerAgreement.setCompany(this.companyService.findById(companyId));
             customerAgreementService.update(customerAgreement);
         } catch (IOException e) {
             System.out.println("problem: = " + e.getMessage());

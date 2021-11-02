@@ -52,7 +52,7 @@ public class CustomerArrayDBImpl implements CustomerDB {
                 return customers[i];
             }
         }
-        throw new RuntimeException("user not found by id");
+        throw new RuntimeException("customer not found by id");
     }
 
     public Customer [] findAll() {
@@ -65,6 +65,6 @@ public class CustomerArrayDBImpl implements CustomerDB {
                 return i;
             }
         }
-        throw new RuntimeException("user not found by id");
+        throw new RuntimeException("customer not found by id");
     }
 }

@@ -52,7 +52,7 @@ public class CustomerAgreementArrayDBImpl implements CustomerAgreementDB {
                 return customerAgreements[i];
             }
         }
-        throw new RuntimeException("user not found by id");
+        throw new RuntimeException("customer agreement not found by id");
     }
 
     public CustomerAgreement[] findAll() {
@@ -65,6 +65,6 @@ public class CustomerAgreementArrayDBImpl implements CustomerAgreementDB {
                 return i;
             }
         }
-        throw new RuntimeException("user not found by id");
+        throw new RuntimeException("customer agreement not found by id");
     }
 }

@@ -20,6 +20,9 @@ public class DBController {
         entityInDB.put("Company", new CompanyControllerImpl());
         entityInDB.put("Customer", new CustomerControllerImpl());
         entityInDB.put("CustomerAgreement", new CustomerAgreementControllerImpl());
+        CustomerAgreementControllerImpl customerAgreementControllerImpl = (CustomerAgreementControllerImpl) entityInDB.get("CustomerAgreement");
+        customerAgreementControllerImpl.setCustomerService((CustomerService) entityInDB.get("Customer").getService());
+        customerAgreementControllerImpl.setCompanyService((CompanyService) entityInDB.get("Company").getService());
     }
 
     public void run() {
@@ -57,9 +60,7 @@ public class DBController {
                 entityInDB.get("Customer").run();
                 break;
             case "3":
-                CustomerAgreementControllerImpl customerAgreementControllerImpl = (CustomerAgreementControllerImpl) entityInDB.get("CustomerAgreement");
-                customerAgreementControllerImpl.setCustomerService((CustomerService) entityInDB.get("Customer").getService());
-                customerAgreementControllerImpl.setCompanyService((CompanyService) entityInDB.get("Company").getService());
+                entityInDB.get("CustomerAgreement").run();
                 break;
         }
         runNavigation();
