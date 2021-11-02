@@ -7,7 +7,18 @@ import ua.com.alevel.service.impl.CompanyServiceImpl;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CompanyServiceImplTest {
 
-    private final CompanyServiceImpl companyServiceImpl = new CompanyServiceImpl();
+    private final static CompanyServiceImpl companyServiceImpl = new CompanyServiceImpl();
+    private final static int COMPANIES_SIZE = 10;
+
+    @BeforeAll
+    public static void setUp() {
+        for (int i = 0; i < COMPANIES_SIZE; i++) {
+            Company company = CompanyGenerationUtil.generateCompany(CompanyGenerationUtil.NAME + i);
+            companyServiceImpl.create(company);
+        }
+
+        Assertions.assertEquals(COMPANIES_SIZE, companyServiceImpl.findAll().length);
+    }
 
     @Order(1)
     @Test
@@ -15,24 +26,19 @@ public class CompanyServiceImplTest {
         Company company = new Company();
         company.setName(null);
         companyServiceImpl.create(company);
-        verifyCompanyArrayWhenCompaniesArrayIsNotEmpty();
+        verifyCompanyArrayWhenCompaniesArrayIsNotEmpty(11);
     }
 
     @Order(2)
     @Test
     public void shouldBeReturnAllCompaniesWhenCompanyWasCreated() {
-        verifyCompanyArrayWhenCompaniesArrayIsNotEmpty();
+        verifyCompanyArrayWhenCompaniesArrayIsNotEmpty(11);
     }
 
-    private void verifyCompanyArrayWhenCompaniesArrayIsNotEmpty() {
-        boolean testIsTrue = false;
+    private void verifyCompanyArrayWhenCompaniesArrayIsNotEmpty(int size) {
         Company[] companies = companyServiceImpl.findAll();
-        for (int i = 0; i < companies.length; i++) {
-            if (companies[i] != null) {
-                testIsTrue = true;
-            }
-        }
 
-        Assertions.assertTrue(testIsTrue);
+        Assertions.assertTrue(companies.length != 0);
+        Assertions.assertEquals(size, companyServiceImpl.findAll().length);
     }
 }

@@ -56,7 +56,11 @@ public class CustomerAgreementArrayDBImpl implements CustomerAgreementDB {
     }
 
     public CustomerAgreement[] findAll() {
-        return customerAgreements;
+        CustomerAgreement[] allCustomerAgreements = new CustomerAgreement[countOfItems];
+        for (int i = 0; i < countOfItems; i++) {
+            allCustomerAgreements[i] = customerAgreements[i];
+        }
+        return allCustomerAgreements;
     }
 
     private int findIndexCustomerAgreementInArray(String id) {

@@ -132,14 +132,11 @@ public class CustomerAgreementControllerImpl implements CustomerAgreementControl
 
     private void findAll() {
         CustomerAgreement[] customerAgreements = customerAgreementService.findAll();
-        boolean arrayIsEmpty = true;
-        for (CustomerAgreement customerAgreement : customerAgreements) {
-            if (customerAgreement != null) {
-                arrayIsEmpty = false;
+        if (customerAgreements.length != 0) {
+            for (CustomerAgreement customerAgreement : customerAgreements) {
                 System.out.println("Customer agreement = " + customerAgreement);
             }
-        }
-        if (arrayIsEmpty) {
+        } else {
             System.out.println("Customer agreements empty");
         }
     }

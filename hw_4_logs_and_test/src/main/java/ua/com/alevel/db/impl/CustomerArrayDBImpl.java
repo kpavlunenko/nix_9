@@ -56,7 +56,11 @@ public class CustomerArrayDBImpl implements CustomerDB {
     }
 
     public Customer [] findAll() {
-        return customers;
+        Customer[] allCustomers = new Customer[countOfItems];
+        for (int i = 0; i < countOfItems; i++) {
+            allCustomers[i] = customers[i];
+        }
+        return allCustomers;
     }
 
     private int findIndexCustomerInArray(String id) {

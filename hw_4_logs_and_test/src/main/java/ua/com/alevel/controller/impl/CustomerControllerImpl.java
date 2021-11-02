@@ -114,14 +114,11 @@ public class CustomerControllerImpl implements CustomerController {
 
     private void findAll() {
         Customer[] customers = customerService.findAll();
-        boolean arrayIsEmpty = true;
-        for (Customer customer : customers) {
-            if (customer != null) {
-                arrayIsEmpty = false;
+        if (customers.length != 0) {
+            for (Customer customer : customers) {
                 System.out.println("customer = " + customer);
             }
-        }
-        if (arrayIsEmpty) {
+        } else {
             System.out.println("customers empty");
         }
     }

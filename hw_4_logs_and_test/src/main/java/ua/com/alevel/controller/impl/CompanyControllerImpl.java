@@ -114,14 +114,11 @@ public class CompanyControllerImpl implements CompanyController {
 
     private void findAll() {
         Company[] companies = companyService.findAll();
-        boolean arrayIsEmpty = true;
-        for (Company company : companies) {
-            if (company != null) {
-                arrayIsEmpty = false;
+        if (companies.length != 0) {
+            for (Company company : companies) {
                 System.out.println("company = " + company);
             }
-        }
-        if (arrayIsEmpty) {
+        } else {
             System.out.println("companies empty");
         }
     }

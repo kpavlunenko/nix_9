@@ -56,7 +56,11 @@ public class CompanyArrayDBImpl implements CompanyDB {
     }
 
     public Company [] findAll() {
-        return companies;
+        Company[] allCompanies = new Company[countOfItems];
+        for (int i = 0; i < countOfItems; i++) {
+            allCompanies[i] = companies[i];
+        }
+        return allCompanies;
     }
 
     private int findIndexCompanyInArray(String id) {
