@@ -4,6 +4,15 @@ public class CustomerAgreement extends BaseEntity {
 
     private Customer customer;
     private Company company;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public CustomerAgreement() {
         super();
@@ -27,9 +36,10 @@ public class CustomerAgreement extends BaseEntity {
 
     @Override
     public String toString() {
-        return "СustomerAgreement{" +
-                "customer=" + customer +
+        return "CustomerAgreement{" +
+                "name=" + name +
                 ", company=" + company +
+                ", customer='" + customer + '\'' +
                 '}';
     }
 }

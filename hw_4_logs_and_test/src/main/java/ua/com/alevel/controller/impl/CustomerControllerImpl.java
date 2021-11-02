@@ -13,6 +13,10 @@ public class CustomerControllerImpl implements BaseController {
 
     private final CustomerService customerService = new CustomerServiceImpl();
 
+    public CustomerService getService() {
+        return customerService;
+    }
+
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("-------------------");

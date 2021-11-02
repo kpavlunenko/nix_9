@@ -1,7 +1,10 @@
 package ua.com.alevel.controller;
 
 import ua.com.alevel.controller.impl.CompanyControllerImpl;
+import ua.com.alevel.controller.impl.CustomerAgreementControllerImpl;
 import ua.com.alevel.controller.impl.CustomerControllerImpl;
+import ua.com.alevel.service.CompanyService;
+import ua.com.alevel.service.CustomerService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +19,7 @@ public class DBController {
     public DBController() {
         entityInDB.put("Company", new CompanyControllerImpl());
         entityInDB.put("Customer", new CustomerControllerImpl());
+        entityInDB.put("CustomerAgreement", new CustomerAgreementControllerImpl());
     }
 
     public void run() {
@@ -39,6 +43,7 @@ public class DBController {
         System.out.println();
         System.out.println("if you want to work with companies, please enter 1");
         System.out.println("if you want to work with customers, please enter 2");
+        System.out.println("if you want to work with customer agreements, please enter 3");
         System.out.println("if you want exit, please enter 0");
         System.out.println();
     }
@@ -50,6 +55,11 @@ public class DBController {
                 break;
             case "2":
                 entityInDB.get("Customer").run();
+                break;
+            case "3":
+                CustomerAgreementControllerImpl customerAgreementControllerImpl = (CustomerAgreementControllerImpl) entityInDB.get("CustomerAgreement");
+                customerAgreementControllerImpl.setCustomerService((CustomerService) entityInDB.get("Customer").getService());
+                customerAgreementControllerImpl.setCompanyService((CompanyService) entityInDB.get("Company").getService());
                 break;
         }
         runNavigation();
