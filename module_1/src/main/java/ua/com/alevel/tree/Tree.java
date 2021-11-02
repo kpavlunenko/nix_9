@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Tree {
+
     private Node root;
 
     public void maxDeepOfTree() {

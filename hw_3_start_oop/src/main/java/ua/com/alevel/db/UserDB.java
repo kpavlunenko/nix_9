@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public final class UserDB {
 
-    private User [] users = new User[2];
+    private User[] users = new User[2];
     private static UserDB instance;
     private static int countOfUsers = 0;
 

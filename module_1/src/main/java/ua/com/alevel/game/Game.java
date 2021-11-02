@@ -1,7 +1,5 @@
 package ua.com.alevel.game;
 
-import ua.com.alevel.UserInterface;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +9,6 @@ import java.util.Random;
 public class Game {
 
     public static void runGame() {
-
         int[][] board = generateBoard();
         Random rnd = new Random();
         for (int i = 0; i < board.length; i++) {
