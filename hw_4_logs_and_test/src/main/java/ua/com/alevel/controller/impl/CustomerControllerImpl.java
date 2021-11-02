@@ -1,6 +1,7 @@
 package ua.com.alevel.controller.impl;
 
 import ua.com.alevel.controller.BaseController;
+import ua.com.alevel.controller.CustomerController;
 import ua.com.alevel.entity.Customer;
 import ua.com.alevel.service.CustomerService;
 import ua.com.alevel.service.impl.CustomerServiceImpl;
@@ -9,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class CustomerControllerImpl implements BaseController {
+public class CustomerControllerImpl implements CustomerController {
 
     private final CustomerService customerService = new CustomerServiceImpl();
 

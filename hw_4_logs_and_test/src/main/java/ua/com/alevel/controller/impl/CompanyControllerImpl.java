@@ -1,16 +1,16 @@
 package ua.com.alevel.controller.impl;
 
 import ua.com.alevel.controller.BaseController;
+import ua.com.alevel.controller.CompanyController;
 import ua.com.alevel.entity.Company;
 import ua.com.alevel.service.CompanyService;
-import ua.com.alevel.service.CustomerService;
 import ua.com.alevel.service.impl.CompanyServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class CompanyControllerImpl implements BaseController {
+public class CompanyControllerImpl implements CompanyController {
 
     private final CompanyService companyService = new CompanyServiceImpl();
 
