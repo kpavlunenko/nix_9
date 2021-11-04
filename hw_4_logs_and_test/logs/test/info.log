@@ -1,0 +1,120 @@
+15:33:44.679 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.807 [main] INFO  info - object: Company; stage: finish; operation: create; id = bcf82c4b-44c7-48bb-9395-96c9683d9e26
+15:33:44.807 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.807 [main] INFO  info - object: Company; stage: finish; operation: create; id = 3c83ec4f-f1a1-4a92-ba0f-632a2b370cf2
+15:33:44.808 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.808 [main] INFO  info - object: Company; stage: finish; operation: create; id = d8a3875e-9d1f-4993-9236-ca8617006890
+15:33:44.808 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.808 [main] INFO  info - object: Company; stage: finish; operation: create; id = c624ae1b-06ef-4582-83a5-e5bfc91e6aa8
+15:33:44.810 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.810 [main] INFO  info - object: Company; stage: finish; operation: create; id = 2a9192a9-ae01-40cc-806f-7771ab659df5
+15:33:44.810 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.810 [main] INFO  info - object: Company; stage: finish; operation: create; id = 7faf4982-aa48-4f31-90a0-8b87f8444c59
+15:33:44.810 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.810 [main] INFO  info - object: Company; stage: finish; operation: create; id = 03efc9c5-f77f-4b3e-a6f0-1fc15e75582c
+15:33:44.811 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.811 [main] INFO  info - object: Company; stage: finish; operation: create; id = c168f9d6-9a0a-409f-ad67-1ac3804a004a
+15:33:44.811 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.811 [main] INFO  info - object: Company; stage: finish; operation: create; id = 8664afb6-c0e1-4fe5-98c1-39f273495362
+15:33:44.811 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.811 [main] INFO  info - object: Company; stage: finish; operation: create; id = e7ce68b3-0319-47a9-a30d-eb86166ea9b2
+15:33:44.842 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:44.843 [main] INFO  info - object: Company; stage: finish; operation: create; id = 8b89a2a3-0814-4f32-8a33-6552c9855ad0
+15:33:44.865 [main] INFO  info - object: Company; stage: start; operation: update; id = bcf82c4b-44c7-48bb-9395-96c9683d9e26
+15:33:44.865 [main] INFO  info - object: Company; stage: finish; operation: update; id = bcf82c4b-44c7-48bb-9395-96c9683d9e26
+15:33:44.911 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:44.912 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 85ed553f-b63e-4d2f-a03a-5743cb21c262
+15:33:44.912 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:44.913 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 2159c7f9-d310-453f-b217-9e8e63e8c3cc
+15:33:45.520 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.521 [main] INFO  info - object: Company; stage: finish; operation: create; id = cacdde6e-27aa-4fb0-a53f-bc406e36d628
+15:33:45.521 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.521 [main] INFO  info - object: Customer; stage: finish; operation: create; id = f5ed2c76-d615-4b13-8f29-831843f20894
+15:33:45.522 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.522 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 814f40d8-6a19-4e9c-a804-51702d5a4345
+15:33:45.522 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.522 [main] INFO  info - object: Company; stage: finish; operation: create; id = c0dc211e-bd8c-4f43-990c-bd508a6f3b19
+15:33:45.522 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.522 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 1b7a31e2-8633-4157-ac1e-e31035d0821a
+15:33:45.522 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.523 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 2b96e907-4dc7-4fc7-808a-c2c611512b3e
+15:33:45.523 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.523 [main] INFO  info - object: Company; stage: finish; operation: create; id = c3fa0b33-d042-4f2b-8147-14c30d1d0611
+15:33:45.523 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.523 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 04684428-12c9-4711-abf1-c5c1364e56dc
+15:33:45.523 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.523 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 4af2e2ef-cc54-463f-90f4-a29db36c5ad0
+15:33:45.523 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.524 [main] INFO  info - object: Company; stage: finish; operation: create; id = e9a6c30b-9dd0-48e3-9b6b-62dedf093754
+15:33:45.524 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.524 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 42ff2b6c-47b6-4867-9cc6-8035599e309b
+15:33:45.524 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.524 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 67dd3584-2817-490d-b0a9-3f8d394679fa
+15:33:45.524 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.524 [main] INFO  info - object: Company; stage: finish; operation: create; id = c29d2120-3823-4d6b-9602-46f9b50e88b3
+15:33:45.524 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.525 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 216f9626-15c2-46e5-b750-1a7fab729855
+15:33:45.525 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.525 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 86ff2620-d1f8-4561-9756-65d306182832
+15:33:45.525 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.525 [main] INFO  info - object: Company; stage: finish; operation: create; id = 6809bf24-a4a4-4716-8485-ced198e111a8
+15:33:45.525 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.526 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 36242017-4923-4fd2-8c72-8a84de1888b1
+15:33:45.526 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.526 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 24f0dd04-4de6-44f0-bb0e-6289324a8760
+15:33:45.526 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.526 [main] INFO  info - object: Company; stage: finish; operation: create; id = deb48b0b-8a31-47e7-a9dc-0068a01ed64f
+15:33:45.526 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.526 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 92269870-28fe-406b-b98f-c58699f018b8
+15:33:45.526 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.527 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 277f4d41-b446-4d51-9a8c-8afd0823c971
+15:33:45.527 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.527 [main] INFO  info - object: Company; stage: finish; operation: create; id = 5a4c6c41-4c48-4e8d-ba79-23abdd2573f1
+15:33:45.527 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.527 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 5b8b6a7f-a9dd-4a07-a59c-8518c940c161
+15:33:45.527 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.527 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = c5a199ec-1b26-42ca-8d3b-61ae93f9f4c1
+15:33:45.527 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: Company; stage: finish; operation: create; id = 6b84b07e-273b-4481-9ef4-ad362839aaeb
+15:33:45.528 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 781048b7-dd91-405c-a31c-3c37ef946ad4
+15:33:45.528 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = c81b3c4a-18d8-4f69-aa7d-14a2fb8a790c
+15:33:45.528 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: Company; stage: finish; operation: create; id = 5663d667-aad2-42c6-ad07-14f2d3408070
+15:33:45.528 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: Customer; stage: finish; operation: create; id = e0a8b597-edb5-4243-82ed-a74633ac2ecc
+15:33:45.528 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.528 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = eb3ec0e8-a5a6-4b93-a6af-325896e1c401
+15:33:45.530 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:45.530 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 0b449baa-d509-421e-ac68-598aaf3647fc
+15:33:45.535 [main] INFO  info - object: CustomerAgreement; stage: start; operation: update; id = 814f40d8-6a19-4e9c-a804-51702d5a4345
+15:33:45.535 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: update; id = 814f40d8-6a19-4e9c-a804-51702d5a4345
+15:33:46.385 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.385 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 9ea77a85-09ea-4eca-b3b8-e8f60bc0ee4c
+15:33:46.385 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.385 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 4118fb7a-19d0-46c2-910c-85678b85dec5
+15:33:46.385 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.385 [main] INFO  info - object: Customer; stage: finish; operation: create; id = e75ef6c1-b92f-4956-83c1-473449388824
+15:33:46.385 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.385 [main] INFO  info - object: Customer; stage: finish; operation: create; id = c577da74-5654-49d9-affa-fdcec77b5fb8
+15:33:46.385 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.386 [main] INFO  info - object: Customer; stage: finish; operation: create; id = a7b35c53-0807-44f9-8585-058c70edf175
+15:33:46.386 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.386 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 55a8fffe-2858-41f1-943f-d978b158fa36
+15:33:46.386 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.386 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 0475667a-e4df-42ab-8299-98a4debbf1e1
+15:33:46.386 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.386 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 03e9a21e-394b-4087-97d8-5c731e7a5d0e
+15:33:46.386 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.386 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 7c13e656-0394-45c4-9835-0c4245fff3a3
+15:33:46.386 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.387 [main] INFO  info - object: Customer; stage: finish; operation: create; id = e5d16509-8806-46de-ae3f-168e6aa6e058
+15:33:46.388 [main] INFO  info - object: Customer; stage: start; operation: create
+15:33:46.388 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 1f6162b4-fada-47a3-9cad-38253233fd3b
+15:33:46.392 [main] INFO  info - object: Customer; stage: start; operation: update; id = 9ea77a85-09ea-4eca-b3b8-e8f60bc0ee4c
+15:33:46.392 [main] INFO  info - object: Customer; stage: finish; operation: update; id = 9ea77a85-09ea-4eca-b3b8-e8f60bc0ee4c
+15:33:46.424 [main] INFO  info - object: Company; stage: start; operation: create
+15:33:46.425 [main] INFO  info - object: Company; stage: finish; operation: create; id = 4e3d9501-639d-4c41-997d-d1aee1c2edbd
+15:33:46.425 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
+15:33:46.425 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 1265bfde-6ad0-45d6-b91d-cf9ac7b0fae0
