@@ -45,10 +45,11 @@ public class CustomerAgreementServiceImplTest {
     @Test
     public void shouldBeFindCustomerAgreementByIdWhenCustomerAgreementExistInDB() {
         String id = getRandomIdOfCustomerAgreements();
+
+        Assertions.assertNotNull(customerAgreementServiceImpl.findById(id));
         Assertions.assertDoesNotThrow(() -> {
             customerAgreementServiceImpl.findById(id);
         });
-
         verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(CUSTOMER_AGREEMENTS_SIZE + 1);
     }
 
@@ -77,6 +78,14 @@ public class CustomerAgreementServiceImplTest {
         String id = getRandomIdOfCustomerAgreements();
         customerAgreementServiceImpl.delete(id);
         verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(CUSTOMER_AGREEMENTS_SIZE);
+    }
+
+    @Order(5)
+    @Test
+    public void shouldBeEmptyArrayWhenDBIsClear() {
+        GenerationUtil.clearDB();
+
+        Assertions.assertEquals(0, customerAgreementServiceImpl.findAll().length);
     }
 
     private String getRandomIdOfCustomerAgreements() {

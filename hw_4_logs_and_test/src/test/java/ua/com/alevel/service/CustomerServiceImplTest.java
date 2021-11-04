@@ -39,6 +39,8 @@ public class CustomerServiceImplTest {
     @Test
     public void shouldBeFindCustomerByIdWhenCustomerExistInDB() {
         String id = customerServiceImpl.findAll()[0].getId();
+
+        Assertions.assertNotNull(customerServiceImpl.findById(id));
         Assertions.assertDoesNotThrow(() -> {
             customerServiceImpl.findById(id);
         });
@@ -79,6 +81,14 @@ public class CustomerServiceImplTest {
         customerAgreementServiceImpl.create(customerAgreement);
         customerServiceImpl.delete(id);
         verifyCustomerArrayWhenCustomersArrayIsNotEmpty(CUSTOMERS_SIZE);
+    }
+
+    @Order(6)
+    @Test
+    public void shouldBeEmptyArrayWhenDBIsClear() {
+        GenerationUtil.clearDB();
+
+        Assertions.assertEquals(0, customerServiceImpl.findAll().length);
     }
 
     private void verifyCustomerArrayWhenCustomersArrayIsNotEmpty(int size) {
