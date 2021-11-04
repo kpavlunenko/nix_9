@@ -1,6 +1,0 @@
-15:34:08.250 [main] INFO  info - object: Company; stage: start; operation: create
-15:34:08.375 [main] INFO  info - object: Company; stage: finish; operation: create; id = 1c448a20-d1a9-45e6-8f93-2544f14e2f75
-15:34:14.290 [main] INFO  info - object: Customer; stage: start; operation: create
-15:34:14.291 [main] INFO  info - object: Customer; stage: finish; operation: create; id = 0ce2543c-dea3-4962-b972-9995d7d3f5a1
-15:34:39.843 [main] INFO  info - object: CustomerAgreement; stage: start; operation: create
-15:34:39.843 [main] INFO  info - object: CustomerAgreement; stage: finish; operation: create; id = 77f904ee-2c1c-4b30-840f-c7c16bfde956
