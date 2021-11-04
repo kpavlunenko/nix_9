@@ -44,7 +44,7 @@ public class CustomerAgreementServiceImplTest {
     @Order(2)
     @Test
     public void shouldBeFindCustomerAgreementByIdWhenCustomerAgreementExistInDB() {
-        String id = customerAgreementServiceImpl.findAll()[0].getId();
+        String id = getRandomIdOfCustomerAgreements();
         Assertions.assertDoesNotThrow(() -> {
             customerAgreementServiceImpl.findById(id);
         });
@@ -55,22 +55,40 @@ public class CustomerAgreementServiceImplTest {
     @Order(3)
     @Test
     public void shouldBeUpdateCustomerAgreementWhenCustomerAgreementExistInDB() {
-        String id = customerAgreementServiceImpl.findAll()[0].getId();
+        String id = getRandomIdOfCustomerAgreements();
         CustomerAgreement customerAgreement = customerAgreementServiceImpl.findById(id);
         String newName = GenerationUtil.NAME_CUSTOMER_AGREEMENT + GenerationUtil.NAME_CUSTOMER_AGREEMENT;
         customerAgreement.setName(newName);
+        Company company = companyServiceImpl.findById(getRandomIdOfCompanies());
+        customerAgreement.setCompany(company);
+        Customer customer = customerServiceImpl.findById(getRandomIdOfCustomers());
+        customerAgreement.setCustomer(customer);
         customerAgreementServiceImpl.update(customerAgreement);
 
         Assertions.assertEquals(customerAgreement.getName(), newName);
+        Assertions.assertEquals(customerAgreement.getCompany().getId(), company.getId());
+        Assertions.assertEquals(customerAgreement.getCustomer().getId(), customer.getId());
         verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(CUSTOMER_AGREEMENTS_SIZE + 1);
     }
 
     @Order(4)
     @Test
     public void shouldBeDeleteCustomerAgreementWhenCustomerAgreementIsExist() {
-        String id = customerAgreementServiceImpl.findAll()[0].getId();
+        String id = getRandomIdOfCustomerAgreements();
         customerAgreementServiceImpl.delete(id);
         verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(CUSTOMER_AGREEMENTS_SIZE);
+    }
+
+    private String getRandomIdOfCustomerAgreements() {
+        return customerAgreementServiceImpl.findAll()[0].getId();
+    }
+
+    private String getRandomIdOfCustomers() {
+        return customerServiceImpl.findAll()[1].getId();
+    }
+
+    private String getRandomIdOfCompanies() {
+        return companyServiceImpl.findAll()[1].getId();
     }
 
     private void verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(int size) {
