@@ -1,5 +1,7 @@
 package ua.com.alevel.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.com.alevel.dao.CustomerDao;
 import ua.com.alevel.dao.impl.CustomerDaoImpl;
 import ua.com.alevel.entity.Customer;
@@ -9,16 +11,28 @@ import ua.com.alevel.service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
 
+    private static final Logger LOGGER_INFO = LoggerFactory.getLogger("info");
+    private static final Logger LOGGER_WARN = LoggerFactory.getLogger("warn");
+    private static final Logger LOGGER_ERROR = LoggerFactory.getLogger("error");
     private final CustomerDao customerDao = new CustomerDaoImpl();
 
     @Override
     public void create(Customer entity) {
+        LOGGER_INFO.info("object: Customer; stage: start; operation: create");
         customerDao.create(entity);
+        LOGGER_INFO.info("object: Customer; stage: finish; operation: create; id = " + entity.getId());
     }
 
     @Override
     public void update(Customer entity) {
-        customerDao.update(entity);
+        try {
+            LOGGER_INFO.info("object: Customer; stage: start; operation: update; id = " + entity.getId());
+            customerDao.update(entity);
+            LOGGER_INFO.info("object: Customer; stage: finish; operation: update; id = " + entity.getId());
+        } catch (RuntimeException e) {
+            LOGGER_ERROR.error("object: Customer; operation: update; id = " + entity.getId() + "; problem = " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override
@@ -37,13 +51,25 @@ public class CustomerServiceImpl implements CustomerService {
             }
         }
         if(allowToDelete) {
-            customerDao.delete(id);
+            try {
+                LOGGER_WARN.warn("object: Customer; stage: start; operation: delete; id = " + id);
+                customerDao.delete(id);
+                LOGGER_WARN.warn("object: Customer; stage: finish; operation: delete; id = " + id);
+            } catch (RuntimeException e) {
+                LOGGER_ERROR.error("object: Customer; operation: delete; id = " + id + "; problem = " + e.getMessage());
+                throw e;
+            }
         }
     }
 
     @Override
     public Customer findById(String id) {
-        return customerDao.findById(id);
+        try {
+            return customerDao.findById(id);
+        } catch (RuntimeException e) {
+            LOGGER_ERROR.error("object: Customer; operation: findById; id = " + id + "; problem = " + e.getMessage());
+            throw e;
+        }
     }
 
     @Override

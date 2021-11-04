@@ -8,6 +8,12 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hw_4_logs_and_test</artifactId>
   <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <finalName>hw_4_logs_and_test</finalName>
     <plugins>
       <plugin>
@@ -44,6 +50,26 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>test</id>
+      <properties>
+        <log.warn>${log.path}/warn.log</log.warn>
+        <log.info>${log.path}/info.log</log.info>
+        <log.error>${log.path}/error.log</log.error>
+        <log.path>${logs.folder}/${logs.test.folder}</log.path>
+      </properties>
+    </profile>
+    <profile>
+      <id>life</id>
+      <properties>
+        <log.warn>${log.path}/warn.log</log.warn>
+        <log.info>${log.path}/info.log</log.info>
+        <log.error>${log.path}/error.log</log.error>
+        <log.path>${logs.folder}/${logs.life.folder}</log.path>
+      </properties>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -95,19 +121,24 @@
     </dependency>
   </dependencies>
   <properties>
+    <logs.life.folder>life</logs.life.folder>
     <commons.collections4.version>4.4</commons.collections4.version>
     <java.version>17</java.version>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
+    <logs.test.folder>test</logs.test.folder>
     <reflections.version>0.10.1</reflections.version>
     <junit.jupiter.version>5.7.0</junit.jupiter.version>
     <maven.shade.plugin.version>3.2.0</maven.shade.plugin.version>
     <maven.compiler.target>17</maven.compiler.target>
+    <logs.folder>logs</logs.folder>
+    <slf4j.version>1.7.30</slf4j.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <slf4j.nop.version>1.7.32</slf4j.nop.version>
     <commons.lang3.version>3.12.0</commons.lang3.version>
     <junit.version>4.13.1</junit.version>
     <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+    <logback.version>1.2.3</logback.version>
   </properties>
 </project>
