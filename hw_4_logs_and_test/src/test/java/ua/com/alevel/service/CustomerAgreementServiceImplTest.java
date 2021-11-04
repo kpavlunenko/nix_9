@@ -56,14 +56,12 @@ public class CustomerAgreementServiceImplTest {
     @Test
     public void shouldBeUpdateCustomerAgreementWhenCustomerAgreementExistInDB() {
         String id = customerAgreementServiceImpl.findAll()[0].getId();
-        CustomerAgreement customerAgreement = new CustomerAgreement();
-        customerAgreement.setId(id);
+        CustomerAgreement customerAgreement = customerAgreementServiceImpl.findById(id);
         String newName = GenerationUtil.NAME_CUSTOMER_AGREEMENT + GenerationUtil.NAME_CUSTOMER_AGREEMENT;
         customerAgreement.setName(newName);
         customerAgreementServiceImpl.update(customerAgreement);
-        CustomerAgreement customerAgreementById = customerAgreementServiceImpl.findById(id);
 
-        Assertions.assertEquals(customerAgreementById.getName(), newName);
+        Assertions.assertEquals(customerAgreement.getName(), newName);
         verifyCustomerAgreementArrayWhenCustomerAgreementArrayIsNotEmpty(CUSTOMER_AGREEMENTS_SIZE + 1);
     }
 
