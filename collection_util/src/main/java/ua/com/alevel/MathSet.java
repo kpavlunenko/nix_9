@@ -5,7 +5,7 @@ import java.util.Map;
 
 public final class MathSet {
 
-    private Number[] setArray = new Number[2];
+    private Number[] setArray = new Number[100];
     private int maxCapacity = 0;
     private int countNumbers = 0;
     private final Map<String, Integer> typePriority = new HashMap<>();
