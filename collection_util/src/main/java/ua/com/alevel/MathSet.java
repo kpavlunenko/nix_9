@@ -63,15 +63,35 @@ public final class MathSet {
     public void join(MathSet mathSet) {
         addFromArray(mathSet.setArray);
     }
+
     public void join(MathSet ... mathSets) {
         for (MathSet mathSet : mathSets) {
             addFromArray(mathSet.setArray);
         }
     }
 
+    public void intersection(MathSet mathSet) {
+        Number[] oldSetArray = setArray;
+        setArray = new Number[Math.max(mathSet.setArray.length, countNumbers)];
+        countNumbers = 0;
+        for (Number number : mathSet.setArray) {
+            for (Number oldNumber : oldSetArray) {
+                if (number != null && oldNumber != null && compareNumbersAndAddInArray(oldNumber, number, countNumbers)) {
+                    countNumbers++;
+                }
+            }
+        }
+    }
+
+    public void intersection(MathSet ... mathSets) {
+        for (MathSet mathSet : mathSets) {
+            intersection(mathSet);
+        }
+    }
+
     private void addUniqueValueInArray(Number number) {
         for (int i = 0; i < setArray.length; i++) {
-            if (setArray[i] != null && compareNumbers(setArray[i], number, i)) {
+            if (setArray[i] != null && compareNumbersAndAddInArray(setArray[i], number, i)) {
                 return;
             }
         }
@@ -80,10 +100,7 @@ public final class MathSet {
         countNumbers++;
     }
 
-    private boolean compareNumbers(Number numberInArray, Number number, int i) {
-        if (countNumbers == 0) {
-            return false;
-        }
+    private boolean compareNumbersAndAddInArray(Number numberInArray, Number number, int i) {
         Integer maxPriority = Math.max(TYPE_PRIORITY.get(number.getClass().getSimpleName()), TYPE_PRIORITY.get(numberInArray.getClass().getSimpleName()));
         String nameClassForCompare = "";
         for (Map.Entry entry : TYPE_PRIORITY.entrySet()) {

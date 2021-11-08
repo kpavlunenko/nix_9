@@ -47,6 +47,17 @@ public class MathSetInterfaceMain {
 
         MathSet mathSetJoin = new MathSet(numbers3);
         mathSetJoin.join(mathSetNumbersArray);
+        mathSetJoin.join(mathSet, mathSetCapacity, mathSetNumbersArray, mathSetNumbersArray2, mathSetFromMathSet);
+
+        MathSet mathSetNumber2 = new MathSet(numbers2);
+        MathSet mathSetIntersection = new MathSet(numbers3);
+        mathSetIntersection.intersection(mathSetNumber2);
+
+        MathSet mathSetNumber3 = new MathSet(numbers3);
+        MathSet mathSetIntersection2 = new MathSet(numbers3);
+        MathSet mathSet4 = new MathSet();
+        mathSet4.add(4l);
+        mathSetIntersection2.intersection(mathSetNumber2, mathSetNumber3, mathSet4);
 
     }
 }
