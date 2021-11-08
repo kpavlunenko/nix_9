@@ -8,7 +8,7 @@ public final class MathSet {
     private Number[] setArray = new Number[100];
     private int maxCapacity = 0;
     private int countNumbers = 0;
-    private final Map<String, Integer> typePriority = new HashMap<>();
+    private static final Map<String, Integer> TYPE_PRIORITY = new HashMap<>();
 
     public MathSet() {
         fillTypePriority();
@@ -26,7 +26,21 @@ public final class MathSet {
 
     public MathSet(Number[] ... numbers) {
         fillTypePriority();
-        addFromArray(numbers);
+        for (Number[] number : numbers) {
+            addFromArray(number);
+        }
+    }
+
+    public MathSet(MathSet mathSet) {
+        fillTypePriority();
+        addFromArray(mathSet.setArray);
+    }
+
+    public MathSet(MathSet ... mathSets) {
+        fillTypePriority();
+        for (MathSet mathSet : mathSets) {
+            addFromArray(mathSet.setArray);
+        }
     }
 
     public void add(Number number) {
@@ -36,10 +50,8 @@ public final class MathSet {
         }
     }
 
-    public void add(Number... numbers) {
-        for (Number number : numbers) {
-            add(number);
-        }
+    public void add(Number ... numbers) {
+        addFromArray(numbers);
     }
 
     private void addFromArray(Number[] numbers) {
@@ -48,11 +60,12 @@ public final class MathSet {
         }
     }
 
-    private void addFromArray(Number[] ... arrayOfNumbers) {
-        for (Number[] numbers : arrayOfNumbers) {
-            for (Number number : numbers) {
-                add(number);
-            }
+    public void join(MathSet mathSet) {
+        addFromArray(mathSet.setArray);
+    }
+    public void join(MathSet ... mathSets) {
+        for (MathSet mathSet : mathSets) {
+            addFromArray(mathSet.setArray);
         }
     }
 
@@ -71,9 +84,9 @@ public final class MathSet {
         if (countNumbers == 0) {
             return false;
         }
-        Integer maxPriority = Math.max(typePriority.get(number.getClass().getSimpleName()), typePriority.get(numberInArray.getClass().getSimpleName()));
+        Integer maxPriority = Math.max(TYPE_PRIORITY.get(number.getClass().getSimpleName()), TYPE_PRIORITY.get(numberInArray.getClass().getSimpleName()));
         String nameClassForCompare = "";
-        for (Map.Entry entry : typePriority.entrySet()) {
+        for (Map.Entry entry : TYPE_PRIORITY.entrySet()) {
             if (entry.getValue() == maxPriority) {
                 nameClassForCompare = (String) entry.getKey();
                 break;
@@ -115,12 +128,12 @@ public final class MathSet {
     }
 
     private void fillTypePriority() {
-        typePriority.put("Byte", 0);
-        typePriority.put("Short", 1);
-        typePriority.put("Integer", 2);
-        typePriority.put("Long", 3);
-        typePriority.put("Float", 4);
-        typePriority.put("Double", 5);
+        TYPE_PRIORITY.put("Byte", 0);
+        TYPE_PRIORITY.put("Short", 1);
+        TYPE_PRIORITY.put("Integer", 2);
+        TYPE_PRIORITY.put("Long", 3);
+        TYPE_PRIORITY.put("Float", 4);
+        TYPE_PRIORITY.put("Double", 5);
     }
 
     private void checkArrayIncreaseToCapacity(int newCountNumbers) {

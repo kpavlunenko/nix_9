@@ -42,5 +42,11 @@ public class MathSetInterfaceMain {
         numbers3[3] = 6;
         MathSet mathSetNumbersArray2 = new MathSet(numbers, numbers2, numbers3);
 
+        MathSet mathSetFromMathSet = new MathSet(mathSetNumbersArray2);
+        MathSet mathSetFromMathSetArrays = new MathSet(mathSet, mathSetCapacity, mathSetNumbersArray, mathSetNumbersArray2, mathSetFromMathSet);
+
+        MathSet mathSetJoin = new MathSet(numbers3);
+        mathSetJoin.join(mathSetNumbersArray);
+
     }
 }
