@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class CustomerAgreementArrayDBImpl implements CustomerAgreementDB {
 
-    private CustomerAgreement[] customerAgreements = new CustomerAgreement[2];
+    private CustomerAgreement[] customerAgreements;
     private static CustomerAgreementArrayDBImpl instance;
     private static int countOfItems = 0;
 

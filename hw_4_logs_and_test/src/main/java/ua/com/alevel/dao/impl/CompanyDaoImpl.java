@@ -5,7 +5,6 @@ import ua.com.alevel.dao.CompanyDao;
 import ua.com.alevel.db.CompanyDB;
 import ua.com.alevel.entity.Company;
 
-
 public class CompanyDaoImpl implements CompanyDao {
 
     private final CompanyDB instanceDB = ApplicationConfig.getImpl(CompanyDB.class);

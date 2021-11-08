@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class CompanyArrayDBImpl implements CompanyDB {
 
-    private Company [] companies = new Company[2];
+    private Company [] companies;
     private static CompanyArrayDBImpl instance;
     private static int countOfItems = 0;
 

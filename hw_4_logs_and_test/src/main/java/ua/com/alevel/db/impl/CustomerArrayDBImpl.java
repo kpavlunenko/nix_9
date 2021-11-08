@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class CustomerArrayDBImpl implements CustomerDB {
 
-    private Customer [] customers = new Customer[2];
+    private Customer [] customers;
     private static CustomerArrayDBImpl instance;
     private static int countOfItems = 0;
 
