@@ -43,6 +43,14 @@ public final class MathSet {
         }
     }
 
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
     public void add(Number number) {
         if (number != null) {
             addUniqueValueInArray(number);

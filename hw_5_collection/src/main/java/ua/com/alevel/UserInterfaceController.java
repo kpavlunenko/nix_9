@@ -3,8 +3,10 @@ package ua.com.alevel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class UserInterfaceController {
 
@@ -95,6 +97,11 @@ public class UserInterfaceController {
     }
 
     private void createMathSet() {
-
+        String id = UUID.randomUUID().toString();
+        MathSet mathSet = new MathSet();
+        mapOfMathSets.put(id, mathSet);
+        System.out.println("MathSet created:");
+        System.out.println("id:" + id + ", mathSet:" + Arrays.toString(mathSet.toArray()));
+        System.out.println("---------------");
     }
 }
