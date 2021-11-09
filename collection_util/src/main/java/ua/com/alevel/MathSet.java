@@ -181,6 +181,98 @@ public final class MathSet {
         return countNumbers;
     }
 
+    public Number get(int index) {
+        if (index == 0 || index > countNumbers) {
+            throw new RuntimeException("Index outside the MathSet, count of numbers: " + countNumbers + ", start position: 1");
+        }
+        return setArray[index - 1];
+    }
+
+    public Number getMax() {
+        MathSet sortedMathSet = new MathSet(setArray);
+        sortedMathSet.sortDesc();
+        return sortedMathSet.setArray[0];
+    }
+
+    public Number getMin() {
+        MathSet sortedMathSet = new MathSet(setArray);
+        sortedMathSet.sortAsc();
+        return sortedMathSet.setArray[0];
+    }
+
+    public Number getAverage() {
+        Number sumOfNumbers = (byte) 0;
+        for (int i = 0; i < countNumbers; i++) {
+            sumOfNumbers = sumOfTwoNumber(sumOfNumbers, setArray[i]);
+        }
+        return divisionOfTwoNumber(sumOfNumbers, countNumbers);
+    }
+
+    public Number getMedian() {
+        MathSet sortedMathSet = new MathSet(setArray);
+        sortedMathSet.sortAsc();
+        Number median = 0;
+        if (sortedMathSet.countNumbers % 2 == 0) {
+            median = divisionOfTwoNumber(sumOfTwoNumber(sortedMathSet.setArray[sortedMathSet.countNumbers / 2], setArray[sortedMathSet.countNumbers / 2 - 1]), 2);
+        } else {
+            median = sortedMathSet.setArray[sortedMathSet.countNumbers / 2];
+        }
+        return median;
+    }
+
+    public Number[] toArray() {
+        Number[] numberArray = new Number[countNumbers];
+        for (int i = 0; i < countNumbers; i++) {
+            numberArray[i] = setArray[i];
+        }
+        return numberArray;
+    }
+
+    public Number[] toArray(int firstIndex, int lastIndex) {
+        firstIndex = Math.max(firstIndex - 1, 0);
+        lastIndex = Math.min(lastIndex, countNumbers);
+        if ((lastIndex - firstIndex) < 0) {
+            return new Number[0];
+        }
+        Number[] numberArray = new Number[lastIndex - firstIndex];
+        int countOfNewArray = 0;
+        for (int i = firstIndex; i < lastIndex; i++) {
+            numberArray[countOfNewArray] = setArray[i];
+            countOfNewArray++;
+        }
+        return numberArray;
+    }
+
+    public MathSet cut(int firstIndex, int lastIndex) {
+        return new MathSet(toArray(firstIndex, lastIndex));
+    }
+
+    public void clear() {
+        for (int i = 0; i < countNumbers; i++) {
+            setArray[i] = null;
+        }
+        countNumbers = 0;
+    }
+
+    public void clear(Number[] numbers) {
+        for (Number number : numbers) {
+            if (number != null) {
+                deleteByIndex(getIndexOfNumber(number));
+            }
+        }
+    }
+
+    public void deleteByIndex(int index) {
+        if (setArray[index] != null) {
+            setArray[index] = null;
+            for (int i = index; i < countNumbers - 1; i++) {
+                setArray[i] = setArray[i + 1];
+            }
+            setArray[countNumbers - 1] = null;
+            countNumbers--;
+        }
+    }
+
     private boolean compareNumbersAndAddInArray(Number numberInArray, Number number, int i, boolean changeValue) {
         Integer maxPriority = Math.max(TYPE_PRIORITY.get(number.getClass().getSimpleName()), TYPE_PRIORITY.get(numberInArray.getClass().getSimpleName()));
         String nameClassForCompare = "";
@@ -273,6 +365,58 @@ public final class MathSet {
                 }
         }
         return false;
+    }
+
+    private Number sumOfTwoNumber(Number firstNumber, Number secondNumber) {
+        Integer maxPriority = Math.max(TYPE_PRIORITY.get(firstNumber.getClass().getSimpleName()), TYPE_PRIORITY.get(secondNumber.getClass().getSimpleName()));
+        String nameClassForCompare = "";
+        for (Map.Entry entry : TYPE_PRIORITY.entrySet()) {
+            if (entry.getValue() == maxPriority) {
+                nameClassForCompare = (String) entry.getKey();
+                break;
+            }
+        }
+        switch (nameClassForCompare) {
+            case "Byte":
+                return firstNumber.byteValue() + secondNumber.byteValue();
+            case "Short":
+                return firstNumber.shortValue() + secondNumber.shortValue();
+            case "Integer":
+                return firstNumber.intValue() + secondNumber.intValue();
+            case "Long":
+                return firstNumber.longValue() + secondNumber.longValue();
+            case "Float":
+                return firstNumber.floatValue() + secondNumber.floatValue();
+            case "Double":
+                return firstNumber.doubleValue() + secondNumber.doubleValue();
+        }
+        return 0;
+    }
+
+    private Number divisionOfTwoNumber(Number firstNumber, Number secondNumber) {
+        Integer maxPriority = Math.max(TYPE_PRIORITY.get(firstNumber.getClass().getSimpleName()), TYPE_PRIORITY.get(secondNumber.getClass().getSimpleName()));
+        String nameClassForCompare = "";
+        for (Map.Entry entry : TYPE_PRIORITY.entrySet()) {
+            if (entry.getValue() == maxPriority) {
+                nameClassForCompare = (String) entry.getKey();
+                break;
+            }
+        }
+        switch (nameClassForCompare) {
+            case "Byte":
+                return firstNumber.byteValue() / secondNumber.byteValue();
+            case "Short":
+                return firstNumber.shortValue() / secondNumber.shortValue();
+            case "Integer":
+                return firstNumber.intValue() / secondNumber.intValue();
+            case "Long":
+                return firstNumber.longValue() / secondNumber.longValue();
+            case "Float":
+                return firstNumber.floatValue() / secondNumber.floatValue();
+            case "Double":
+                return firstNumber.doubleValue() / secondNumber.doubleValue();
+        }
+        return 0;
     }
 
     private void fillTypePriority() {
