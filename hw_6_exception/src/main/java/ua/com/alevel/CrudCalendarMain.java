@@ -1,8 +1,8 @@
 package ua.com.alevel;
 
-public class CalendarMain {
+public class CrudCalendarMain {
 
     public static void main(String[] args) {
-        System.out.println("CalendarMain.main");
+        new CalendarController().run();
     }
 }
