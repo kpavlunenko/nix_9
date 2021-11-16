@@ -3,6 +3,7 @@ package ua.com.alevel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,8 @@ public class CalendarController {
         System.out.println("If you want to find difference between dates, please enter 4");
         System.out.println("If you want to increase date, please enter 5");
         System.out.println("If you want to reduce date, please enter 6");
+        System.out.println("If you want to sort dates by DESC, please enter 7");
+        System.out.println("If you want to sort dates by ASC, please enter 8");
         System.out.println("if you want exit, please enter 0");
         System.out.println();
     }
@@ -60,6 +63,12 @@ public class CalendarController {
             case "6":
                 reduceDate(reader);
                 break;
+            case "7":
+                sortDatesByDesc(reader);
+                break;
+            case "8":
+                sortDatesByAsc(reader);
+                break;
         }
         runNavigation();
     }
@@ -72,6 +81,66 @@ public class CalendarController {
     private void showValidDateTemplates(String separator) {
         List<String> allowedTemplates = calendar.getDateTemplatesBySeparator(separator);
         allowedTemplates.stream().forEach(System.out::println);
+    }
+
+    private void sortDatesByAsc(BufferedReader reader) {
+        HashMap<Calendar, Long> calendars = new HashMap<>();
+        System.out.println("----------------");
+        System.out.println("If you want to sort, enter 1:");
+        System.out.println("If you want to exit, enter 0:");
+        System.out.println("enter date:");
+        String position;
+        try {
+            while ((position = reader.readLine()) != null) {
+                if (position.equals("0")) {
+                    break;
+                }
+                if (position.equals("1")) {
+                    calendars.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(entry -> System.out.println(entry.getKey().getDateToStringInFormat()));
+                    break;
+                }
+                Calendar inputDate = new Calendar(calendar);
+                try {
+                    inputDate.parseDate(position);
+                    calendars.put(inputDate, inputDate.getDateInMillis());
+                    System.out.println("enter next date or 1 for sort");
+                } catch (RuntimeException e) {
+                    System.out.println("input data is incorrect try again");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("problem: = " + e.getMessage());
+        }
+    }
+
+    private void sortDatesByDesc(BufferedReader reader) {
+        HashMap<Calendar, Long> calendars = new HashMap<>();
+        System.out.println("----------------");
+        System.out.println("If you want to sort, enter 1:");
+        System.out.println("If you want to exit, enter 0:");
+        System.out.println("enter date:");
+        String position;
+        try {
+            while ((position = reader.readLine()) != null) {
+                if (position.equals("0")) {
+                    break;
+                }
+                if (position.equals("1")) {
+                    calendars.entrySet().stream().sorted(Map.Entry.<Calendar, Long>comparingByValue().reversed()).forEach(entry -> System.out.println(entry.getKey().getDateToStringInFormat()));
+                    break;
+                }
+                Calendar inputDate = new Calendar(calendar);
+                try {
+                    inputDate.parseDate(position);
+                    calendars.put(inputDate, inputDate.getDateInMillis());
+                    System.out.println("enter next date or 1 for sort");
+                } catch (RuntimeException e) {
+                    System.out.println("input data is incorrect try again");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("problem: = " + e.getMessage());
+        }
     }
 
     private void increaseDate(BufferedReader reader) {

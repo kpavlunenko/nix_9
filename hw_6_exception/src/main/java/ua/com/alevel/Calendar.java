@@ -364,13 +364,40 @@ public class Calendar {
             throw new RuntimeException("problem: input data is not compare to template.");
         }
         if (subStringsPartOfTime.length == 2) {
+            if (Long.parseLong(subStringsPartOfTime[0]) > 23 || Long.parseLong(subStringsPartOfTime[0]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[1]) > 59 || Long.parseLong(subStringsPartOfTime[1]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[0]) * 60 * 60 * 1000;
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[1]) * 60 * 1000;
         } else if (subStringsPartOfTime.length == 3) {
+            if (Long.parseLong(subStringsPartOfTime[0]) > 23 || Long.parseLong(subStringsPartOfTime[0]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[1]) > 59 || Long.parseLong(subStringsPartOfTime[1]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[2]) > 59 || Long.parseLong(subStringsPartOfTime[2]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[0]) * 60 * 60 * 1000;
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[1]) * 60 * 1000;
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[2]) * 1000;
         } else if (subStringsPartOfTime.length == 4) {
+            if (Long.parseLong(subStringsPartOfTime[0]) > 23 || Long.parseLong(subStringsPartOfTime[0]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[1]) > 59 || Long.parseLong(subStringsPartOfTime[1]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[2]) > 59 || Long.parseLong(subStringsPartOfTime[2]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
+            if (Long.parseLong(subStringsPartOfTime[3]) > 999 || Long.parseLong(subStringsPartOfTime[3]) < 0) {
+                throw new RuntimeException("input time is incorrect");
+            }
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[0]) * 60 * 60 * 1000;
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[1]) * 60 * 1000;
             dateInMillis = dateInMillis + Long.parseLong(subStringsPartOfTime[2]) * 1000;
