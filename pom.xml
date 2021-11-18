@@ -30,6 +30,8 @@
         <module>hw_5_collection</module>
         <module>collection_util</module>
         <module>hw_6_exception</module>
+        <module>hw_7_ionio</module>
+        <module>json_util</module>
     </modules>
 
     <properties>
