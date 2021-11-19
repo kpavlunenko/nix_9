@@ -13,23 +13,62 @@ public final class JsonConverter {
     }
 
     public static List<? extends Object> listOfObjectsFromJson(String jsonString, Class className) {
-
         List listOfObject = new ArrayList();
         jsonString = jsonString.replace("[", "");
-        jsonString = jsonString.replace("}]", "");
-        String[] arrayOfObjectsLikeString = jsonString.split("},");
+        jsonString = jsonString.replace("]", "");
+        jsonString = jsonString.replace("},  {", "},{");
+        String[] arrayOfObjectsLikeString = jsonString.split("},\\{");
         for (int i = 0; i < arrayOfObjectsLikeString.length; i++) {
-            listOfObject.add(parseObject(arrayOfObjectsLikeString[i].replace("{", ""), className));
+            listOfObject.add(parseObject(arrayOfObjectsLikeString[i], className));
         }
         return listOfObject;
     }
 
-    private static Object parseObject(String jsonString, Class className){
+    private static Object parseObject(String jsonString, Class className) {
         Map<String, String> fieldsOfObject = new HashMap<>();
-        String[] arrayOfFields = jsonString.split(",");
-        for (int i = 0; i < arrayOfFields.length; i++) {
-            String[] keyAndValue = arrayOfFields[i].split(":");
-            fieldsOfObject.put(keyAndValue[0].replace("\"","").trim(), keyAndValue[1].replace("\"","").trim());
+        int firstIndex = 0;
+        int lastIndex = 0;
+        String key = "";
+        String value = "";
+        while (true) {
+            firstIndex = jsonString.indexOf("\"", lastIndex);
+            if (firstIndex == -1) {
+                break;
+            }
+            lastIndex = jsonString.indexOf(":", firstIndex);
+            key = jsonString.substring(firstIndex + 1, lastIndex - 1);
+            if (jsonString.indexOf("{", lastIndex) == -1) {
+                firstIndex = jsonString.indexOf("\"", lastIndex);
+                lastIndex = jsonString.indexOf(",", firstIndex);
+                if (lastIndex == -1) {
+                    lastIndex = jsonString.indexOf("\"", firstIndex + 1) + 1;
+                    if (lastIndex == -1) {
+                        lastIndex = jsonString.length();
+                    }
+                }
+                value = jsonString.substring(firstIndex + 1, lastIndex - 1);
+                fieldsOfObject.put(key, value);
+            } else if (jsonString.indexOf("{", lastIndex) > jsonString.indexOf("\"", lastIndex)) {
+                firstIndex = jsonString.indexOf("\"", lastIndex);
+                lastIndex = jsonString.indexOf(",", firstIndex);
+                if (lastIndex == -1) {
+                    lastIndex = jsonString.indexOf("\"", firstIndex + 1) + 1;
+                    if (lastIndex == -1) {
+                        lastIndex = jsonString.length();
+                    }
+                }
+                value = jsonString.substring(firstIndex + 1, lastIndex - 1);
+                fieldsOfObject.put(key, value);
+            } else {
+                firstIndex = jsonString.indexOf("{", lastIndex);
+                lastIndex = jsonString.indexOf("}", firstIndex);
+                value = jsonString.substring(firstIndex, lastIndex + 1);
+                fieldsOfObject.put(key, value);
+            }
+
+            if (lastIndex == jsonString.length()) {
+                break;
+            }
         }
         Object newObject = null;
         try {
@@ -39,14 +78,21 @@ public final class JsonConverter {
                 if (!fieldsSuper[i].canAccess(newObject)) {
                     fieldsSuper[i].setAccessible(true);
                 }
-                fieldsSuper[i].set(newObject, fieldsOfObject.get(fieldsSuper[i].getName()));
+                if (fieldsSuper[i].getType().getSimpleName().equals("String")) {
+                    fieldsSuper[i].set(newObject, fieldsOfObject.get(fieldsSuper[i].getName()).replace("}", "").trim());
+                }
             }
             Field[] fieldsClass = newObject.getClass().getDeclaredFields();
             for (int i = 0; i < fieldsClass.length; i++) {
                 if (!fieldsClass[i].canAccess(newObject)) {
                     fieldsClass[i].setAccessible(true);
                 }
-                fieldsClass[i].set(newObject, fieldsOfObject.get(fieldsClass[i].getName()));
+                if (fieldsClass[i].getType().getSimpleName().equals("String")) {
+                    fieldsClass[i].set(newObject, fieldsOfObject.get(fieldsClass[i].getName()).replace("}", "").trim());
+                } else {
+                    Object object = parseObject(fieldsOfObject.get(fieldsClass[i].getName()), fieldsClass[i].getType());
+                    fieldsClass[i].set(newObject, object);
+                }
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -126,9 +172,7 @@ public final class JsonConverter {
                     .append(obj)
                     .append("\"");
         } else {
-            result.append("{");
             result.append(convertObjectToJson(obj));
-            result.append("}");
         }
         return result;
     }
