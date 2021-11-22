@@ -29,6 +29,10 @@
         <module>hw_4_logs_and_test</module>
         <module>hw_5_collection</module>
         <module>collection_util</module>
+        <module>hw_6_exception</module>
+        <module>hw_7_ionio</module>
+        <module>json_util</module>
+        <module>module_2</module>
     </modules>
 
     <properties>

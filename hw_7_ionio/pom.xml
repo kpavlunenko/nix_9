@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hw_5_collection</artifactId>
+    <artifactId>hw_7_ionio</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -24,13 +24,13 @@
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>MathSet</artifactId>
+            <artifactId>JsonConverter</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>hw_5_collection</finalName>
+        <finalName>hw_7_ionio</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -55,7 +55,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ua.com.alevel.MathSetMain</mainClass>
+                                    <mainClass>ua.com.alevel.CrudMain</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -6,12 +6,16 @@ module_1 = 9
 logback.xml:4
 
 где ты используешь эту переменную???
+Ответ:действительно, она у меня нигде не используется 
 
 ua/com/alevel/db/impl/CustomerArrayDBImpl.java:16
 ua/com/alevel/db/impl/CompanyArrayDBImpl.java:16
 ua/com/alevel/db/impl/CustomerAgreementArrayDBImpl.java:16
 
 на данном этапе инитить массивы размером в 2 ...
+
+Ответ: делал это только с целью что бы показать что массив динамически увеличивается
+При введённых минимальных данных
 
 но релейшн продуман неплохо, почти как many-to-many
 
