@@ -1,4 +1,4 @@
-package ua.com.alevel.util.date;
+package ua.com.alevel.util;
 
 import java.io.*;
 import java.text.ParseException;
@@ -25,7 +25,7 @@ public final class OutputDate {
                     if (isValidFormat(inputFormat, inputString)) {
                         try {
                             String reformattedStr = outputFormat.format(inputFormat.parse(inputString));
-                            System.out.println(reformattedStr.toString());
+                            System.out.println(reformattedStr);
                             break;
                         } catch (ParseException e) {
                         }

@@ -1,6 +1,7 @@
 package ua.com.alevel;
 
-import ua.com.alevel.util.date.OutputDate;
+import ua.com.alevel.util.OutputDate;
+import ua.com.alevel.util.UniqueNames;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +47,11 @@ public class UserInterface {
                 new OutputDate().outputDateFromFile();
                 break;
             case "2":
-                //LevelTwoInterface(reader);
+                try {
+                    new UniqueNames().outputUniqueNameFromFile();
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
                 break;
             case "3":
                 //Game.runGame();
