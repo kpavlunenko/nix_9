@@ -1,0 +1,2 @@
+gdansk -> warszawa = 3 (gdansk -> bydgoszcz -> torun -> warszawa)
+bydgoszcz -> warszawa = 2 (bydgoszcz -> torun -> warszawa)

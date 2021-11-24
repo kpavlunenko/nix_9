@@ -1,5 +1,6 @@
 package ua.com.alevel;
 
+import ua.com.alevel.util.GraphUtil;
 import ua.com.alevel.util.OutputDate;
 import ua.com.alevel.util.UniqueNames;
 
@@ -54,7 +55,7 @@ public class UserInterface {
                 }
                 break;
             case "3":
-                //Game.runGame();
+                new GraphUtil().parseGraphFromFile();
                 break;
             case "0":
                 System.exit(0);
