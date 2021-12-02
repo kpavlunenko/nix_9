@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Update business direction</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Update business direction</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{'/business_directions/update/' + ${businessDirection.getId()}}" th:object="${businessDirection}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name">name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter company name" th:field="*{name}">
+                        </div>
+                        <div class="table-responsive">
+                            <table id="myTable" class="table table-sm table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Companies</th>
+                                    <th>
+                                        <a type="button" class="btn btn-primary" id="addrow">add</a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <select class="form-control" required th:field="*{companiesIds}">
+                                            <option selected value=0>...</option>
+                                            <option th:each="company : ${companies}"
+                                                    th:value="${company.getId()}"
+                                                    th:text="${company.getName()}">
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btnDelete btn btn-danger" id="delrow">delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                                    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                                    crossorigin="anonymous"></script>
+
+                            <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+
+                            <script>
+                                $(document).ready(function () {
+                                    //Try to get tbody first with jquery children. works faster!
+
+                                    var tbody = $('#myTable').children('tbody');
+
+                                    //Then if no tbody just select your table
+                                    var table = tbody.length ? tbody : $('#myTable');
+
+                                    $('#addrow').click(function () {
+                                        //Add row
+                                        var startRow = '<tr><td>';
+                                        var endRow = '</td><td><a type="button" class="btnDelete btn btn-danger" id="delrow">delete</a></td></tr>';
+
+                                        table.append(startRow + document.getElementById("companiesIds").outerHTML + endRow);
+                                    })
+
+                                    $("#myTable").on('click', '.btnDelete', function () {
+                                        $(this).closest('tr').remove();
+                                    });
+
+                                });
+                            </script>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

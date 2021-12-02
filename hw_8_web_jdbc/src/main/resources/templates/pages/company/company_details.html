@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Company details</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Company details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>id</th>
+              <td th:text="${company.getId()}"></td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td th:text="${company.getName()}"></td>
+            </tr>
+            <tr>
+              <th>type</th>
+              <td th:text="${company.getCompanyType()}"></td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td th:text="${#calendars.format(company.getCreated(),'dd MMMM yyyy')}"></td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td th:text="${#calendars.format(company.getUpdated(),'dd MMMM yyyy')}"></td>
+            </tr>
+          </table>
+          <hr>
+          <div>
+            <a th:href="@{'/companies/update/' + ${company.getId()}}" type="button" class="btn btn-primary">change</a>
+          </div>
+          <hr>
+          <div>
+            <a th:href="@{'/counterparties/all/company/' + ${company.getId()}}" type="button" class="btn btn-primary">Show all counterparties</a>
+          </div>
+          <hr>
+          <div>
+            <a th:href="@{'/business_directions/all/company/' + ${company.getId()}}" type="button" class="btn btn-primary">Show all business directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

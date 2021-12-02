@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Business direction details</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Business direction details
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>id</th>
+                            <td th:text="${businessDirection.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>name</th>
+                            <td th:text="${businessDirection.getName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>created</th>
+                            <td th:text="${#calendars.format(businessDirection.getCreated(),'dd MMMM yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <th>updated</th>
+                            <td th:text="${#calendars.format(businessDirection.getUpdated(),'dd MMMM yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <th>Companies</th>
+                            <td th:each="company : ${companies}" th:text="${company.getName()}"></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <div>
+                        <a th:href="@{'/business_directions/update/' + ${businessDirection.getId()}}" type="button" class="btn btn-primary">change</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

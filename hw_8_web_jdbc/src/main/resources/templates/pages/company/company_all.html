@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}">
+<head>
+    <meta charset="utf-8">
+    <title>companies</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+    <tr th:each="company,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${company.getName()}"></td>
+        <td th:text="${company.getCompanyType()}"></td>
+        <td >
+            <a th:href="@{'/counterparties/all/company/' + ${company.getId()}}" type="button" class="btn btn-link" th:text="${company.getCountOfCounterparties()}">"details"</a>
+        </td>
+        <td>
+            <a th:href="@{'/companies/details/' + ${company.getId()}}" type="button" class="btn btn-primary">details</a>
+        </td>
+        <td>
+            <a th:href="@{'/companies/delete/' + ${company.getId()}}" type="button" class="btn btn-danger">delete</a>
+        </td>
+    </tr>
+
+</div>
+
+</body>
+</html>

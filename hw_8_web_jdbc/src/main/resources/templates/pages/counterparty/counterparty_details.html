@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Counterparty details</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Counterparty details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>id</th>
+              <td th:text="${counterparty.getId()}"></td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td th:text="${counterparty.getName()}"></td>
+            </tr>
+            <tr>
+              <th>inn</th>
+              <td th:text="${counterparty.getInn()}"></td>
+            </tr>
+            <tr>
+              <th>type</th>
+              <td th:text="${counterparty.getCounterpartyType()}"></td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td th:text="${#calendars.format(counterparty.getCreated(),'dd MMMM yyyy')}"></td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td th:text="${#calendars.format(counterparty.getUpdated(),'dd MMMM yyyy')}"></td>
+            </tr>
+          </table>
+          <hr>
+          <div>
+            <a th:href="@{'/counterparties/update/' + ${counterparty.getId()}}" type="button" class="btn btn-primary">change</a>
+          </div>
+<!--          <hr>-->
+<!--          <div>-->
+<!--            <a th:href="@{'/employees/departments/' + ${department.getId()}}" type="button" class="btn btn-primary">Show all employee</a>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

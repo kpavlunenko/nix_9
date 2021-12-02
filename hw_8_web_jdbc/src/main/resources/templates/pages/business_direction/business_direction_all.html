@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}">
+<head>
+    <meta charset="utf-8">
+    <title>business directions</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+    <tr th:each="businessDirection,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${businessDirection.getName()}"></td>
+        <td>
+            <a th:href="@{'/business_directions/details/' + ${businessDirection.getId()}}" type="button" class="btn btn-primary">details</a>
+        </td>
+        <td>
+            <a th:href="@{'/business_directions/delete/' + ${businessDirection.getId()}}" type="button" class="btn btn-danger">delete</a>
+        </td>
+    </tr>
+
+</div>
+
+</body>
+</html>

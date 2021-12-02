@@ -1,0 +1,57 @@
+insert into companies values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Norda Stelo', 'CORP');
+insert into companies values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Air Canada', 'INC');
+insert into companies values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Barrick Gold', 'IBC');
+insert into companies values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Biovail', 'JV');
+insert into companies values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Blackburn Radio', 'CORP');
+insert into companies values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Book City', 'INC');
+insert into companies values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Canpotex', 'IBC');
+insert into companies values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Coffee Time', 'JV');
+insert into companies values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Cyntech', 'CORP');
+insert into companies values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Dollarama', 'INC');
+insert into companies values (11, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Fairchild Group', 'IBC');
+insert into companies values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Irving Oil', 'JV');
+insert into companies values (13, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Jean Coutu Group', 'CORP');
+insert into companies values (14, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Koingo Software', 'INC');
+
+insert into counterparties values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Donald Bren', 'CLIENT', '538450167053');
+insert into counterparties values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Steve Cohen', 'SUPPLIER', '350721390244');
+insert into counterparties values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Bobby Murphy', 'CLIENT', '174628089090');
+insert into counterparties values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Brian Armstrong', 'CLIENT', '879222723719');
+insert into counterparties values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Charles Schwab', 'SUPPLIER', '524915257407');
+insert into counterparties values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Diane Hendricks', 'CLIENT', '209849653298');
+insert into counterparties values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Jan Koum', 'SUPPLIER', '674255224069');
+insert into counterparties values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Stanley Kroenke', 'CLIENT', '447014163068');
+insert into counterparties values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Israel Englander', 'SUPPLIER', '720442700667');
+insert into counterparties values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Marc Benioff', 'CLIENT', '339560953472');
+insert into counterparties values (11, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'George Kaiser', 'CLIENT', '254389050205');
+insert into counterparties values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Jim Kennedy', 'SUPPLIER', '201544062296');
+insert into counterparties values (13, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'George Roberts', 'SUPPLIER', '844611697206');
+insert into counterparties values (14, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'George Soros', 'CLIENT', '492481044095');
+insert into counterparties values (15, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'John Malone', 'SUPPLIER', '670949926702');
+
+insert into agreements values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1002', 'CLIENT_AGREEMENT', 2, 3);
+insert into agreements values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1003', 'CLIENT_AGREEMENT', 2, 4);
+insert into agreements values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1004', 'CLIENT_AGREEMENT', 2, 6);
+insert into agreements values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1005', 'CLIENT_AGREEMENT', 8, 14);
+insert into agreements values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1006', 'CLIENT_AGREEMENT', 8, 11);
+insert into agreements values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Supply agreement №1007', 'CLIENT_AGREEMENT', 13, 10);
+insert into agreements values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1009', 'SUPPLIER_AGREEMENT', 13, 12);
+insert into agreements values (8, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1010', 'SUPPLIER_AGREEMENT', 13, 15);
+insert into agreements values (9, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1011', 'SUPPLIER_AGREEMENT', 13, 9);
+insert into agreements values (10, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1012', 'SUPPLIER_AGREEMENT', 2, 2);
+insert into agreements values (11, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1013', 'SUPPLIER_AGREEMENT', 7, 9);
+insert into agreements values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Purchase agreement №1014', 'SUPPLIER_AGREEMENT', 6, 5);
+
+insert into business_directions values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Furniture manufacturing');
+insert into business_directions values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'IT');
+insert into business_directions values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Retail sales');
+insert into business_directions values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Wholesale');
+insert into business_directions values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Provision of services');
+
+insert into company_business_direction values (2, 2);
+insert into company_business_direction values (2, 5);
+insert into company_business_direction values (14, 2);
+insert into company_business_direction values (14, 5);
+insert into company_business_direction values (14, 4);
+insert into company_business_direction values (1, 1);
+insert into company_business_direction values (1, 5);
