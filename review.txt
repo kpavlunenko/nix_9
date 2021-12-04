@@ -22,3 +22,7 @@ ua/com/alevel/db/impl/CustomerAgreementArrayDBImpl.java:16
 hw_4 = 9
 hw_5 = 9
 hw_6 = 9
+hw_7 = 9
+module_2 = 9
+
+hw_8 = 10
