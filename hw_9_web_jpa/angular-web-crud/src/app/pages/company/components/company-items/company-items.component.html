@@ -1,0 +1,39 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        All companies
+      </div>
+      <div class="card-body">
+        <table class="table table-sm table-hover">
+          <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>company type</th>
+            <th>details</th>
+            <th>delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let company of companies">
+            <td>{{ company.id }}</td>
+            <td>{{ company.name }}</td>
+            <td>{{ company.companyType }}</td>
+            <td>
+              <a routerLink="/companies/details/{{company.id}}" type="button" class="btn btn-primary">details</a>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="deleteById(company.id)">delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-1">
+  <button type="button" class="btn btn-primary" (click)="createCompany()">add</button>
+</div>

@@ -1,0 +1,40 @@
+<div *ngIf="company">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Company details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>id</th>
+              <td>{{company.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{company.name}}</td>
+            </tr>
+            <tr>
+              <th>company type</th>
+              <td>{{company.companyType}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{company.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{company.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{company.deletionMark}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="goBack()">back</button>
+</div>
