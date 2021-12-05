@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ua.com.alevel</groupId>
-    <artifactId>hw_9_</artifactId>
+    <artifactId>hw_9_web_jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hw_9_</name>
-    <description>hw_9_</description>
+    <name>hw_9_web_jpa</name>
+    <description>hw_9_web_jpa</description>
     <properties>
         <java.version>17</java.version>
     </properties>

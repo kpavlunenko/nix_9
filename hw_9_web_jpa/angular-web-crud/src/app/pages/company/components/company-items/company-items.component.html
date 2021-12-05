@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-12">
     <div class="card mb-2 mt-2">
@@ -9,11 +8,35 @@
         <table class="table table-sm table-hover">
           <thead>
           <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>company type</th>
-            <th>details</th>
-            <th>delete</th>
+            <ng-container *ngFor="let header of headers">
+              <ng-container *ngIf="header.isSortable">
+                <ng-container *ngIf="header.isActive">
+                  <ng-container *ngIf="header.order == 'desc'">
+                    <th (click)="sortOn(header.sort, 'asc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-desc float-right sort" aria-hidden="true" data-sort="" data-order="'desc'"></i>
+                    </th>
+                  </ng-container>
+                  <ng-container *ngIf="header.order == 'asc'">
+                    <th (click)="sortOn(header.sort, 'desc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-asc float-right sort" aria-hidden="true" data-sort="header.sort" data-order="'asc'"></i>
+                    </th>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!header.isActive">
+                  <th (click)="sortOn(header.sort, 'asc')">
+                    <span [textContent]="header.headerName"></span>
+                    <i class="fa fa-sort float-right sort" aria-hidden="true" data-sort="header.sort" data-order="asc"></i>
+                  </th>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!header.isSortable">
+                <th>
+                  <span [textContent]="header.headerName"></span>
+                </th>
+              </ng-container>
+            </ng-container>
           </tr>
           </thead>
           <tbody>

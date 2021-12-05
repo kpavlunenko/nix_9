@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
 import { CompanyResponseDto } from "../model/company-response-dto";
 import { MessageService } from '../message.service';
@@ -19,6 +19,18 @@ export class CompanyApiService {
 
   getCompanies(): Observable<CompanyResponseDto[]> {
     return this._http.get<CompanyResponseDto[]>(this._companiesUrl)
+      .pipe(
+        tap(_ => this.log('fetched heroes')),
+        catchError(this.handleError<CompanyResponseDto[]>('getHeroes', []))
+      );
+  }
+
+  getCompaniesWithParams(sort: string, order: string): Observable<CompanyResponseDto[]> {
+    return this._http.get<CompanyResponseDto[]>(this._companiesUrl, {
+      params: new HttpParams()
+        .set('sort', sort)
+        .set('order', order)
+    })
       .pipe(
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError<CompanyResponseDto[]>('getHeroes', []))
