@@ -12,6 +12,12 @@ const routes: Routes = [
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/company/company.module').then(module => module.CompanyModule)
   }
+  ,
+  {
+    path: 'counterparties',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/counterparty/counterparty.module').then(module => module.CounterpartyModule)
+  }
 ];
 
 @NgModule({

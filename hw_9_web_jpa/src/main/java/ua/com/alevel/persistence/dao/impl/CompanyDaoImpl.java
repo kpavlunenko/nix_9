@@ -1,134 +1,95 @@
 package ua.com.alevel.persistence.dao.impl;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import ua.com.alevel.config.jpa.JpaConfig;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.dao.CompanyDao;
 import ua.com.alevel.persistence.entity.Company;
 import ua.com.alevel.type.CompanyType;
 
-import java.sql.PreparedStatement;
+import javax.persistence.OptimisticLockException;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.*;
 
 @Repository
+@Transactional
 public class CompanyDaoImpl implements CompanyDao {
 
-    private final JpaConfig jpaConfig;
+    private final SessionFactory sessionFactory;
 
-    public CompanyDaoImpl(JpaConfig jpaConfig) {
-        this.jpaConfig = jpaConfig;
+    public CompanyDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
     public void create(Company entity) {
-        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement("insert into companies values(default,?,?,?,?,?)")) {
-            preparedStatement.setTimestamp(1, new Timestamp(entity.getCreated().getTime()));
-            preparedStatement.setTimestamp(2, new Timestamp(entity.getUpdated().getTime()));
-            preparedStatement.setBoolean(3, entity.isDeletionMark());
-            preparedStatement.setString(4, entity.getName());
-            preparedStatement.setString(5, entity.getCompanyType().name());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
+        sessionFactory.getCurrentSession().persist(entity);
     }
 
     @Override
     public void update(Company entity) {
-//        List<String> columns = new ArrayList<>();
-//        columns.add("name");
-//        columns.add("company_type");
-//        columns.add("updated");
-//        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement(JpaQueryUtil.getQueryUpdateById("companies", columns) + entity.getId())) {
-//            preparedStatement.setString(1, entity.getName());
-//            preparedStatement.setString(2, entity.getCompanyType().name());
-//            preparedStatement.setTimestamp(3, new Timestamp(new Date().getTime()));
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println("problem: = " + e.getMessage());
-//        }
+        sessionFactory.getCurrentSession().merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-        try (PreparedStatement preparedStatement = jpaConfig.getConnection().prepareStatement("delete from companies where id = " + id)) {
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
+        int isSuccessful = sessionFactory.getCurrentSession().createQuery("delete from Company company where company.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+        if (isSuccessful == 0) {
+            throw new OptimisticLockException("employee modified concurrently");
         }
     }
 
     @Override
     public boolean existById(Long id) {
-//        long count = 0;
-//        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(JpaQueryUtil.getQueryCountById("companies") + id)) {
-//            while (resultSet.next()) {
-//                count = resultSet.getLong("count");
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("problem: = " + e.getMessage());
-//        }
-//        return count == 1;
-        return false;
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(company.id) from Company company where company.id = :id")
+                .setParameter("id", id);
+        return (Long) query.getSingleResult() == 1;
     }
 
     @Override
     public Company findById(Long id) {
-        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery("select * from companies where id = " + id)) {
-            while (resultSet.next()) {
-                return initCompanyByResultSet(resultSet);
-            }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
-        }
-        return new Company();
+        return sessionFactory.getCurrentSession().find(Company.class, id);
     }
 
     @Override
-    public List<Company> findAll() {
-        List<Company> companies = new ArrayList<>();
-        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery("select * from companies")) {
-            while (resultSet.next()) {
-                companies.add(initCompanyByResultSet(resultSet));
+    public List<Company> findAll(Map<String, String[]> parameterMap) {
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Company> criteriaQuery = criteriaBuilder.createQuery(Company.class);
+        Root<Company> from = criteriaQuery.from(Company.class);
+        if (parameterMap.get("order") != null) {
+            if (parameterMap.get("order")[0].equals("desc")) {
+                criteriaQuery.orderBy(criteriaBuilder.desc(from.get(parameterMap.get("sort")[0])));
+            } else {
+                criteriaQuery.orderBy(criteriaBuilder.asc(from.get(parameterMap.get("sort")[0])));
             }
-        } catch (SQLException e) {
-            System.out.println("problem: = " + e.getMessage());
         }
+        int page = 0;
+        int size = 10;
+        if (parameterMap.get("currentPage") != null) {
+            size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
+            page = Integer.parseInt(parameterMap.get("currentPage")[0]);
+        }
+
+        List<Company> companies = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
+                .setFirstResult(page * size)
+                .setMaxResults(size)
+                .getResultList();
+
         return companies;
     }
 
-
     @Override
     public long count() {
-//        try (ResultSet resultSet = jpaConfig.getStatement().executeQuery(JpaQueryUtil.getQueryCount("companies"))) {
-//            while (resultSet.next()) {
-//                return resultSet.getLong("count");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        return 0;
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("select count(c.id) from Company c");
+        return (Long) query.getSingleResult();
     }
-
-    private Company initCompanyByResultSet(ResultSet resultSet) throws SQLException {
-        long id = resultSet.getLong("id");
-        String name = resultSet.getString("name");
-        String companyType = resultSet.getString("company_type");
-        Timestamp created = resultSet.getTimestamp("created");
-        Timestamp updated = resultSet.getTimestamp("updated");
-        Boolean deletionMark = resultSet.getBoolean("deletion_mark");
-
-        Company company = new Company();
-        company.setId(id);
-        company.setName(name);
-        company.setCompanyType(CompanyType.valueOf(companyType));
-        company.setCreated(created);
-        company.setUpdated(updated);
-        company.setDeletionMark(deletionMark);
-
-        return company;
-    }
-
 }

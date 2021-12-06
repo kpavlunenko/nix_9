@@ -9,6 +9,7 @@ import ua.com.alevel.persistence.entity.Company;
 import ua.com.alevel.service.CompanyService;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -36,24 +37,29 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void delete(Long id) {
-//        if (!companyDao.existById(id)) {
-//            throw new EntityNotFoundException("company not found");
-//        }
+        if (!companyDao.existById(id)) {
+            throw new EntityNotFoundException("company not found");
+        }
         companyDao.delete(id);
     }
 
     @Override
     public Company findById(Long id) {
-//        if (!companyDao.existById(id)) {
-//            throw new EntityNotFoundException("company not found");
-//        }
+        if (!companyDao.existById(id)) {
+            throw new EntityNotFoundException("company not found");
+        }
         return companyDao.findById(id);
     }
 
     @Override
-    public List<Company> findAll() {
-        List<Company> companies = companyDao.findAll();
+    public List<Company> findAll(Map<String, String[]> parameterMap) {
+        List<Company> companies = companyDao.findAll(parameterMap);
         return companies;
+    }
+
+    @Override
+    public long count() {
+        return companyDao.count();
     }
 
     private void checkInputDataOnValid(Company entity) {

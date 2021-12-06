@@ -6,10 +6,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
-  declarations: [
-    CompanyItemsComponent,
-    CompanyNewComponent,
-    CompanyDetailsComponent],
+    declarations: [
+        CompanyItemsComponent,
+        CompanyNewComponent,
+        CompanyDetailsComponent
+    ],
   imports: [
     CommonModule,
     CompanyRoutingModule,

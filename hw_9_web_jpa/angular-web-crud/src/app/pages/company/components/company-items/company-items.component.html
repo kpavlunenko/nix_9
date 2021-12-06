@@ -53,10 +53,57 @@
           </tr>
           </tbody>
         </table>
+
+
+        <div class="d-flex justify-content-between">
+          <div class="p-1">
+            <button type="button" class="btn btn-primary" (click)="createCompany()">add</button>
+          </div>
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="p-1">Showing {{(currentPage - 1) * sizeOfPage + 1}} to {{countOfItems < currentPage * sizeOfPage ? countOfItems : currentPage * sizeOfPage}} of {{countOfItems}} entries</div>
+            <div class="p-1">
+              <div class="dropdown dropup">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span [textContent]="sizeOfPage"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <section *ngFor="let size of pageSizeItems">
+                    <a class="dropdown-item" text="{{size}}" (click)="changeSizeOfPage(size)"></a>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="p-1" style="margin-top: 1em !important;">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li [attr.class]="currentPage != 1 ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="First Page" (click)="setCurrentPage(1)"><i class="fa fa-fast-backward"></i></a>
+                  </li>
+                  <li [attr.class]="currentPage != 1 ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Previous Page" (click)="setCurrentPage(currentPage - 1)"><i class="fa fa-backward"></i></a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" title="Previous Page">{{currentPage}}</a>
+                  </li>
+                  <li [attr.class]="currentPage != totalPageSize ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Next Page" (click)="setCurrentPage(currentPage + 1)"><i class="fa fa-forward"></i></a>
+                  </li>
+                  <li [attr.class]="currentPage != totalPageSize ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Last Page" (click)="setCurrentPage(totalPageSize)"><i class="fa fa-fast-forward"></i></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="p-1">
+              <a class="page-link btn btn-secondary" (click)="getCompanies()" title="Refresh Page"><i class="fa fa-refresh"></i></a>
+            </div>
+            <div class="p-1">
+              <a class="page-link btn btn-secondary" href="#" title="Reset Page"><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="p-1">
-  <button type="button" class="btn btn-primary" (click)="createCompany()">add</button>
-</div>
+

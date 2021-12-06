@@ -1,9 +1,7 @@
 package ua.com.alevel.api.controller;
 
-import org.apache.commons.collections4.MapUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.facade.CompanyFacade;
@@ -11,7 +9,6 @@ import ua.com.alevel.api.dto.request.CompanyRequestDto;
 import ua.com.alevel.api.dto.response.CompanyResponseDto;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/companies")
@@ -25,7 +22,12 @@ public class CompanyController extends BaseController {
 
     @GetMapping
     public ResponseEntity<List<CompanyResponseDto>> findAll(WebRequest request) {
-        return ResponseEntity.ok(companyFacade.findAll());
+        return ResponseEntity.ok(companyFacade.findAll(request));
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(companyFacade.count());
     }
 
     @PostMapping("")

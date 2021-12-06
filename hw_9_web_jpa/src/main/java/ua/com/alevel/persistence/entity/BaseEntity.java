@@ -1,12 +1,22 @@
 package ua.com.alevel.persistence.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@MappedSuperclass
 public abstract class BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
+
+    @Column(name = "deletion_mark")
     private Boolean deletionMark;
 
     public BaseEntity() {

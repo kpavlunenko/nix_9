@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from "rxjs";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {catchError, map, Observable, of, tap} from "rxjs";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
-import { CompanyResponseDto } from "../model/company-response-dto";
-import { MessageService } from '../message.service';
-import { CompanyRequestDto } from "../model/company-request-dto";
+import {CompanyResponseDto} from "../model/company-response-dto";
+import {MessageService} from '../message.service';
+import {CompanyRequestDto} from "../model/company-request-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +17,9 @@ export class CompanyApiService {
               private messageService: MessageService) {
   }
 
-  getCompanies(): Observable<CompanyResponseDto[]> {
-    return this._http.get<CompanyResponseDto[]>(this._companiesUrl)
-      .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<CompanyResponseDto[]>('getHeroes', []))
-      );
-  }
-
-  getCompaniesWithParams(sort: string, order: string): Observable<CompanyResponseDto[]> {
+  getCompanies(httpParams: HttpParams): Observable<CompanyResponseDto[]> {
     return this._http.get<CompanyResponseDto[]>(this._companiesUrl, {
-      params: new HttpParams()
-        .set('sort', sort)
-        .set('order', order)
+      params: httpParams
     })
       .pipe(
         tap(_ => this.log('fetched heroes')),
@@ -49,6 +39,14 @@ export class CompanyApiService {
     return this._http.post(this._companiesUrl, company, this._getOptions()).pipe(
       map((result: any) => {
         return result.data
+      })
+    );
+  }
+
+  count(): Observable<number> {
+    return this._http.get<number>(this._companiesUrl + '/count', this._getOptions()).pipe(
+      map((company: any) => {
+        return company
       })
     );
   }
