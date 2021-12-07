@@ -5,16 +5,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.persistence.dao.CompanyDao;
 import ua.com.alevel.persistence.entity.Company;
-import ua.com.alevel.type.CompanyType;
 
 import javax.persistence.OptimisticLockException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.*;
 
 @Repository
