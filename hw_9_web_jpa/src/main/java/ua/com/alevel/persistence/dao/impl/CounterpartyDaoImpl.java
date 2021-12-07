@@ -3,8 +3,8 @@ package ua.com.alevel.persistence.dao.impl;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.alevel.persistence.dao.CompanyDao;
-import ua.com.alevel.persistence.entity.Company;
+import ua.com.alevel.persistence.dao.CounterpartyDao;
+import ua.com.alevel.persistence.entity.Counterparty;
 
 import javax.persistence.OptimisticLockException;
 import javax.persistence.Query;
@@ -15,51 +15,51 @@ import java.util.*;
 
 @Repository
 @Transactional
-public class CompanyDaoImpl implements CompanyDao {
+public class CounterpartyDaoImpl implements CounterpartyDao {
 
     private final SessionFactory sessionFactory;
 
-    public CompanyDaoImpl(SessionFactory sessionFactory) {
+    public CounterpartyDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public void create(Company entity) {
+    public void create(Counterparty entity) {
         sessionFactory.getCurrentSession().persist(entity);
     }
 
     @Override
-    public void update(Company entity) {
+    public void update(Counterparty entity) {
         sessionFactory.getCurrentSession().merge(entity);
     }
 
     @Override
     public void delete(Long id) {
-        int isSuccessful = sessionFactory.getCurrentSession().createQuery("delete from Company company where company.id = :id")
+        int isSuccessful = sessionFactory.getCurrentSession().createQuery("delete from Counterparty counterparty where counterparty.id = :id")
                 .setParameter("id", id)
                 .executeUpdate();
         if (isSuccessful == 0) {
-            throw new OptimisticLockException("company modified concurrently");
+            throw new OptimisticLockException("counterparty modified concurrently");
         }
     }
 
     @Override
     public boolean existById(Long id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("select count(company.id) from Company company where company.id = :id")
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(counterparty.id) from Counterparty counterparty where counterparty.id = :id")
                 .setParameter("id", id);
         return (Long) query.getSingleResult() == 1;
     }
 
     @Override
-    public Company findById(Long id) {
-        return sessionFactory.getCurrentSession().find(Company.class, id);
+    public Counterparty findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Counterparty.class, id);
     }
 
     @Override
-    public List<Company> findAll(Map<String, String[]> parameterMap) {
+    public List<Counterparty> findAll(Map<String, String[]> parameterMap) {
         CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
-        CriteriaQuery<Company> criteriaQuery = criteriaBuilder.createQuery(Company.class);
-        Root<Company> from = criteriaQuery.from(Company.class);
+        CriteriaQuery<Counterparty> criteriaQuery = criteriaBuilder.createQuery(Counterparty.class);
+        Root<Counterparty> from = criteriaQuery.from(Counterparty.class);
         if (parameterMap.get("order") != null) {
             if (parameterMap.get("order")[0].equals("desc")) {
                 criteriaQuery.orderBy(criteriaBuilder.desc(from.get(parameterMap.get("sort")[0])));
@@ -74,18 +74,18 @@ public class CompanyDaoImpl implements CompanyDao {
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
         }
 
-        List<Company> companies = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
+        List<Counterparty> counterparties = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
                 .setFirstResult(page * size)
                 .setMaxResults(size)
                 .getResultList();
 
-        return companies;
+        return counterparties;
     }
 
     @Override
     public long count() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("select count(c.id) from Company c");
+                .createQuery("select count(counterparty.id) from Counterparty counterparty");
         return (Long) query.getSingleResult();
     }
 }
