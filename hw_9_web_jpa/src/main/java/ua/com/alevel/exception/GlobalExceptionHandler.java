@@ -21,6 +21,6 @@ public class GlobalExceptionHandler {
         mav.addObject("showMessage", true);
         mav.addObject("errorMessage", exception.getMessage());
         mav.setViewName("error");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"" + exception.getMessage() + "\"}");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\": \"" + exception.getMessage() + "\"}");
     }
 }

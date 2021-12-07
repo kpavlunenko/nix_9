@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
+import {Router} from "@angular/router";
 
 import { CompanyResponseDto } from "../../../../model/company-response-dto";
 import { CompanyApiService } from "../../../../service/company-api.service";
@@ -12,23 +13,30 @@ import { CompanyApiService } from "../../../../service/company-api.service";
 })
 export class CompanyDetailsComponent implements OnInit {
 
+  id?:number;
+
   @Input() company?: CompanyResponseDto;
 
   constructor(private route: ActivatedRoute,
               private _companyApiService: CompanyApiService,
-              private location: Location) { }
+              private location: Location,
+              private _router: Router) { }
 
   ngOnInit(): void {
     this.getCompany();
   }
 
   getCompany(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this._companyApiService.getCompany(id)
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this._companyApiService.getCompany(this.id)
       .subscribe(company => this.company = company);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  updateCompany(): void {
+    this._router.navigateByUrl('companies/update/' + this.id);
   }
 }

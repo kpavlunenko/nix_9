@@ -23,7 +23,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore
@@ -40,7 +40,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore
@@ -57,7 +57,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore
@@ -74,7 +74,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.v,
           status: error.status
         };
         // @ts-ignore
@@ -91,7 +91,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore
@@ -101,14 +101,14 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
   }
 
   update(apiUrl: string, id: number, dto: REQUEST_DTO): Observable<boolean> {
-    return this._http.post(apiUrl + '/' + id, dto, this._getOptions()).pipe(
+    return this._http.put(apiUrl + '/' + id, dto, this._getOptions()).pipe(
       map((res: any) => {
         return res
       }),
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.message,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore

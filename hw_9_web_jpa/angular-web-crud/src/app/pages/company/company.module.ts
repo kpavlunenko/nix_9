@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompanyItemsComponent, CompanyDetailsComponent, CompanyNewComponent } from "./components";
+import { CompanyItemsComponent, CompanyDetailsComponent, CompanyNewComponent, CompanyUpdateComponent } from "./components";
 import { CompanyRoutingModule } from "./company-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -9,7 +9,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     declarations: [
         CompanyItemsComponent,
         CompanyNewComponent,
-        CompanyDetailsComponent
+        CompanyDetailsComponent,
+        CompanyUpdateComponent
     ],
   imports: [
     CommonModule,

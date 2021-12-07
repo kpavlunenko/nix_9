@@ -31,6 +31,10 @@ export class CompanyApiService {
     return this._apiService.create(this._apiUrl, company);
   }
 
+  update(id: number, company: CompanyRequestDto): Observable<boolean> {
+    return this._apiService.update(this._apiUrl, id, company);
+  }
+
   count(): Observable<number> {
     return this._apiService.count(this._apiUrl + '/count');
   }
