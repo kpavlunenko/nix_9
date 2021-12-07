@@ -49,5 +49,4 @@ export class CompanyNewComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }

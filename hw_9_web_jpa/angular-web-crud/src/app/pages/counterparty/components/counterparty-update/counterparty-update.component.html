@@ -5,13 +5,13 @@
         New counterparty
       </div>
       <div class="card-body">
-        <form [formGroup]="counterpartyForm" (ngSubmit)="create()">
+        <form [formGroup]="counterpartyForm" (ngSubmit)="update()">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
           </div>
           <div class="form-group">
-            <label for="inn">inn</label>
+            <label for="name">inn</label>
             <input type="text" class="form-control" id="inn" aria-describedby="inn" formControlName="inn">
           </div>
           <div class="form-group">
