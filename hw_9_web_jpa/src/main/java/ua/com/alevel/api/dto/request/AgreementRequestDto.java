@@ -1,38 +1,36 @@
 package ua.com.alevel.api.dto.request;
 
-import ua.com.alevel.persistence.entity.Company;
-import ua.com.alevel.persistence.entity.Counterparty;
 import ua.com.alevel.type.AgreementType;
 
 public class AgreementRequestDto extends RequestDto {
 
     private String name;
-    private Company company;
-    private Counterparty counterparty;
+    private long companyId;
+    private long counterpartyId;
     private AgreementType agreementType;
 
     public String getName() {
         return name;
     }
 
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
+    }
+
+    public long getCounterpartyId() {
+        return counterpartyId;
+    }
+
+    public void setCounterpartyId(long counterpartyId) {
+        this.counterpartyId = counterpartyId;
+    }
+
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Counterparty getCounterparty() {
-        return counterparty;
-    }
-
-    public void setCounterparty(Counterparty counterparty) {
-        this.counterparty = counterparty;
     }
 
     public AgreementType getAgreementType() {

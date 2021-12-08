@@ -18,9 +18,13 @@ import java.util.stream.Collectors;
 public class AgreementFacadeImpl implements AgreementFacade {
 
     private final AgreementService agreementService;
+    private final CompanyService companyService;
+    private final CounterpartyService counterpartyService;
 
-    public AgreementFacadeImpl(AgreementService agreementService) {
+    public AgreementFacadeImpl(AgreementService agreementService, CompanyService companyService, CounterpartyService counterpartyService) {
         this.agreementService = agreementService;
+        this.companyService = companyService;
+        this.counterpartyService = counterpartyService;
     }
 
     @Override
@@ -28,8 +32,8 @@ public class AgreementFacadeImpl implements AgreementFacade {
         Agreement agreement = new Agreement();
         agreement.setName(agreementRequestDto.getName());
         agreement.setAgreementType(agreementRequestDto.getAgreementType());
-        agreement.setCompany(agreementRequestDto.getCompany());
-        agreement.setCounterparty(agreementRequestDto.getCounterparty());
+        agreement.setCompany(companyService.findById(agreementRequestDto.getCompanyId()));
+        agreement.setCounterparty(counterpartyService.findById(agreementRequestDto.getCounterpartyId()));
         agreementService.create(agreement);
     }
 
@@ -38,8 +42,8 @@ public class AgreementFacadeImpl implements AgreementFacade {
         Agreement agreement = agreementService.findById(id);
         agreement.setName(agreementRequestDto.getName());
         agreement.setAgreementType(agreementRequestDto.getAgreementType());
-        agreement.setCompany(agreementRequestDto.getCompany());
-        agreement.setCounterparty(agreementRequestDto.getCounterparty());
+        agreement.setCompany(companyService.findById(agreementRequestDto.getCompanyId()));
+        agreement.setCounterparty(counterpartyService.findById(agreementRequestDto.getCounterpartyId()));
         agreementService.update(agreement);
     }
 

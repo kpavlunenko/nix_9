@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-
-import {CompanyResponseDto} from '../../../../model/company-response-dto';
-import {CompanyApiService} from "../../../../service/company-api.service";
+import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
+import {Router} from "@angular/router";
+import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {HttpParams} from "@angular/common/http";
+import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
 
 @Component({
-  selector: 'app-companies',
-  templateUrl: './company-items.component.html',
-  styleUrls: ['./company-items.component.css']
+  selector: 'app-agreement-items',
+  templateUrl: './agreement-items.component.html',
+  styleUrls: ['./agreement-items.component.css']
 })
-export class CompanyItemsComponent implements OnInit {
+export class AgreementItemsComponent implements OnInit {
 
   currentPage: number = 1;
   countOfItems: number = 0;
@@ -20,23 +19,24 @@ export class CompanyItemsComponent implements OnInit {
   pageSizeItems: number[] = [10, 25, 50, 100];
   sort: string = "id";
   order: string = "asc";
-  companies: CompanyResponseDto[] = [];
+  agreements: AgreementResponseDto[] = [];
   headers?: TableHeader[] = [{headerName: 'id', isActive: true, isSortable: true, sort: 'id', order: 'asc'},
     {headerName: 'name', isActive: false, isSortable: true, sort: 'name', order: 'asc'},
-    {headerName: 'company type', isActive: false, isSortable: true, sort: 'companyType', order: 'asc'},
+    {headerName: 'agreement type', isActive: false, isSortable: true, sort: 'agreementType', order: 'asc'},
+    {headerName: 'company', isActive: false, isSortable: false, sort: 'company', order: 'asc'},
+    {headerName: 'counterparty', isActive: false, isSortable: false, sort: 'counterparty', order: 'asc'},
     {headerName: 'details', isActive: false, isSortable: false, sort: '', order: ''},
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
-  constructor(private _companyApiService: CompanyApiService,
-              private _router: Router) {
-  }
+  constructor(private _agreementApiService: AgreementApiService,
+              private _router: Router) { }
 
   ngOnInit(): void {
-    this.getCompanies();
+    this.getAgreements();
   }
 
-  getCompanies(): void {
-    this._companyApiService.count()
+  getAgreements(): void {
+    this._agreementApiService.count()
       .subscribe(countOfItems => this.countOfItems = countOfItems);
 
     if (this.countOfItems % this.sizeOfPage == 0) {
@@ -45,24 +45,24 @@ export class CompanyItemsComponent implements OnInit {
       this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
     }
 
-    this._companyApiService.getCompanies(this.initHttpParams())
-      .subscribe(companies => this.companies = companies);
+    this._agreementApiService.getAgreements(this.initHttpParams())
+      .subscribe(agreements => this.agreements = agreements);
   }
 
   deleteById(id: number): void {
-    this._companyApiService.deleteById(id).subscribe(() => {
-      this.getCompanies();
+    this._agreementApiService.deleteById(id).subscribe(() => {
+      this.getAgreements();
     });
   }
 
   changeSizeOfPage(sizeOfPage: number): void {
     this.sizeOfPage = sizeOfPage;
-    this.getCompanies();
+    this.getAgreements();
   }
 
   setCurrentPage(currentPage: number): void {
     this.currentPage = currentPage;
-    this.getCompanies();
+    this.getAgreements();
   }
 
   sortOn(sort: string, order: string) {
@@ -79,19 +79,19 @@ export class CompanyItemsComponent implements OnInit {
     this.sort = sort;
     this.order = order;
 
-    this.getCompanies();
+    this.getAgreements();
   }
 
-  createCompany(): void {
-    this._router.navigateByUrl('companies/new');
+  createAgreement(): void {
+    this._router.navigateByUrl('agreements/new');
   }
 
   initHttpParams(): any {
     return new HttpParams()
-        .set('sort', this.sort)
-        .set('order', this.order)
-        .set('currentPage', this.currentPage - 1)
-        .set('sizeOfPage', this.sizeOfPage)
-    ;
+      .set('sort', this.sort)
+      .set('order', this.order)
+      .set('currentPage', this.currentPage - 1)
+      .set('sizeOfPage', this.sizeOfPage)
+      ;
   }
 }

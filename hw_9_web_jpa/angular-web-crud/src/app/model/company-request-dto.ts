@@ -1,6 +1,6 @@
 
 export interface CompanyRequestDto {
 
-  name: string,
-  companyType: string
+  name: string;
+  companyType: string;
 }

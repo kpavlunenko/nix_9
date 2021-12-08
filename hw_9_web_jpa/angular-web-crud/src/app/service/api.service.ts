@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ErrorDialogService } from "../pages/error-dialog/error-dialog.service";
+import { ErrorDialogService } from "./error-dialog.service";
 
 @Injectable({
   providedIn: 'root'
