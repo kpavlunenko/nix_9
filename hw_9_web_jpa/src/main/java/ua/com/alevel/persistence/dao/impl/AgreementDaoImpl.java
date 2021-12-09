@@ -70,10 +70,12 @@ public class AgreementDaoImpl implements AgreementDao {
             }
         }
         int page = 0;
-        int size = 10;
+        int size;
         if (parameterMap.get("currentPage") != null) {
             size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
+        } else {
+            size = (int)count();
         }
 
         List<Agreement> agreements = sessionFactory.getCurrentSession().createQuery(criteriaQuery)

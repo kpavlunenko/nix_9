@@ -42,11 +42,11 @@ insert into agreements values (10, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP
 insert into agreements values (11, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1013', 7, 9);
 insert into agreements values (12, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1014', 6, 5);
 
-insert into business_directions values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Furniture manufacturing');
-insert into business_directions values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'IT');
-insert into business_directions values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Retail sales');
-insert into business_directions values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Wholesale');
-insert into business_directions values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false, 'Provision of services');
+insert into business_directions values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Furniture manufacturing');
+insert into business_directions values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'IT');
+insert into business_directions values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Retail sales');
+insert into business_directions values (4, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Wholesale');
+insert into business_directions values (5, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Provision of services');
 
 insert into company_business_direction values (2, 2);
 insert into company_business_direction values (2, 5);

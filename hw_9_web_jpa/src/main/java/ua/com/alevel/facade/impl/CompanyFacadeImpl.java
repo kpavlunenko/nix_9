@@ -8,6 +8,7 @@ import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.api.dto.request.CompanyRequestDto;
 import ua.com.alevel.api.dto.response.CompanyResponseDto;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,6 +33,7 @@ public class CompanyFacadeImpl implements CompanyFacade {
     @Override
     public void update(CompanyRequestDto companyRequestDto, Long id) {
         Company company = companyService.findById(id);
+        company.setUpdated(new Date());
         company.setName(companyRequestDto.getName());
         company.setCompanyType(companyRequestDto.getCompanyType());
         companyService.update(company);

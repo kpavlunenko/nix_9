@@ -10,6 +10,7 @@ import ua.com.alevel.service.AgreementService;
 import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.service.CounterpartyService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,6 +41,7 @@ public class AgreementFacadeImpl implements AgreementFacade {
     @Override
     public void update(AgreementRequestDto agreementRequestDto, Long id) {
         Agreement agreement = agreementService.findById(id);
+        agreement.setUpdated(new Date());
         agreement.setName(agreementRequestDto.getName());
         agreement.setAgreementType(agreementRequestDto.getAgreementType());
         agreement.setCompany(companyService.findById(agreementRequestDto.getCompanyId()));

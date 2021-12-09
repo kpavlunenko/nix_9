@@ -46,10 +46,6 @@ export class AgreementNewComponent implements OnInit {
 
   create(): void {
     let agreement = this.agreementForm.value as AgreementRequestDto;
-    // @ts-ignore
-    // agreement.company = this._companyApiService.getCompany(Number(agreement.companyId));
-    // agreement.company = this._companyApiService.getCompany(Number(agreement.counterpartyId));
-
     this._agreementApiService.create(agreement).subscribe(() => {
       this._router.navigateByUrl('agreements');
     });

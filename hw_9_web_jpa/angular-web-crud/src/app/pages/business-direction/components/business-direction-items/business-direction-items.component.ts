@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
-import {AgreementApiService} from "../../../../service/agreement-api.service";
+import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {HttpParams} from "@angular/common/http";
-import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
 
 @Component({
-  selector: 'app-agreement-items',
-  templateUrl: './agreement-items.component.html',
-  styleUrls: ['./agreement-items.component.css']
+  selector: 'app-business-direction-items',
+  templateUrl: './business-direction-items.component.html',
+  styleUrls: ['./business-direction-items.component.css']
 })
-export class AgreementItemsComponent implements OnInit {
+export class BusinessDirectionItemsComponent implements OnInit {
 
   currentPage: number = 1;
   countOfItems: number = 0;
@@ -19,24 +19,21 @@ export class AgreementItemsComponent implements OnInit {
   pageSizeItems: number[] = [10, 25, 50, 100];
   sort: string = "id";
   order: string = "asc";
-  agreements: AgreementResponseDto[] = [];
+  businessDirections: BusinessDirectionResponseDto[] = [];
   headers?: TableHeader[] = [{headerName: 'id', isActive: true, isSortable: true, sort: 'id', order: 'asc'},
     {headerName: 'name', isActive: false, isSortable: true, sort: 'name', order: 'asc'},
-    {headerName: 'agreement type', isActive: false, isSortable: true, sort: 'agreementType', order: 'asc'},
-    {headerName: 'company', isActive: false, isSortable: false, sort: 'company', order: 'asc'},
-    {headerName: 'counterparty', isActive: false, isSortable: false, sort: 'counterparty', order: 'asc'},
     {headerName: 'details', isActive: false, isSortable: false, sort: '', order: ''},
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
-  constructor(private _agreementApiService: AgreementApiService,
+  constructor(private _businessDirectionApiService: BusinessDirectionApiService,
               private _router: Router) { }
 
   ngOnInit(): void {
-    this.getAgreements();
+    this.getBusinessDirections();
   }
 
-  getAgreements(): void {
-    this._agreementApiService.count()
+  getBusinessDirections(): void {
+    this._businessDirectionApiService.count()
       .subscribe(countOfItems => this.countOfItems = countOfItems);
 
     if (this.countOfItems % this.sizeOfPage == 0) {
@@ -45,24 +42,24 @@ export class AgreementItemsComponent implements OnInit {
       this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
     }
 
-    this._agreementApiService.getAgreements(this.initHttpParams())
-      .subscribe(agreements => this.agreements = agreements);
+    this._businessDirectionApiService.getBusinessDirections(this.initHttpParams())
+      .subscribe(businessDirections => this.businessDirections = businessDirections);
   }
 
   deleteById(id: number): void {
-    this._agreementApiService.deleteById(id).subscribe(() => {
-      this.getAgreements();
+    this._businessDirectionApiService.deleteById(id).subscribe(() => {
+      this.getBusinessDirections();
     });
   }
 
   changeSizeOfPage(sizeOfPage: number): void {
     this.sizeOfPage = sizeOfPage;
-    this.getAgreements();
+    this.getBusinessDirections();
   }
 
   setCurrentPage(currentPage: number): void {
     this.currentPage = currentPage;
-    this.getAgreements();
+    this.getBusinessDirections();
   }
 
   sortOn(sort: string, order: string) {
@@ -79,11 +76,11 @@ export class AgreementItemsComponent implements OnInit {
     this.sort = sort;
     this.order = order;
 
-    this.getAgreements();
+    this.getBusinessDirections();
   }
 
-  createAgreement(): void {
-    this._router.navigateByUrl('agreements/new');
+  createBusinessDirection(): void {
+    this._router.navigateByUrl('business_directions/new');
   }
 
   initHttpParams(): any {
@@ -94,4 +91,5 @@ export class AgreementItemsComponent implements OnInit {
       .set('sizeOfPage', this.sizeOfPage)
       ;
   }
+
 }

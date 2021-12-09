@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import {AgreementModule, CompanyModule, CounterpartyModule} from "./pages";
+import {AgreementModule, CompanyModule, CounterpartyModule, BusinessDirectionModule} from "./pages";
 import {ErrorDialogComponent} from './pages/error-dialog/error-dialog.component';
 import {ErrorDialogService} from "./service/error-dialog.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -23,7 +23,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatDialogModule,
     CompanyModule,
     CounterpartyModule,
-    AgreementModule
+    AgreementModule,
+    BusinessDirectionModule
   ],
   providers: [ErrorDialogService],
   bootstrap: [AppComponent],

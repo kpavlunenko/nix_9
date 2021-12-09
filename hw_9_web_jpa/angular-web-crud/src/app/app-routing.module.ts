@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'agreements',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/agreement/agreement.module').then(module => module.AgreementModule)
+  },
+  {
+    path: 'business_directions',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/business-direction/business-direction.module').then(module => module.BusinessDirectionModule)
   }
 ];
 

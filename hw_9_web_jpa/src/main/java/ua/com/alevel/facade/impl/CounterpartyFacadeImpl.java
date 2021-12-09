@@ -9,6 +9,7 @@ import ua.com.alevel.persistence.entity.Counterparty;
 import ua.com.alevel.service.CounterpartyService;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,6 +35,7 @@ public class CounterpartyFacadeImpl implements CounterpartyFacade {
     @Override
     public void update(CounterpartyRequestDto counterpartyRequestDto, Long id) {
         Counterparty counterparty = counterpartyService.findById(id);
+        counterparty.setUpdated(new Date());
         counterparty.setName(counterpartyRequestDto.getName());
         counterparty.setInn(counterpartyRequestDto.getInn());
         counterparty.setCounterpartyType(counterpartyRequestDto.getCounterpartyType());
