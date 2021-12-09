@@ -33,8 +33,8 @@ export class BusinessDirectionApiService {
     return this._apiService.update(this._apiUrl, id, businessDirection);
   }
 
-  count(): Observable<number> {
-    return this._apiService.count(this._apiUrl + '/count');
+  count(httpParams: HttpParams): Observable<number> {
+    return this._apiService.count(this._apiUrl + '/count', httpParams);
   }
 
   deleteById(id: number): Observable<boolean> {

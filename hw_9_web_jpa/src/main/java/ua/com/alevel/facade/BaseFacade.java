@@ -13,5 +13,5 @@ public interface BaseFacade <REQ extends RequestDto, RES extends ResponseDto> {
     void delete(Long id);
     RES findById(Long id);
     List<RES> findAll(WebRequest request);
-    long count();
+    long count(WebRequest request);
 }

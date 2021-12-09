@@ -58,8 +58,8 @@ public class AgreementServiceImpl implements AgreementService {
     }
 
     @Override
-    public long count() {
-        return agreementDao.count();
+    public long count(Map<String, String[]> parameterMap) {
+        return agreementDao.count(parameterMap);
     }
 
     private void checkInputDataOnValid(Agreement entity) {

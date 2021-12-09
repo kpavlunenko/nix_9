@@ -26,8 +26,8 @@ public class CounterpartyController extends BaseController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
-        return ResponseEntity.ok(counterpartyFacade.count());
+    public ResponseEntity<Long> count(WebRequest request) {
+        return ResponseEntity.ok(counterpartyFacade.count(request));
     }
 
     @PostMapping("")

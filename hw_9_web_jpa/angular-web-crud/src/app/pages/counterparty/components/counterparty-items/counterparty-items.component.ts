@@ -36,14 +36,15 @@ export class CounterpartyItemsComponent implements OnInit {
   }
 
   getCounterparties(): void {
-    this._counterpartyApiService.count()
-      .subscribe(countOfItems => this.countOfItems = countOfItems);
-
-    if (this.countOfItems % this.sizeOfPage == 0) {
-      this.totalPageSize = this.countOfItems / this.sizeOfPage;
-    } else {
-      this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
-    }
+    this._counterpartyApiService.count(this.initHttpParams())
+      .subscribe(countOfItems => {
+        this.countOfItems = countOfItems;
+        if (this.countOfItems % this.sizeOfPage == 0) {
+          this.totalPageSize = this.countOfItems / this.sizeOfPage;
+        } else {
+          this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
+        }
+      });
 
     this._counterpartyApiService.getCounterparties(this.initHttpParams())
       .subscribe(counterparties => this.counterparties = counterparties);

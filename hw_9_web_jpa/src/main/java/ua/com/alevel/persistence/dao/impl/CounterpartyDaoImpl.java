@@ -73,7 +73,7 @@ public class CounterpartyDaoImpl implements CounterpartyDao {
             size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
         } else {
-            size = (int)count();
+            size = (int)count(parameterMap);
         }
 
         List<Counterparty> counterparties = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
@@ -85,7 +85,7 @@ public class CounterpartyDaoImpl implements CounterpartyDao {
     }
 
     @Override
-    public long count() {
+    public long count(Map<String, String[]> parameterMap) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("select count(counterparty.id) from Counterparty counterparty");
         return (Long) query.getSingleResult();

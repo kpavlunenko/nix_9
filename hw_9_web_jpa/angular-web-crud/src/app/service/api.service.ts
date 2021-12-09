@@ -49,8 +49,12 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
     );
   }
 
-  count(apiUrl: string): Observable<number> {
-    return this._http.get<number>(apiUrl, this._getOptions()).pipe(
+  count(apiUrl: string, httpParams: HttpParams): Observable<number> {
+    return this._http.get<number>(apiUrl,
+      {
+        params: httpParams,
+        headers: new HttpHeaders({})
+      }).pipe(
       map((res: any) => {
         return res
       }),

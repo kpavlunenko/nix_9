@@ -13,6 +13,6 @@ public interface BaseDao<ENTITY extends BaseEntity> {
     boolean existById(Long id);
     ENTITY findById(Long id);
     List<ENTITY> findAll(Map<String, String[]> parameterMap);
-    long count();
+    long count(Map<String, String[]> parameterMap);
 
 }

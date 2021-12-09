@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {HttpParams} from "@angular/common/http";
 import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
@@ -12,6 +12,8 @@ import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
 })
 export class AgreementItemsComponent implements OnInit {
 
+  companyId: string = "";
+  counterpartyId: string = "";
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;
@@ -29,21 +31,24 @@ export class AgreementItemsComponent implements OnInit {
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
   constructor(private _agreementApiService: AgreementApiService,
-              private _router: Router) { }
+              private route: ActivatedRoute,
+              private _router: Router) {
+  }
 
   ngOnInit(): void {
     this.getAgreements();
   }
 
   getAgreements(): void {
-    this._agreementApiService.count()
-      .subscribe(countOfItems => this.countOfItems = countOfItems);
-
-    if (this.countOfItems % this.sizeOfPage == 0) {
-      this.totalPageSize = this.countOfItems / this.sizeOfPage;
-    } else {
-      this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
-    }
+    this._agreementApiService.count(this.initHttpParams())
+      .subscribe(countOfItems => {
+        this.countOfItems = countOfItems;
+        if (this.countOfItems % this.sizeOfPage == 0) {
+          this.totalPageSize = this.countOfItems / this.sizeOfPage;
+        } else {
+          this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
+        }
+      });
 
     this._agreementApiService.getAgreements(this.initHttpParams())
       .subscribe(agreements => this.agreements = agreements);
@@ -87,9 +92,19 @@ export class AgreementItemsComponent implements OnInit {
   }
 
   initHttpParams(): any {
+    this.route.queryParams.subscribe(params => {
+      if (params['companyId'] != undefined) {
+        this.companyId = params['companyId'];
+      }
+      if (params['counterpartyId'] != undefined) {
+        this.counterpartyId = params['counterpartyId'];
+      }
+    })
     return new HttpParams()
       .set('sort', this.sort)
       .set('order', this.order)
+      .set('companyId', this.companyId)
+      .set('counterpartyId', this.counterpartyId)
       .set('currentPage', this.currentPage - 1)
       .set('sizeOfPage', this.sizeOfPage)
       ;

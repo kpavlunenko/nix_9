@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
@@ -26,21 +26,23 @@ export class BusinessDirectionItemsComponent implements OnInit {
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
   constructor(private _businessDirectionApiService: BusinessDirectionApiService,
-              private _router: Router) { }
+              private _router: Router) {
+  }
 
   ngOnInit(): void {
     this.getBusinessDirections();
   }
 
   getBusinessDirections(): void {
-    this._businessDirectionApiService.count()
-      .subscribe(countOfItems => this.countOfItems = countOfItems);
-
-    if (this.countOfItems % this.sizeOfPage == 0) {
-      this.totalPageSize = this.countOfItems / this.sizeOfPage;
-    } else {
-      this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
-    }
+    this._businessDirectionApiService.count(this.initHttpParams())
+      .subscribe(countOfItems => {
+        this.countOfItems = countOfItems;
+        if (this.countOfItems % this.sizeOfPage == 0) {
+          this.totalPageSize = this.countOfItems / this.sizeOfPage;
+        } else {
+          this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
+        }
+      });
 
     this._businessDirectionApiService.getBusinessDirections(this.initHttpParams())
       .subscribe(businessDirections => this.businessDirections = businessDirections);

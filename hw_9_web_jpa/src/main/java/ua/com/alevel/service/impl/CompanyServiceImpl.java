@@ -58,8 +58,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public long count() {
-        return companyDao.count();
+    public long count(Map<String, String[]> parameterMap) {
+        return companyDao.count(parameterMap);
     }
 
     private void checkInputDataOnValid(Company entity) {

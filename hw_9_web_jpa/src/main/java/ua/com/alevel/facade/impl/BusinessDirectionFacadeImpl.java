@@ -55,8 +55,9 @@ public class BusinessDirectionFacadeImpl implements BusinessDirectionFacade {
     }
 
     @Override
-    public long count() {
-        return businessDirectionService.count();
+    public long count(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        return businessDirectionService.count(parameterMap);
     }
 
     @Override

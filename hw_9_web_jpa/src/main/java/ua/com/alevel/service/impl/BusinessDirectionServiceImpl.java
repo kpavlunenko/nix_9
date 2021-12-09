@@ -58,8 +58,8 @@ public class BusinessDirectionServiceImpl implements BusinessDirectionService {
     }
 
     @Override
-    public long count() {
-        return businessDirectionDao.count();
+    public long count(Map<String, String[]> parameterMap) {
+        return businessDirectionDao.count(parameterMap);
     }
 
 

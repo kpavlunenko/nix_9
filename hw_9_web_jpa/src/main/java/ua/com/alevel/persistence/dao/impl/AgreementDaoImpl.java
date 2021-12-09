@@ -1,5 +1,6 @@
 package ua.com.alevel.persistence.dao.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,9 @@ import javax.persistence.OptimisticLockException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,21 +64,28 @@ public class AgreementDaoImpl implements AgreementDao {
     public List<Agreement> findAll(Map<String, String[]> parameterMap) {
         CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<Agreement> criteriaQuery = criteriaBuilder.createQuery(Agreement.class);
-        Root<Agreement> from = criteriaQuery.from(Agreement.class);
+        Root<Agreement> root = criteriaQuery.from(Agreement.class);
         if (parameterMap.get("order") != null) {
             if (parameterMap.get("order")[0].equals("desc")) {
-                criteriaQuery.orderBy(criteriaBuilder.desc(from.get(parameterMap.get("sort")[0])));
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get(parameterMap.get("sort")[0])));
             } else {
-                criteriaQuery.orderBy(criteriaBuilder.asc(from.get(parameterMap.get("sort")[0])));
+                criteriaQuery.orderBy(criteriaBuilder.asc(root.get(parameterMap.get("sort")[0])));
             }
         }
+        if (parameterMap.get("companyId") != null && StringUtils.isNotEmpty(parameterMap.get("companyId")[0])) {
+            criteriaQuery.where(criteriaBuilder.equal(root.get("company").get("id"), Long.parseLong(parameterMap.get("companyId")[0])));
+        }
+        if (parameterMap.get("counterpartyId") != null && StringUtils.isNotEmpty(parameterMap.get("counterpartyId")[0])) {
+            criteriaQuery.where(criteriaBuilder.equal(root.get("counterparty").get("id"), Long.parseLong(parameterMap.get("counterpartyId")[0])));
+        }
+
         int page = 0;
         int size;
         if (parameterMap.get("currentPage") != null) {
             size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
         } else {
-            size = (int)count();
+            size = (int)count(parameterMap);
         }
 
         List<Agreement> agreements = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
@@ -87,9 +97,18 @@ public class AgreementDaoImpl implements AgreementDao {
     }
 
     @Override
-    public long count() {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("select count(agreement.id) from Agreement agreement");
-        return (Long) query.getSingleResult();
+    public long count(Map<String, String[]> parameterMap) {
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        Root<Agreement> root = criteriaQuery.from(Agreement.class);
+        criteriaQuery.select(criteriaBuilder.count(root));
+
+        if (parameterMap.get("companyId") != null && StringUtils.isNotEmpty(parameterMap.get("companyId")[0])) {
+            criteriaQuery.where(criteriaBuilder.equal(root.get("company").get("id"), Long.parseLong(parameterMap.get("companyId")[0])));
+        }
+        if (parameterMap.get("counterpartyId") != null && StringUtils.isNotEmpty(parameterMap.get("counterpartyId")[0])) {
+            criteriaQuery.where(criteriaBuilder.equal(root.get("counterparty").get("id"), Long.parseLong(parameterMap.get("counterpartyId")[0])));
+        }
+        return (Long) sessionFactory.getCurrentSession().createQuery(criteriaQuery).getSingleResult();
     }
 }

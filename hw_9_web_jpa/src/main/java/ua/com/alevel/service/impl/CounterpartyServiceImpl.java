@@ -58,8 +58,8 @@ public class CounterpartyServiceImpl implements CounterpartyService {
     }
 
     @Override
-    public long count() {
-        return counterpartyDao.count();
+    public long count(Map<String, String[]> parameterMap) {
+        return counterpartyDao.count(parameterMap);
     }
 
     private void checkInputDataOnValid(Counterparty entity) {

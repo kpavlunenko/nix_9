@@ -26,8 +26,8 @@ public class CompanyController extends BaseController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
-        return ResponseEntity.ok(companyFacade.count());
+    public ResponseEntity<Long> count(WebRequest request) {
+        return ResponseEntity.ok(companyFacade.count(request));
     }
 
     @PostMapping("")

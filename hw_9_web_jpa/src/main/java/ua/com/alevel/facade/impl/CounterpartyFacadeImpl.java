@@ -53,8 +53,9 @@ public class CounterpartyFacadeImpl implements CounterpartyFacade {
     }
 
     @Override
-    public long count() {
-        return counterpartyService.count();
+    public long count(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        return counterpartyService.count(parameterMap);
     }
 
     @Override

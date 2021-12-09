@@ -26,8 +26,8 @@ public class AgreementController extends BaseController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
-        return ResponseEntity.ok(agreementFacade.count());
+    public ResponseEntity<Long> count(WebRequest request) {
+        return ResponseEntity.ok(agreementFacade.count(request));
     }
 
     @PostMapping("")

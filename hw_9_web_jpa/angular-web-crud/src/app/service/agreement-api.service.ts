@@ -35,8 +35,8 @@ export class AgreementApiService {
     return this._apiService.update(this._apiUrl, id, agreement);
   }
 
-  count(): Observable<number> {
-    return this._apiService.count(this._apiUrl + '/count');
+  count(httpParams: HttpParams): Observable<number> {
+    return this._apiService.count(this._apiUrl + '/count', httpParams);
   }
 
   deleteById(id: number): Observable<boolean> {

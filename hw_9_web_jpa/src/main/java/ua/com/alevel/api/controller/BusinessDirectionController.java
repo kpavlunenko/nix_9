@@ -26,8 +26,8 @@ public class BusinessDirectionController extends BaseController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
-        return ResponseEntity.ok(businessDirectionFacade.count());
+    public ResponseEntity<Long> count(WebRequest request) {
+        return ResponseEntity.ok(businessDirectionFacade.count(request));
     }
 
     @PostMapping("")

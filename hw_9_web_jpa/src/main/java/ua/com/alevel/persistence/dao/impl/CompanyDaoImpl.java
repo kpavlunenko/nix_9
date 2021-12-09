@@ -75,7 +75,7 @@ public class CompanyDaoImpl implements CompanyDao {
             size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
         } else {
-            size = (int)count();
+            size = (int)count(parameterMap);
         }
 
         List<Company> companies = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
@@ -87,7 +87,7 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public long count() {
+    public long count(Map<String, String[]> parameterMap) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("select count(c.id) from Company c");
         return (Long) query.getSingleResult();

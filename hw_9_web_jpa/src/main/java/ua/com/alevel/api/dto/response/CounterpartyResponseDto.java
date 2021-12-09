@@ -8,7 +8,7 @@ public class CounterpartyResponseDto extends ResponseDto {
     private String name;
     private String inn;
     private CounterpartyType counterpartyType;
-//    private long countOfAgreements;
+    private long countOfAgreements;
 
     public CounterpartyResponseDto() {
     }
@@ -23,13 +23,13 @@ public class CounterpartyResponseDto extends ResponseDto {
         this.counterpartyType = counterparty.getCounterpartyType();
     }
 
-//    public long getCountOfAgreements() {
-//        return countOfAgreements;
-//    }
-//
-//    public void setCountOfAgreements(long countOfAgreements) {
-//        this.countOfAgreements = countOfAgreements;
-//    }
+    public long getCountOfAgreements() {
+        return countOfAgreements;
+    }
+
+    public void setCountOfAgreements(long countOfAgreements) {
+        this.countOfAgreements = countOfAgreements;
+    }
 
     public String getName() {
         return name;

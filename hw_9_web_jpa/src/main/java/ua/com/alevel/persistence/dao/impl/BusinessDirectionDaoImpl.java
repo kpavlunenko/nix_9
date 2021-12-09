@@ -73,7 +73,7 @@ public class BusinessDirectionDaoImpl implements BusinessDirectionDao {
             size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
             page = Integer.parseInt(parameterMap.get("currentPage")[0]);
         } else {
-            size = (int)count();
+            size = (int)count(parameterMap);
         }
 
         List<BusinessDirection> businessDirections = sessionFactory.getCurrentSession().createQuery(criteriaQuery)
@@ -85,7 +85,7 @@ public class BusinessDirectionDaoImpl implements BusinessDirectionDao {
     }
 
     @Override
-    public long count() {
+    public long count(Map<String, String[]> parameterMap) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("select count(businessDirections.id) from BusinessDirection businessDirections");
         return (Long) query.getSingleResult();

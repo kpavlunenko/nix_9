@@ -59,8 +59,9 @@ public class CompanyFacadeImpl implements CompanyFacade {
     }
 
     @Override
-    public long count() {
-        return companyService.count();
+    public long count(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        return companyService.count(parameterMap);
     }
 
     @Override

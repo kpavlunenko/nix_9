@@ -12,5 +12,5 @@ public interface BaseService<ENTITY extends BaseEntity> {
     void delete(Long id);
     ENTITY findById(Long id);
     List<ENTITY> findAll(Map<String, String[]> parameterMap);
-    long count();
+    long count(Map<String, String[]> parameterMap);
 }

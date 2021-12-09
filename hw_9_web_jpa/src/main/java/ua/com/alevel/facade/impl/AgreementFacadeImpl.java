@@ -60,8 +60,9 @@ public class AgreementFacadeImpl implements AgreementFacade {
     }
 
     @Override
-    public long count() {
-        return agreementService.count();
+    public long count(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        return agreementService.count(parameterMap);
     }
 
     @Override

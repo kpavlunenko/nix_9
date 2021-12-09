@@ -36,14 +36,15 @@ export class CompanyItemsComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this._companyApiService.count()
-      .subscribe(countOfItems => this.countOfItems = countOfItems);
-
-    if (this.countOfItems % this.sizeOfPage == 0) {
-      this.totalPageSize = this.countOfItems / this.sizeOfPage;
-    } else {
-      this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
-    }
+    this._companyApiService.count(this.initHttpParams())
+      .subscribe(countOfItems => {
+        this.countOfItems = countOfItems;
+        if (this.countOfItems % this.sizeOfPage == 0) {
+          this.totalPageSize = this.countOfItems / this.sizeOfPage;
+        } else {
+          this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
+        }
+      });
 
     this._companyApiService.getCompanies(this.initHttpParams())
       .subscribe(companies => this.companies = companies);
@@ -88,10 +89,10 @@ export class CompanyItemsComponent implements OnInit {
 
   initHttpParams(): any {
     return new HttpParams()
-        .set('sort', this.sort)
-        .set('order', this.order)
-        .set('currentPage', this.currentPage - 1)
-        .set('sizeOfPage', this.sizeOfPage)
-    ;
+      .set('sort', this.sort)
+      .set('order', this.order)
+      .set('currentPage', this.currentPage - 1)
+      .set('sizeOfPage', this.sizeOfPage)
+      ;
   }
 }
