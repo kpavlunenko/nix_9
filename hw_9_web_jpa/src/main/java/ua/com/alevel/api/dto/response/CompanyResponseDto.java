@@ -1,12 +1,16 @@
 package ua.com.alevel.api.dto.response;
 
+import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.persistence.entity.Company;
 import ua.com.alevel.type.CompanyType;
+
+import java.util.stream.Collectors;
 
 public class CompanyResponseDto extends ResponseDto {
 
     private String name;
     private CompanyType companyType;
+    private BusinessDirectionShortResponseDto[] businessDirections;
 //    private long countOfCounterparties;
 
     public CompanyResponseDto() {
@@ -20,9 +24,23 @@ public class CompanyResponseDto extends ResponseDto {
         setDeletionMark(company.isDeletionMark());
         this.name = company.getName();
         this.companyType = company.getCompanyType();
+        if (CollectionUtils.isNotEmpty(company.getBusinessDirections())){
+            this.businessDirections = company.getBusinessDirections()
+                    .stream().map(BusinessDirectionShortResponseDto::new).collect(Collectors.toList()).toArray(new BusinessDirectionShortResponseDto[0]);
+        } else {
+            this.businessDirections = new BusinessDirectionShortResponseDto[0];
+        }
     }
 
-//    public long getCountOfCounterparties() {
+    public BusinessDirectionShortResponseDto[] getBusinessDirections() {
+        return businessDirections;
+    }
+
+    public void setBusinessDirections(BusinessDirectionShortResponseDto[] businessDirections) {
+        this.businessDirections = businessDirections;
+    }
+
+    //    public long getCountOfCounterparties() {
 //        return countOfCounterparties;
 //    }
 //

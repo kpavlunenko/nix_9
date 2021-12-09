@@ -8,7 +8,7 @@ import ua.com.alevel.type.AgreementType;
 public class AgreementResponseDto extends ResponseDto {
 
     private String name;
-    private Company company;
+    private CompanyShortResponseDto company;
     private Counterparty counterparty;
     private AgreementType agreementType;
 
@@ -23,7 +23,7 @@ public class AgreementResponseDto extends ResponseDto {
         setDeletionMark(agreement.isDeletionMark());
         this.name = agreement.getName();
         this.agreementType = agreement.getAgreementType();
-        this.company = agreement.getCompany();
+        this.company = new CompanyShortResponseDto(agreement.getCompany());
         this.counterparty = agreement.getCounterparty();
     }
 
@@ -35,11 +35,11 @@ public class AgreementResponseDto extends ResponseDto {
         this.name = name;
     }
 
-    public Company getCompany() {
+    public CompanyShortResponseDto getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
+    public void setCompany(CompanyShortResponseDto company) {
         this.company = company;
     }
 

@@ -3,11 +3,9 @@ package ua.com.alevel.facade.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.BusinessDirectionRequestDto;
-import ua.com.alevel.api.dto.response.AgreementResponseDto;
 import ua.com.alevel.api.dto.response.BusinessDirectionResponseDto;
 import ua.com.alevel.facade.BusinessDirectionFacade;
 import ua.com.alevel.persistence.entity.BusinessDirection;
-import ua.com.alevel.persistence.entity.Company;
 import ua.com.alevel.service.BusinessDirectionService;
 import ua.com.alevel.service.CompanyService;
 
@@ -40,6 +38,9 @@ public class BusinessDirectionFacadeImpl implements BusinessDirectionFacade {
         BusinessDirection businessDirection = businessDirectionService.findById(id);
         businessDirection.setUpdated(new Date());
         businessDirection.setName(businessDirectionRequestDto.getName());
+        businessDirection.setCompanies(businessDirectionRequestDto.getCompanyIds().stream()
+                .map(companyId -> companyService.findById(companyId))
+                .collect(Collectors.toSet()));
         businessDirectionService.update(businessDirection);
     }
 

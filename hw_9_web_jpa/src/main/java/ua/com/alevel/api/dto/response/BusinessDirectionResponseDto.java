@@ -2,7 +2,6 @@ package ua.com.alevel.api.dto.response;
 
 import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.persistence.entity.BusinessDirection;
-import ua.com.alevel.persistence.entity.Company;
 
 import java.util.stream.Collectors;
 
