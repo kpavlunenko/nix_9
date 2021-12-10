@@ -18,6 +18,8 @@ import {HttpParams} from "@angular/common/http";
 })
 export class AgreementNewComponent implements OnInit {
 
+  companyId: string = "";
+  counterpartyId: string = "";
   agreement?: AgreementRequestDto;
   agreementTypes?: string[];
   companies?: CompanyResponseDto[];
@@ -26,8 +28,8 @@ export class AgreementNewComponent implements OnInit {
   agreementForm = new FormGroup({
     name: new FormControl(''),
     agreementType: new FormControl(''),
-    companyId: new FormControl(''),
-    counterpartyId: new FormControl('')
+    companyId: new FormControl(this.companyId),
+    counterpartyId: new FormControl(this.counterpartyId)
   });
 
   constructor(private _agreementApiService: AgreementApiService,
@@ -39,6 +41,7 @@ export class AgreementNewComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
+    this.parseHttpParams();
     this.getAgreementTypes();
     this.getCompanies();
     this.getCounterparties();
@@ -72,6 +75,23 @@ export class AgreementNewComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  parseHttpParams(): void {
+    this._route.queryParams.subscribe(params => {
+      if (params['companyId'] != undefined) {
+        this.companyId = params['companyId'];
+      }
+      if (params['counterpartyId'] != undefined) {
+        this.counterpartyId = params['counterpartyId'];
+      }
+      this.agreementForm.setValue({
+        name: '',
+        agreementType: '',
+        companyId: this.companyId,
+        counterpartyId: this.counterpartyId
+      })
+    })
   }
 
 }

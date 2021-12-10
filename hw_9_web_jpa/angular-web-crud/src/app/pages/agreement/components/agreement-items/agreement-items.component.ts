@@ -88,7 +88,9 @@ export class AgreementItemsComponent implements OnInit {
   }
 
   createAgreement(): void {
-    this._router.navigateByUrl('agreements/new');
+    this._router.navigate(['agreements/new'], {
+      queryParams: { companyId: this.companyId, counterpartyId: this.counterpartyId}
+    });
   }
 
   initHttpParams(): any {
