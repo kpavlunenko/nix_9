@@ -9,10 +9,14 @@
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+            <div class="alert alert-danger"
+                 *ngIf="companyForm.controls['name'].invalid && companyForm.controls['name'].touched">
+              Не указано имя
+            </div>
           </div>
           <div class="form-group">
             <label for="companyType">Select company type</label>
-            <select class="form-control" id="companyType" aria-describedby="companyType" formControlName="companyType">
+            <select class="form-control" id="companyType" aria-describedby="companyType" formControlName="companyType" required>
               <option *ngFor="let type of companyTypes"
                       value="{{type}}">{{type}}</option>
             </select>
@@ -30,7 +34,7 @@
             </div>
           </div>
           <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary mt-4" (click)="create()">Submit</button>
+            <button class="btn btn-primary mt-4" [disabled]="companyForm.invalid" (click)="create()">Submit</button>
             <button class="btn btn-warning mt-4" (click)="addBusinessDirection()">Add business direction</button>
           </div>
         </form>

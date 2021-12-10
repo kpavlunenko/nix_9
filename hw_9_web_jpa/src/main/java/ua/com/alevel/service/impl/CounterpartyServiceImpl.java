@@ -6,8 +6,10 @@ import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.dao.CounterpartyDao;
 import ua.com.alevel.persistence.entity.Counterparty;
+import ua.com.alevel.service.AgreementService;
 import ua.com.alevel.service.CounterpartyService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +17,11 @@ import java.util.Map;
 public class CounterpartyServiceImpl implements CounterpartyService {
 
     private final CounterpartyDao counterpartyDao;
+    private final AgreementService agreementService;
 
-    public CounterpartyServiceImpl(CounterpartyDao counterpartyDao) {
+    public CounterpartyServiceImpl(CounterpartyDao counterpartyDao, AgreementService agreementService) {
         this.counterpartyDao = counterpartyDao;
+        this.agreementService = agreementService;
     }
 
     @Override
@@ -39,6 +43,12 @@ public class CounterpartyServiceImpl implements CounterpartyService {
     public void delete(Long id) {
         if (!counterpartyDao.existById(id)) {
             throw new EntityNotFoundException("counterparty not found");
+        }
+        Map<String, String[]> params = new HashMap<>();
+        params.put("counterpartyId", new String[]{String.valueOf(id)});
+        long countAgreements =  agreementService.count(params);
+        if (countAgreements != 0) {
+            throw new EntityNotFoundException("With this counterparty exist " + countAgreements + " agreements you can not delete this counterparty");
         }
         counterpartyDao.delete(id);
     }

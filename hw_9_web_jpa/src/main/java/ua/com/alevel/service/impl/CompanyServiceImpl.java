@@ -4,10 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.exception.IncorrectInputData;
+import ua.com.alevel.persistence.dao.AgreementDao;
 import ua.com.alevel.persistence.dao.CompanyDao;
 import ua.com.alevel.persistence.entity.Company;
+import ua.com.alevel.service.AgreementService;
 import ua.com.alevel.service.CompanyService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +18,11 @@ import java.util.Map;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyDao companyDao;
+    private final AgreementService agreementService;
 
-    public CompanyServiceImpl(CompanyDao companyDao) {
+    public CompanyServiceImpl(CompanyDao companyDao, AgreementService agreementService) {
         this.companyDao = companyDao;
+        this.agreementService = agreementService;
     }
 
     @Override
@@ -39,6 +44,12 @@ public class CompanyServiceImpl implements CompanyService {
     public void delete(Long id) {
         if (!companyDao.existById(id)) {
             throw new EntityNotFoundException("company not found");
+        }
+        Map<String, String[]> params = new HashMap<>();
+        params.put("companyId", new String[]{String.valueOf(id)});
+        long countAgreements =  agreementService.count(params);
+        if (countAgreements != 0) {
+            throw new EntityNotFoundException("With this company exist " + countAgreements + " agreements you can not delete this company");
         }
         companyDao.delete(id);
     }

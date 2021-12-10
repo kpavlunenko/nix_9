@@ -36,6 +36,12 @@ export class CompanyDetailsComponent implements OnInit {
     this.location.back();
   }
 
+  goToAgreements(): void {
+    this._router.navigate(['/agreements'],{
+      queryParams: { companyId: this.id}
+    });
+  }
+
   updateCompany(): void {
     this._router.navigateByUrl('companies/update/' + this.id);
   }

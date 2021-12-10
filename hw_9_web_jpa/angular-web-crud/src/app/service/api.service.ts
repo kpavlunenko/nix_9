@@ -78,7 +78,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.v,
+          message: error.error.error,
           status: error.status
         };
         // @ts-ignore

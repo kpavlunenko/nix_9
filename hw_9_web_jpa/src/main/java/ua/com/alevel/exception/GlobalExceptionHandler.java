@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = EntityNotFoundException.class)
     public ResponseEntity<String> defaultErrorHandler(EntityNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"" + exception.getMessage() + "\"}");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\": \"" + exception.getMessage() + "\"}");
     }
 
     @ExceptionHandler(value = IncorrectInputData.class)

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
 
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import { CompanyApiService } from "../../../../service/company-api.service";
 import { CompanyRequestDto } from "../../../../model/company-request-dto";
 import { TypeApiService } from "../../../../service/type-api.service";
@@ -22,7 +22,7 @@ export class CompanyNewComponent implements OnInit {
   businessDirections?: BusinessDirectionResponseDto[];
 
   companyForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     companyType: new FormControl(''),
     businessDirectionIds: new FormArray([
       new FormControl('')])

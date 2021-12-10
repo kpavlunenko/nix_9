@@ -33,12 +33,12 @@ export class CounterpartyDetailsComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
   goToAgreements(): void {
     this._router.navigate(['/agreements'],{
       queryParams: { counterpartyId: this.id}
     });
   }
-
 
   updateCounterparty(): void {
     this._router.navigateByUrl('counterparties/update/' + this.id);

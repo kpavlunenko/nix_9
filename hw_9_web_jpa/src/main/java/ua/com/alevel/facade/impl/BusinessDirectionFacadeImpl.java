@@ -28,6 +28,7 @@ public class BusinessDirectionFacadeImpl implements BusinessDirectionFacade {
         BusinessDirection businessDirection = new BusinessDirection();
         businessDirection.setName(businessDirectionRequestDto.getName());
         businessDirection.setCompanies(businessDirectionRequestDto.getCompanyIds().stream()
+                .filter(companyId -> companyId != null)
                 .map(companyId -> companyService.findById(companyId))
                 .collect(Collectors.toSet()));
         businessDirectionService.create(businessDirection);
@@ -39,6 +40,7 @@ public class BusinessDirectionFacadeImpl implements BusinessDirectionFacade {
         businessDirection.setUpdated(new Date());
         businessDirection.setName(businessDirectionRequestDto.getName());
         businessDirection.setCompanies(businessDirectionRequestDto.getCompanyIds().stream()
+                .filter(companyId -> companyId != null)
                 .map(companyId -> companyService.findById(companyId))
                 .collect(Collectors.toSet()));
         businessDirectionService.update(businessDirection);

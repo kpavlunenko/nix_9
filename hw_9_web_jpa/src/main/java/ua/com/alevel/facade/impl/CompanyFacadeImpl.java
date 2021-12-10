@@ -31,6 +31,7 @@ public class CompanyFacadeImpl implements CompanyFacade {
         company.setName(companyRequestDto.getName());
         company.setCompanyType(companyRequestDto.getCompanyType());
         company.setBusinessDirections(companyRequestDto.getBusinessDirectionIds().stream()
+                .filter(businessDirectionId -> businessDirectionId != null)
                 .map(businessDirectionId -> businessDirectionService.findById(businessDirectionId))
                 .collect(Collectors.toSet()));
         companyService.create(company);
@@ -43,6 +44,7 @@ public class CompanyFacadeImpl implements CompanyFacade {
         company.setName(companyRequestDto.getName());
         company.setCompanyType(companyRequestDto.getCompanyType());
         company.setBusinessDirections(companyRequestDto.getBusinessDirectionIds().stream()
+                .filter(businessDirectionId -> businessDirectionId != null)
                 .map(businessDirectionId -> businessDirectionService.findById(businessDirectionId))
                 .collect(Collectors.toSet()));
         companyService.update(company);
