@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        New counterparty
+      </div>
+      <div class="card-body">
+        <form [formGroup]="counterpartyForm" (ngSubmit)="update()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="name">inn</label>
+            <input type="text" class="form-control" id="inn" aria-describedby="inn" formControlName="inn">
+          </div>
+          <div class="form-group">
+            <label for="counterpartyType">Select counterparty type</label>
+            <select class="form-control" id="counterpartyType" aria-describedby="counterpartyType" formControlName="counterpartyType">
+              <option *ngFor="let type of counterpartyTypes"
+                      value="{{type}}">{{type}}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary mt-4">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
