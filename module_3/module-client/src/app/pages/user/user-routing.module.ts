@@ -1,26 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
-import { UserItemsComponent } from "./components";
+import {UserDetailsComponent, UserItemsComponent, UserNewComponent, UserUpdateComponent} from "./components";
 
 const routes: Routes = [
   {
     path: '',
     component: UserItemsComponent
+  },
+  {
+    path: 'new',
+    component: UserNewComponent
+  },
+  {
+    path: 'details/:id',
+    component: UserDetailsComponent
+  },
+  {
+    path: 'update/:id',
+    component: UserUpdateComponent
   }
-  // },
-  // {
-  //   path: 'new',
-  //   component: AgreementNewComponent
-  // },
-  // {
-  //   path: 'details/:id',
-  //   component: AgreementDetailsComponent
-  // },
-  // {
-  //   path: 'update/:id',
-  //   component: AgreementUpdateComponent
-  // }
 ];
 
 @NgModule({

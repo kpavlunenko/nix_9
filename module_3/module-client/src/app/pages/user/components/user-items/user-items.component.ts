@@ -21,7 +21,10 @@ export class UserItemsComponent implements OnInit {
   order: string = "asc";
   users: UserResponseDto[] = [];
   headers?: TableHeader[] = [{headerName: 'id', isActive: true, isSortable: true, sort: 'id', order: 'asc'},
-    {headerName: 'name', isActive: false, isSortable: true, sort: 'name', order: 'asc'},
+    {headerName: 'first name', isActive: false, isSortable: true, sort: 'firstName', order: 'asc'},
+    {headerName: 'last name', isActive: false, isSortable: true, sort: 'lastName', order: 'asc'},
+    {headerName: 'email', isActive: false, isSortable: true, sort: 'email', order: 'asc'},
+    {headerName: 'phone', isActive: false, isSortable: true, sort: 'phone', order: 'asc'},
     {headerName: 'details', isActive: false, isSortable: false, sort: '', order: ''},
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
@@ -39,6 +42,9 @@ export class UserItemsComponent implements OnInit {
         this.countOfItems = countOfItems;
         if (this.countOfItems % this.sizeOfPage == 0) {
           this.totalPageSize = this.countOfItems / this.sizeOfPage;
+          if (this.totalPageSize == 0) {
+            this.totalPageSize = 1;
+          }
         } else {
           this.totalPageSize = Math.floor(this.countOfItems / this.sizeOfPage) + 1;
         }

@@ -42,7 +42,10 @@
           <tbody>
           <tr *ngFor="let user of users">
             <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
             <td>
               <a routerLink="/users/details/{{user.id}}" type="button" class="btn btn-primary">details</a>
             </td>
