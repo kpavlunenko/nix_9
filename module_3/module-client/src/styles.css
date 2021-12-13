@@ -29,7 +29,7 @@ a.nav-item.nav-link {
 .dropdown-menu {
   min-width: 2em !important;
 }
-
+/* Application-wide Styles */
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -50,23 +50,4 @@ body, input[type="text"], button {
 /* everywhere else */
 * {
   font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-  font-size: 1.2em;
-  color: #999;
-  margin-bottom: 0;
-}
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-nav a:hover {
-  color: #039be5;
-  background-color: #cfd8dc;
-}
-nav a.active {
-  color: #039be5;
 }
