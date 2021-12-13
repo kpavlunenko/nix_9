@@ -9,10 +9,19 @@ h2 {
   margin-top: 0;
   padding-top: 0;
 }
-nav a:hover {
+nav a.dropdown-item:hover {
   color: #039be5;
   background-color: #cfd8dc;
 }
-nav a.active {
+nav a.dropdown-item.active {
   color: #039be5;
 }
+
+nav a.nav-link:hover {
+  color: #039be5;
+  background-color: #cfd8dc;
+}
+nav a.nav-link.active {
+  color: #039be5;
+}
+

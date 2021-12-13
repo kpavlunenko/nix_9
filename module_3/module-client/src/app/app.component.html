@@ -9,8 +9,19 @@
 </head>
 <body>
 <div class="container">
-  <nav class="navbar navbar-dark bg-dark justify-content-center">
-    <a class="nav-item nav-link" href="/users">Users</a>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Directories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/users">Users</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </nav>
   <router-outlet></router-outlet>
 </div>
