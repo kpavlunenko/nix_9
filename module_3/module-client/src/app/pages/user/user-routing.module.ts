@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from "@angular/router";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from "@angular/router";
 import {UserDetailsComponent, UserItemsComponent, UserNewComponent, UserUpdateComponent} from "./components";
 
 const routes: Routes = [
@@ -32,4 +32,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {
+}
