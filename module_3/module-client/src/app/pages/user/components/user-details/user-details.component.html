@@ -44,6 +44,30 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Bank accounts
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr *ngFor="let bankAccount of user.bankAccounts">
+              <td>{{bankAccount.name}}</td>
+              <td>{{bankAccount.iban}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="bankAccountDetails(bankAccount.id)">details</button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="deleteBankAccountById(bankAccount.id)">delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="createBankAccount()">add new bank account</button>
+      </div>
+    </div>
+  </div>
   <div class="d-flex justify-content-between">
     <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
     <button type="button" class="btn btn-warning" (click)="updateUser()">change</button>

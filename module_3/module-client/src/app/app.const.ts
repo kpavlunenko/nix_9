@@ -1,3 +1,4 @@
 export const appConst = {
-  companiesPath: 'users'
+  companiesPath: 'users',
+  bankAccountsPath: 'bankAccounts'
 }

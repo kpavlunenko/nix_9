@@ -1,6 +1,9 @@
 package ua.com.alevel.api.dto.response;
 
+import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.persistence.entity.User;
+
+import java.util.stream.Collectors;
 
 public class UserResponseDto extends ResponseDto {
 
@@ -8,6 +11,7 @@ public class UserResponseDto extends ResponseDto {
     private String lastName;
     private String email;
     private String phone;
+    private BankAccountShortResponseDto[] bankAccounts;
 
     public UserResponseDto() {
 
@@ -22,7 +26,20 @@ public class UserResponseDto extends ResponseDto {
         setLastName(user.getLastName());
         setEmail(user.getEmail());
         setPhone(user.getPhone());
+        if (CollectionUtils.isNotEmpty(user.getBankAccounts())){
+            this.bankAccounts = user.getBankAccounts()
+                    .stream().map(BankAccountShortResponseDto::new).collect(Collectors.toList()).toArray(new BankAccountShortResponseDto[0]);
+        } else {
+            this.bankAccounts = new BankAccountShortResponseDto[0];
+        }
+    }
 
+    public BankAccountShortResponseDto[] getBankAccounts() {
+        return bankAccounts;
+    }
+
+    public void setBankAccounts(BankAccountShortResponseDto[] bankAccounts) {
+        this.bankAccounts = bankAccounts;
     }
 
     public String getFirstName() {

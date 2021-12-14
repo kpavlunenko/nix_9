@@ -5,4 +5,5 @@ export interface UserRequestDto {
   lastName: string;
   email: string;
   phone: string;
+  bankAccountIds: number[];
 }

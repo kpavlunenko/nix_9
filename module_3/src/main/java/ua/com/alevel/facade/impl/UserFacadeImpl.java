@@ -6,6 +6,7 @@ import ua.com.alevel.api.dto.request.UserRequestDto;
 import ua.com.alevel.api.dto.response.UserResponseDto;
 import ua.com.alevel.facade.UserFacade;
 import ua.com.alevel.persistence.entity.User;
+import ua.com.alevel.service.BankAccountService;
 import ua.com.alevel.service.UserService;
 
 import java.util.Date;
@@ -17,9 +18,11 @@ import java.util.stream.Collectors;
 public class UserFacadeImpl implements UserFacade {
 
     private final UserService userService;
+    private final BankAccountService bankAccountService;
 
-    public UserFacadeImpl(UserService userService) {
+    public UserFacadeImpl(UserService userService, BankAccountService bankAccountService) {
         this.userService = userService;
+        this.bankAccountService = bankAccountService;
     }
 
     @Override
@@ -29,6 +32,10 @@ public class UserFacadeImpl implements UserFacade {
         user.setLastName(userRequestDto.getLastName());
         user.setEmail(userRequestDto.getEmail());
         user.setPhone(userRequestDto.getPhone());
+        user.setBankAccounts(userRequestDto.getBankAccountIds().stream()
+                .filter(bankAccountId -> bankAccountId != null)
+                .map(bankAccountId -> bankAccountService.findById(bankAccountId).get())
+                .collect(Collectors.toSet()));
         userService.create(user);
     }
 
@@ -39,7 +46,10 @@ public class UserFacadeImpl implements UserFacade {
         user.setFirstName(userRequestDto.getFirstName());
         user.setLastName(userRequestDto.getLastName());
         user.setEmail(userRequestDto.getEmail());
-        user.setPhone(userRequestDto.getPhone());
+        user.setBankAccounts(userRequestDto.getBankAccountIds().stream()
+                .filter(bankAccountId -> bankAccountId != null)
+                .map(bankAccountId -> bankAccountService.findById(bankAccountId).get())
+                .collect(Collectors.toSet()));
         userService.update(user);
     }
 

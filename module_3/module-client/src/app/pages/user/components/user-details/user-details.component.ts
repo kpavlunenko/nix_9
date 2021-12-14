@@ -3,6 +3,7 @@ import {UserResponseDto} from "../../../../model/user-response-dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {UserApiService} from "../../../../service/user-api.service";
+import {BankAccountApiService} from "../../../../service/bank-account-api.service";
 
 @Component({
   selector: 'app-user-details',
@@ -17,6 +18,7 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private _userApiService: UserApiService,
+              private _bankAccountApiService: BankAccountApiService,
               private _location: Location,
               private _router: Router) {
   }
@@ -33,6 +35,24 @@ export class UserDetailsComponent implements OnInit {
 
   goBack(): void {
     this._location.back();
+  }
+
+  deleteBankAccountById(id: number): void {
+    this._bankAccountApiService.deleteById(id).subscribe(() => {
+      this.getUser();
+    });
+  }
+
+  createBankAccount(): void {
+    this._router.navigate(['bankAccounts/new'],{
+      queryParams: {user: this.id}
+    });
+  }
+
+  bankAccountDetails(bankAccountId: number): void {
+    this._router.navigate(['bankAccounts/details/' + bankAccountId],{
+      queryParams: {user: this.id}
+    });
   }
 
   updateUser(): void {

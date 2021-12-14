@@ -11,6 +11,11 @@ const routes: Routes = [
     path: 'users',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/user/user.module').then(module => module.UserModule)
+  },
+  {
+    path: 'bankAccounts',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/bank-account/bank-account.module').then(module => module.BankAccountModule)
   }
 ];
 
