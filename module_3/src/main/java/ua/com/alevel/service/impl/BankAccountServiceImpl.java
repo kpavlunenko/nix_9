@@ -11,6 +11,7 @@ import ua.com.alevel.service.BankAccountService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -68,6 +69,14 @@ public class BankAccountServiceImpl implements BankAccountService {
         }
         if (entity.getIban().length() != 29) {
             throw new IncorrectInputData("IBAN should contain 29 chars");
+        }
+        try {
+            BankAccount bankAccount = bankAccountRepository.findByIban(entity.getIban()).get();
+            if (bankAccount.getId() != entity.getId()) {
+                throw new IncorrectInputData("account with input IBAN already exist");
+            }
+        } catch (NoSuchElementException e) {
+
         }
     }
 
