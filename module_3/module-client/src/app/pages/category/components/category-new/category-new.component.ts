@@ -15,7 +15,7 @@ export class CategoryNewComponent implements OnInit {
 
   category?: CategoryRequestDto;
   BankOperationTypeMapping = BankOperationTypeMapping;
-  public BankOperationType = BankOperationType;
+  BankOperationType = BankOperationType;
 
   categoryForm = new FormGroup({
     name: new FormControl('', Validators.required),
