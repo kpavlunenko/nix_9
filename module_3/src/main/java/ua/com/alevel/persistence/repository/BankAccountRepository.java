@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface BankAccountRepository extends AbstractRepository<BankAccount> {
     Optional<BankAccount> findByIban(String iban);
+    void deleteAllByUser_Id(Long id);
 }
