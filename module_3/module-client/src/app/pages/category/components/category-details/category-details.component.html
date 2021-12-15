@@ -1,1 +1,43 @@
-<p>category-details works!</p>
+<div *ngIf="category">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Category details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>id</th>
+              <td>{{category.id}}</td>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <td>{{category.name}}</td>
+            </tr>
+            <tr>
+              <th>Bank operation type</th>
+              <td>{{BankOperationTypeMapping[category.bankOperationType]}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{category.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{category.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{category.deletionMark}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+    <button type="button" class="btn btn-warning" (click)="updateCategory()">change</button>
+  </div>
+</div>
