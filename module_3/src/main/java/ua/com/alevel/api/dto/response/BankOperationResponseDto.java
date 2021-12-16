@@ -27,7 +27,9 @@ public class BankOperationResponseDto extends ResponseDto {
         setAmount(bankOperation.getAmount());
         setCategory(new CategoryResponseDto(bankOperation.getCategory()));
         setBankAccount(new BankAccountShortResponseDto(bankOperation.getBankAccount()));
-        setRecipientBankAccount(new BankAccountShortResponseDto(bankOperation.getRecipientBankAccount()));
+        if (bankOperation.getRecipientBankAccount() != null) {
+            setRecipientBankAccount(new BankAccountShortResponseDto(bankOperation.getRecipientBankAccount()));
+        }
         setOperationType(bankOperation.getOperationType());
         setBankOperationType(bankOperation.getBankOperationType());
     }

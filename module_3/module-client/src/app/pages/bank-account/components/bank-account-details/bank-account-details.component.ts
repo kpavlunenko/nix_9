@@ -48,6 +48,12 @@ export class BankAccountDetailsComponent implements OnInit {
     }
   }
 
+  goToOperations(): void {
+    this._router.navigate(['/bankOperations'],{
+      queryParams: {bankAccount: this.id}
+    });
+  }
+
   parseHttpParams(): void {
     this._route.queryParams.subscribe(params => {
       if (params['user'] != undefined) {

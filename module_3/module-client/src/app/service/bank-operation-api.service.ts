@@ -18,11 +18,11 @@ export class BankOperationApiService {
               private _apiService: ApiService<BankOperationRequestDto, BankOperationResponseDto>) {
   }
 
-  getUsers(httpParams: HttpParams): Observable<BankOperationResponseDto[]> {
+  getBankOperations(httpParams: HttpParams): Observable<BankOperationResponseDto[]> {
     return this._apiService.getAll(this._apiUrl, httpParams);
   }
 
-  getUser(id: number): Observable<BankOperationResponseDto> {
+  getBankOperation(id: number): Observable<BankOperationResponseDto> {
     return this._apiService.getById(this._apiUrl, id);
   }
 

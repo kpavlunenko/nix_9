@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        New bank operation
+      </div>
+      <div class="card-body">
+        <form [formGroup]="bankOperationForm">
+          <div *ngIf="!bankAccountId">
+            <div class="form-group">
+              <label for="bankAccountId">Select bank account</label>
+              <select class="form-control" id="bankAccountId" aria-describedby="bankAccountId"
+                      formControlName="bankAccountId" required>
+                <option *ngFor="let bankAccount of bankAccounts"
+                        value="{{bankAccount.id}}">{{bankAccount.name + '(' + bankAccount.iban + ')'}}</option>
+              </select>
+            </div>
+          </div>
+          <mat-radio-group aria-label="Select an option" aria-describedby="operationType"
+                           formControlName="operationType" [(ngModel)]="operationType">
+            <mat-radio-button value="INCOME">income</mat-radio-button>
+            <mat-radio-button value="EXPENSE">expense</mat-radio-button>
+          </mat-radio-group>
+          <div class="form-group">
+            <label for="bankOperationType">Select bank operation type</label>
+            <select class="form-control" id="bankOperationType" aria-describedby="bankOperationType"
+                    formControlName="bankOperationType" #enum (ngModelChange)="changeBankOperationType(enum.value)"
+                    required>
+              <ng-container *ngIf="operationType == 'INCOME'">
+                <option></option>
+                <option *ngFor="let enum of IncomeBankOperationTypeMapping | keyvalue"
+                        value="{{enum.key}}">{{enum.value}}</option>
+              </ng-container>
+              <ng-container *ngIf="operationType == 'EXPENSE'">
+                <option></option>
+                <option *ngFor="let enum of OutcomeBankOperationTypeMapping | keyvalue"
+                        value="{{enum.key}}">{{enum.value}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="categoryId">Select category</label>
+            <select class="form-control" id="categoryId" aria-describedby="categoryId" formControlName="categoryId"
+                    required>
+              <option *ngFor="let category of categories"
+                      value="{{category.id}}">{{category.name}}</option>
+            </select>
+          </div>
+          <ng-container *ngIf="enum.value == 'OUTCOME_TRANSFER'">
+            <div class="form-group">
+              <label for="recipientBankAccountId">Select recipient bank account</label>
+              <select class="form-control" id="recipientBankAccountId" aria-describedby="recipientBankAccountId"
+                      formControlName="recipientBankAccountId" required>
+                <option *ngFor="let bankAccount of bankAccounts"
+                        value="{{bankAccount.id}}">{{bankAccount.name + '(' + bankAccount.iban + ')'}}</option>
+              </select>
+            </div>
+          </ng-container>
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" id="amount"
+                   aria-describedby="amount" formControlName="amount"
+                   onchange="this.value=parseFloat(this.value).toFixed(2);" required>
+          </div>
+
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary mt-4" [disabled]="bankOperationForm.invalid" (click)="create()">Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

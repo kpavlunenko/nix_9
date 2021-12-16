@@ -1,0 +1,52 @@
+<div *ngIf="bankOperation">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Bank operation details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>id</th>
+              <td>{{bankOperation.id}}</td>
+            </tr>
+            <tr>
+              <th>Bank account</th>
+              <td>{{bankOperation.bankAccount.name + '(' + bankOperation.bankAccount.iban + ')'}}</td>
+            </tr>
+            <tr>
+              <th>Operation type</th>
+              <td>{{bankOperation.operationType}}</td>
+            </tr>
+            <tr>
+              <th>Bank operation type</th>
+              <td>{{BankOperationTypeMapping[bankOperation.bankOperationType]}}</td>
+            </tr>
+            <tr>
+              <th>Category</th>
+              <td>{{bankOperation.category.name}}</td>
+            </tr>
+            <ng-container *ngIf="bankOperation.bankOperationType == 'OUTCOME_TRANSFER'">
+            <tr>
+              <th>Recipient bank account</th>
+              <td>{{bankOperation.recipientBankAccount.name + '(' + bankOperation.recipientBankAccount.iban + ')'}}</td>
+            </tr>
+            </ng-container>
+            <tr>
+              <th>Amount</th>
+              <td>{{bankOperation.amount}}</td>
+            </tr>
+            <tr>
+              <th>Created</th>
+              <td>{{bankOperation.created}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  </div>
+</div>

@@ -8,13 +8,15 @@ import {
 } from "./components";
 import {BankOperationRoutingModule} from "./bank-operation-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [BankOperationItemsComponent, BankOperationDetailsComponent, BankOperationNewComponent, BankOperationUpdateComponent],
   imports: [
     CommonModule,
     BankOperationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ]
 })
 export class BankOperationModule {

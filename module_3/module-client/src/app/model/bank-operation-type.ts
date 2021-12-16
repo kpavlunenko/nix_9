@@ -20,3 +20,16 @@ export const BankOperationTypeMapping = {
   [BankOperationType.OUTCOME_CREDIT]: 'loan repayment',
   [BankOperationType.OUTCOME_OTHER]: 'other expense'
 };
+
+export const IncomeBankOperationTypeMapping = {
+  [BankOperationType.INCOME_SALARY]: 'salary',
+  [BankOperationType.INCOME_OTHER]: 'other income'
+};
+
+export const OutcomeBankOperationTypeMapping = {
+
+  [BankOperationType.OUTCOME_PAYMENT]: 'payment',
+  [BankOperationType.OUTCOME_TRANSFER]: 'transfer from card',
+  [BankOperationType.OUTCOME_CREDIT]: 'loan repayment',
+  [BankOperationType.OUTCOME_OTHER]: 'other expense'
+};

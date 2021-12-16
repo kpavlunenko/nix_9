@@ -4,6 +4,7 @@ import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import ua.com.alevel.persistence.entity.BaseEntity;
+import ua.com.alevel.persistence.type.BankOperationType;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
@@ -38,6 +39,11 @@ public final class SpecificationUtil {
                     if (BaseEntity.class.isAssignableFrom(field.getType())) {
                         if (params.length == 1 && StringUtils.isNotEmpty(params[0])) {
                             predicates.add(criteriaBuilder.equal(root.get(field.getName()).get("id"), Long.parseLong(params[0])));
+                        }
+                    }
+                    if (BankOperationType.class.isAssignableFrom(field.getType())) {
+                        if (params.length == 1 && StringUtils.isNotEmpty(params[0])) {
+                            predicates.add(criteriaBuilder.equal(root.get(field.getName()), BankOperationType.valueOf(params[0])));
                         }
                     }
                 }

@@ -6,6 +6,8 @@ import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.BankOperation;
 import ua.com.alevel.persistence.repository.BankOperationRepository;
+import ua.com.alevel.persistence.type.BankOperationType;
+import ua.com.alevel.persistence.type.OperationType;
 import ua.com.alevel.service.BankOperationService;
 
 import java.math.BigDecimal;
@@ -29,6 +31,15 @@ public class BankOperationServiceImpl implements BankOperationService {
     public void create(BankOperation entity) {
         checkInputDataOnValid(entity);
         repositoryHelper.create(bankOperationRepository, entity);
+        if (entity.getBankOperationType() == BankOperationType.OUTCOME_TRANSFER) {
+            BankOperation bankOperation = new BankOperation();
+            bankOperation.setBankAccount(entity.getRecipientBankAccount());
+            bankOperation.setOperationType(OperationType.INCOME);
+            bankOperation.setBankOperationType(BankOperationType.INCOME_TRANSFER);
+            bankOperation.setCategory(entity.getCategory());
+            bankOperation.setAmount(entity.getAmount());
+            repositoryHelper.create(bankOperationRepository, bankOperation);
+        }
     }
 
     @Override

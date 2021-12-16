@@ -36,7 +36,9 @@ public class BankOperationFacadeImpl implements BankOperationFacade {
         bankOperation.setOperationType(bankOperationRequestDto.getOperationType());
         bankOperation.setCategory(categoryService.findById(bankOperationRequestDto.getCategoryId()).get());
         bankOperation.setBankAccount(bankAccountService.findById(bankOperationRequestDto.getBankAccountId()).get());
-        bankOperation.setRecipientBankAccount(bankAccountService.findById(bankOperationRequestDto.getRecipientBankAccountId()).get());
+        if (bankOperationRequestDto.getRecipientBankAccountId() != 0) {
+            bankOperation.setRecipientBankAccount(bankAccountService.findById(bankOperationRequestDto.getRecipientBankAccountId()).get());
+        }
         bankOperationService.create(bankOperation);
     }
 
@@ -49,7 +51,9 @@ public class BankOperationFacadeImpl implements BankOperationFacade {
         bankOperation.setOperationType(bankOperationRequestDto.getOperationType());
         bankOperation.setCategory(categoryService.findById(bankOperationRequestDto.getCategoryId()).get());
         bankOperation.setBankAccount(bankAccountService.findById(bankOperationRequestDto.getBankAccountId()).get());
-        bankOperation.setRecipientBankAccount(bankAccountService.findById(bankOperationRequestDto.getRecipientBankAccountId()).get());
+        if (bankOperationRequestDto.getRecipientBankAccountId() != 0) {
+            bankOperation.setRecipientBankAccount(bankAccountService.findById(bankOperationRequestDto.getRecipientBankAccountId()).get());
+        }
         bankOperationService.update(bankOperation);
     }
 
