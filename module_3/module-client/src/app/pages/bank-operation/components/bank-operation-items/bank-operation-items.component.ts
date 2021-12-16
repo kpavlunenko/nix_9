@@ -5,6 +5,7 @@ import {HttpParams} from "@angular/common/http";
 import {BankOperationTypeMapping} from "../../../../model/bank-operation-type";
 import {BankOperationResponseDto} from "../../../../model/bank-operation-response-dto";
 import {BankOperationApiService} from "../../../../service/bank-operation-api.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-bank-operation-items',
@@ -15,6 +16,7 @@ export class BankOperationItemsComponent implements OnInit {
 
   BankOperationTypeMapping = BankOperationTypeMapping;
   bankAccountId:string = "";
+  userId:string = "";
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;
@@ -36,6 +38,7 @@ export class BankOperationItemsComponent implements OnInit {
 
   constructor(private _bankOperationApiService: BankOperationApiService,
               private _route: ActivatedRoute,
+              private _location: Location,
               private _router: Router) {
   }
 
@@ -98,7 +101,7 @@ export class BankOperationItemsComponent implements OnInit {
   createBankOperation(): void {
     if (this.bankAccountId != "") {
       this._router.navigate(['bankOperations/new'],{
-        queryParams: {bankAccount: this.bankAccountId}
+        queryParams: {bankAccount: this.bankAccountId, user: this.userId}
       });
     } else {
       this._router.navigateByUrl('bankOperations/new');
@@ -120,7 +123,16 @@ export class BankOperationItemsComponent implements OnInit {
       if (params['bankAccount'] != undefined) {
         this.bankAccountId = params['bankAccount'];
       }
+      if (params['user'] != undefined) {
+        this.userId = params['user'];
+      }
     })
+  }
+
+  goBack(): void {
+    this._router.navigate(['bankAccounts/details/' + this.bankAccountId],{
+      queryParams: {user: this.userId}
+    });
   }
 
 }

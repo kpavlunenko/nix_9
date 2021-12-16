@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {BankAccountResponseDto} from "../../../../model/bank-account-response-dto";
 import {BankAccountApiService} from "../../../../service/bank-account-api.service";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-bank-account-details',
@@ -13,6 +14,7 @@ export class BankAccountDetailsComponent implements OnInit {
 
   id?: number;
   userId: string = "";
+  balance: number = 0;
 
   @Input() bankAccount?: BankAccountResponseDto;
 
@@ -25,6 +27,7 @@ export class BankAccountDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBankAccount();
+    this.getBalanceOfBankAccount();
     this.parseHttpParams();
   }
 
@@ -34,8 +37,18 @@ export class BankAccountDetailsComponent implements OnInit {
       .subscribe(bankAccount => this.bankAccount = bankAccount);
   }
 
+  getBalanceOfBankAccount(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this._bankAccountApiService.balance(this.id, new HttpParams())
+      .subscribe(balance => this.balance = balance);
+  }
+
   goBack(): void {
-    this._location.back();
+    if (this.userId != "") {
+      this._router.navigate(['/users/details/' + this.userId]);
+    } else  {
+      this._router.navigate(['/bankAccounts/update/' + this.id]);
+    }
   }
 
   updateBankAccount(): void {
@@ -50,7 +63,7 @@ export class BankAccountDetailsComponent implements OnInit {
 
   goToOperations(): void {
     this._router.navigate(['/bankOperations'],{
-      queryParams: {bankAccount: this.id}
+      queryParams: {bankAccount: this.id, user: this.userId}
     });
   }
 

@@ -34,7 +34,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this._location.back();
+    this._router.navigate(['users']);
   }
 
   deleteBankAccountById(id: number): void {

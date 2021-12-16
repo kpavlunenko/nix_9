@@ -9,6 +9,7 @@ import ua.com.alevel.persistence.entity.BankAccount;
 import ua.com.alevel.service.BankAccountService;
 import ua.com.alevel.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -64,5 +65,10 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
     public long count(WebRequest request) {
         Map<String, String[]> parameterMap = request.getParameterMap();
         return bankAccountService.count(parameterMap);
+    }
+
+    @Override
+    public BigDecimal findBalanceByBankAccount(Long id) {
+        return bankAccountService.findBalanceByBankAccount(id);
     }
 }

@@ -37,6 +37,10 @@ export class BankAccountApiService {
     return this._apiService.count(this._apiUrl + '/count', httpParams);
   }
 
+  balance(id: number, httpParams: HttpParams): Observable<number> {
+    return this._apiService.count(this._apiUrl + '/balance/' + id, httpParams);
+  }
+
   deleteById(id: number): Observable<boolean> {
     return this._apiService.deleteById(this._apiUrl, id);
   }

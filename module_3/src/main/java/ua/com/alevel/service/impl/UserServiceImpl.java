@@ -6,9 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.User;
-import ua.com.alevel.persistence.repository.BankAccountRepository;
-import ua.com.alevel.persistence.repository.CategoryRepository;
 import ua.com.alevel.persistence.repository.UserRepository;
+import ua.com.alevel.service.BankAccountService;
 import ua.com.alevel.service.UserService;
 
 import java.util.List;
@@ -20,12 +19,12 @@ public class UserServiceImpl implements UserService {
 
     private final CrudRepositoryHelper<User, UserRepository> repositoryHelper;
     private final UserRepository userRepository;
-    private final BankAccountRepository bankAccountRepository;
+    private final BankAccountService bankAccountService;
 
-    public UserServiceImpl(CrudRepositoryHelper<User, UserRepository> repositoryHelper, UserRepository userRepository, BankAccountRepository bankAccountRepository) {
+    public UserServiceImpl(CrudRepositoryHelper<User, UserRepository> repositoryHelper, UserRepository userRepository, BankAccountService bankAccountService) {
         this.repositoryHelper = repositoryHelper;
         this.userRepository = userRepository;
-        this.bankAccountRepository = bankAccountRepository;
+        this.bankAccountService = bankAccountService;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void delete(Long id) {
-        bankAccountRepository.deleteAllByUser_Id(id);
+        bankAccountService.deleteAllByUser_Id(id);
         repositoryHelper.delete(userRepository, id);
     }
 

@@ -29,6 +29,7 @@ export class BankOperationNewComponent implements OnInit {
   bankAccounts?: BankAccountShortResponseDto[];
   categories?: CategoryResponseDto[];
   bankAccountId: string = "";
+  userId: string = "";
 
   bankOperationForm = new FormGroup({
     bankAccountId: new FormControl(''),
@@ -77,7 +78,10 @@ export class BankOperationNewComponent implements OnInit {
       if (this.bankAccountId == ""){
         this._router.navigateByUrl('bankOperations');
       } else {
-        this._router.navigateByUrl('bankOperations?bankAccount=' + this.bankAccountId);
+        // this._router.navigateByUrl('bankOperations?bankAccount=' + this.bankAccountId);
+          this._router.navigate(['/bankOperations'],{
+            queryParams: {bankAccount: this.bankAccountId, user: this.userId}
+          });
       }
     });
   }
@@ -90,6 +94,9 @@ export class BankOperationNewComponent implements OnInit {
     this._route.queryParams.subscribe(params => {
       if (params['bankAccount'] != undefined) {
         this.bankAccountId = params['bankAccount'];
+      }
+      if (params['user'] != undefined) {
+        this.userId = params['user'];
       }
       this.bankOperationForm.setValue({
         operationType: 'INCOME',

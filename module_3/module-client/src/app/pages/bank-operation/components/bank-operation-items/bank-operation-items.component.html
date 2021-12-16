@@ -59,6 +59,9 @@
         <div class="d-flex justify-content-between">
           <div class="p-1">
             <button type="button" class="btn btn-primary" (click)="createBankOperation()">add</button>
+            <ng-container *ngIf="bankAccountId">
+              <button type="button" class="btn btn-warning" (click)="goBack()">back</button>
+            </ng-container>
           </div>
           <div class="d-flex justify-content-end align-items-center">
             <div class="p-1">Showing {{(currentPage - 1) * sizeOfPage + 1}} to {{countOfItems < currentPage * sizeOfPage ? countOfItems : currentPage * sizeOfPage}} of {{countOfItems}} entries</div>

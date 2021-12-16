@@ -7,22 +7,25 @@ import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.BankAccount;
 import ua.com.alevel.persistence.repository.BankAccountRepository;
+import ua.com.alevel.persistence.repository.BankOperationRepository;
 import ua.com.alevel.service.BankAccountService;
 
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
 
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
 
     private final CrudRepositoryHelper<BankAccount, BankAccountRepository> repositoryHelper;
     private final BankAccountRepository bankAccountRepository;
+    private final BankOperationRepository bankOperationRepository;
 
-    public BankAccountServiceImpl(CrudRepositoryHelper<BankAccount, BankAccountRepository> repositoryHelper, BankAccountRepository bankAccountRepository) {
+    public BankAccountServiceImpl(CrudRepositoryHelper<BankAccount, BankAccountRepository> repositoryHelper,
+                                  BankAccountRepository bankAccountRepository,
+                                  BankOperationRepository bankOperationRepository) {
         this.repositoryHelper = repositoryHelper;
         this.bankAccountRepository = bankAccountRepository;
+        this.bankOperationRepository = bankOperationRepository;
     }
 
     @Override
@@ -42,7 +45,16 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     @Transactional
     public void delete(Long id) {
+        bankOperationRepository.deleteAllByBankAccount_Id(id);
         repositoryHelper.delete(bankAccountRepository, id);
+    }
+    @Override
+    @Transactional
+    public void deleteAllByUser_Id(Long id) {
+        List<BankAccount> bankAccounts = bankAccountRepository.findAllByUser_Id(id);
+        bankAccounts.stream().forEach(bankAccount -> bankOperationRepository.deleteAllByBankAccount_Id(bankAccount.getId()));
+        bankAccountRepository.deleteAllByUser_Id(id);
+//        repositoryHelper.delete(bankAccountRepository, id);
     }
 
     @Override
@@ -61,6 +73,12 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Transactional(readOnly = true)
     public long count(Map<String, String[]> parameterMap) {
         return repositoryHelper.count(bankAccountRepository, parameterMap, BankAccount.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public BigDecimal findBalanceByBankAccount(Long id) {
+        return bankOperationRepository.findBalanceByBankAccount(id);
     }
 
     private void checkInputDataOnValid(BankAccount entity) {

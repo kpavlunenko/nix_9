@@ -80,6 +80,12 @@ public class BankOperationServiceImpl implements BankOperationService {
         if (entity.getAmount() == BigDecimal.ZERO) {
             throw new IncorrectInputData("amount is empty");
         }
+        if (entity.getOperationType() == OperationType.EXPENSE) {
+           BigDecimal balance = bankOperationRepository.findBalanceByBankAccount(entity.getBankAccount().getId());
+           if (balance.compareTo(entity.getAmount()) == -1) {
+               throw new IncorrectInputData("on your balance not enough money. your balance " + balance);
+           }
+        }
     }
 
 }

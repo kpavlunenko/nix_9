@@ -8,6 +8,7 @@ import ua.com.alevel.api.dto.request.BankAccountRequestDto;
 import ua.com.alevel.api.dto.response.BankAccountResponseDto;
 import ua.com.alevel.facade.BankAccountFacade;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,11 @@ public class BankAccountController extends BaseController {
     @GetMapping("/count")
     public ResponseEntity<Long> count(WebRequest request) {
         return ResponseEntity.ok(bankAccountFacade.count(request));
+    }
+
+    @GetMapping("/balance/{id}")
+    public ResponseEntity<BigDecimal> findBalanceByBankAccount(@PathVariable Long id) {
+        return ResponseEntity.ok(bankAccountFacade.findBalanceByBankAccount(id));
     }
 
     @PostMapping("")
