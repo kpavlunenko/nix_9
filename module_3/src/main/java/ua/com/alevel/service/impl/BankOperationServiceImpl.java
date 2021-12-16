@@ -30,6 +30,9 @@ public class BankOperationServiceImpl implements BankOperationService {
     @Transactional
     public void create(BankOperation entity) {
         checkInputDataOnValid(entity);
+        if (entity.getOperationType() == OperationType.EXPENSE) {
+            entity.setAmount(entity.getAmount().negate());
+        }
         repositoryHelper.create(bankOperationRepository, entity);
         if (entity.getBankOperationType() == BankOperationType.OUTCOME_TRANSFER) {
             BankOperation bankOperation = new BankOperation();
