@@ -14,6 +14,10 @@ public class Category extends BaseEntity {
     @Column(name = "bank_operation_type")
     private BankOperationType bankOperationType;
 
+    public Category() {
+        super();
+    }
+
     public String getName() {
         return name;
     }

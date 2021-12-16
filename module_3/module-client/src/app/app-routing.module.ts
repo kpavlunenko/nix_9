@@ -21,6 +21,11 @@ const routes: Routes = [
     path: 'categories',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/category/category.module').then(module => module.CategoryModule)
+  },
+  {
+    path: 'bankOperations',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/bank-operation/bank-operation.module').then(module => module.BankOperationModule)
   }
 ];
 

@@ -57,6 +57,9 @@ public class CrudRepositoryHelperImpl<
         Sort sort = PageAndSortUtil.generateSort(parameterMap);
         int page = PageAndSortUtil.generatePage(parameterMap);
         int size = PageAndSortUtil.generateSize(repository, parameterMap);
+        if (size == 0) {
+            size = 10;
+        }
         PageRequest request = PageRequest.of(page, size, sort);
 
         Page<E> pageEntity;

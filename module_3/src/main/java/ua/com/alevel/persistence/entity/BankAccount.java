@@ -16,6 +16,10 @@ public class BankAccount extends BaseEntity {
     @JoinColumn(name="user_id")
     private User user;
 
+    public BankAccount() {
+        super();
+    }
+
     public String getName() {
         return name;
     }
