@@ -70,6 +70,26 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
     );
   }
 
+  getFile(apiUrl: string, httpParams: HttpParams): Observable<any> {
+    return this._http.get(apiUrl,
+      {
+        params: httpParams,
+        headers: new HttpHeaders().set('Accept', 'application/csv'),
+        responseType: 'text'
+      }).pipe(map((res: any) => {
+      return res
+    }),
+      catchError(error => {
+        let data = {};
+        data = {
+          message: error.error.error,
+          status: error.status
+        };
+        // @ts-ignore
+        throw this.errorDialogService.openDialog(data);
+      }));
+  }
+
   deleteById(apiUrl: string, id: number): Observable<boolean> {
     return this._http.delete(apiUrl + '/' + id, this._getOptions()).pipe(
       map((res: any) => {

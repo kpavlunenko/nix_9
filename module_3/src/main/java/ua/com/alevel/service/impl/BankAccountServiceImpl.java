@@ -1,5 +1,6 @@
 package ua.com.alevel.service.impl;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.BankAccount;
+import ua.com.alevel.persistence.entity.BankOperation;
 import ua.com.alevel.persistence.repository.BankAccountRepository;
 import ua.com.alevel.persistence.repository.BankOperationRepository;
 import ua.com.alevel.service.BankAccountService;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 @Service
@@ -90,6 +96,51 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Transactional(readOnly = true)
     public long count(Map<String, String[]> parameterMap) {
         return repositoryHelper.count(bankAccountRepository, parameterMap, BankAccount.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public String getAccountStatement(Long id) {
+        String filePath = "./files";
+        BankAccount bankAccount = findById(id).get();
+        String fileName = "account_" + bankAccount.getIban() + ".csv";
+        List<String[]> csvFile = new ArrayList<>();
+        String[] header = new String[5];
+        header[0] = "id";
+        header[1] = "date";
+        header[2] = "amount";
+        header[3] = "account";
+        header[4] = "category";
+        csvFile.add(header);
+
+        List<BankOperation> bankOperations = bankOperationRepository.findAllByBankAccount_Id(id);
+        bankOperations.forEach(bankOperation -> csvFile.add(new String[] {
+                bankOperation.getId().toString(),
+                bankOperation.getCreated().toString(),
+                bankOperation.getAmount().toString(),
+                bankOperation.getBankAccount().getIban(),
+                bankOperation.getCategory().getName()}));
+
+        try {
+            if (Files.notExists(Path.of(filePath))) {
+                Files.createDirectories(Path.of(filePath));
+            }
+            String allPath = filePath + "\\" + fileName;
+            if (Files.notExists(Path.of(allPath))) {
+                Files.createFile(Path.of(allPath));
+            }
+        } catch (IOException e) {
+            LOGGER_ERROR.error("Cannot find or create file" + fileName);
+            throw new RuntimeException(e.getCause());
+        }
+
+        try (CSVWriter writer = new CSVWriter(new FileWriter(filePath + "\\" + fileName))) {
+            writer.writeAll(csvFile);
+        } catch (IOException e) {
+            LOGGER_ERROR.error("Cannot write to file {}" + fileName);
+            throw new RuntimeException(e.getCause());
+        }
+        return fileName;
     }
 
     @Override

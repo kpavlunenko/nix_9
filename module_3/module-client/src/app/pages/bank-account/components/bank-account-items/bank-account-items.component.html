@@ -49,6 +49,9 @@
               <a routerLink="/bankAccounts/details/{{bankAccount.id}}" type="button" class="btn btn-primary">details</a>
             </td>
             <td>
+              <button type="button" class="btn btn-primary" (click)="downloadAccountStatement(bankAccount.id, bankAccount.iban)">download statement</button>
+            </td>
+            <td>
               <button type="button" class="btn btn-danger" (click)="deleteById(bankAccount.id)">delete</button>
             </td>
           </tr>

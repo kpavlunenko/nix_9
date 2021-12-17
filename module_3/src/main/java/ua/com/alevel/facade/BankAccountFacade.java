@@ -7,4 +7,5 @@ import java.math.BigDecimal;
 
 public interface BankAccountFacade extends BaseFacade<BankAccountRequestDto, BankAccountResponseDto> {
     BigDecimal findBalanceByBankAccount(Long id);
+    String getAccountStatement(Long id);
 }

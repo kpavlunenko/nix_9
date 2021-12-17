@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
-import {HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {BankAccountResponseDto} from "../../../../model/bank-account-response-dto";
 import {BankAccountApiService} from "../../../../service/bank-account-api.service";
 
@@ -28,6 +28,7 @@ export class BankAccountItemsComponent implements OnInit {
     {headerName: 'delete', isActive: false, isSortable: false, sort: '', order: ''}];
 
   constructor(private _bankAccountApiService: BankAccountApiService,
+              private _http: HttpClient,
               private _router: Router) {
   }
 
@@ -62,6 +63,17 @@ export class BankAccountItemsComponent implements OnInit {
   changeSizeOfPage(sizeOfPage: number): void {
     this.sizeOfPage = sizeOfPage;
     this.getBankAccounts();
+  }
+
+  downloadAccountStatement(id: number, iban: string): void {
+    this._bankAccountApiService.getAccountStatement(id, new HttpParams())
+      .subscribe( response => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(new Blob([response], {type: 'text/csv'}));
+        link.download = iban + '.csv';
+        link.click();
+      }
+    );
   }
 
   setCurrentPage(currentPage: number): void {

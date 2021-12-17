@@ -47,7 +47,7 @@ export class BankAccountDetailsComponent implements OnInit {
     if (this.userId != "") {
       this._router.navigate(['/users/details/' + this.userId]);
     } else  {
-      this._router.navigate(['/bankAccounts/update/' + this.id]);
+      this._router.navigate(['/bankAccounts']);
     }
   }
 

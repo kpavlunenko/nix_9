@@ -8,4 +8,5 @@ public interface BankAccountService extends BaseService<BankAccount> {
 
     BigDecimal findBalanceByBankAccount(Long id);
     void deleteAllByUser_Id(Long id);
+    String getAccountStatement(Long id);
 }

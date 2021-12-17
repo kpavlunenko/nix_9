@@ -41,6 +41,10 @@ export class BankAccountApiService {
     return this._apiService.count(this._apiUrl + '/balance/' + id, httpParams);
   }
 
+  getAccountStatement(id: number, httpParams: HttpParams): Observable<any> {
+    return this._apiService.getFile(this._apiUrl + '/accountStatement/' + id, httpParams);
+  }
+
   deleteById(id: number): Observable<boolean> {
     return this._apiService.deleteById(this._apiUrl, id);
   }

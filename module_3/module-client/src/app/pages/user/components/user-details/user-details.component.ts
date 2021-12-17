@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {UserApiService} from "../../../../service/user-api.service";
 import {BankAccountApiService} from "../../../../service/bank-account-api.service";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-details',
@@ -47,6 +48,17 @@ export class UserDetailsComponent implements OnInit {
     this._router.navigate(['bankAccounts/new'],{
       queryParams: {user: this.id}
     });
+  }
+
+  downloadAccountStatement(id: number, iban: string): void {
+    this._bankAccountApiService.getAccountStatement(id, new HttpParams())
+      .subscribe( response => {
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(new Blob([response], {type: 'text/csv'}));
+          link.download = iban + '.csv';
+          link.click();
+        }
+      );
   }
 
   bankAccountDetails(bankAccountId: number): void {

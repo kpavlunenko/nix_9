@@ -68,6 +68,11 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
     }
 
     @Override
+    public String getAccountStatement(Long id) {
+        return bankAccountService.getAccountStatement(id);
+    }
+
+    @Override
     public BigDecimal findBalanceByBankAccount(Long id) {
         return bankAccountService.findBalanceByBankAccount(id);
     }

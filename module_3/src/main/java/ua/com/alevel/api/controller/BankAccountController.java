@@ -1,6 +1,8 @@
 package ua.com.alevel.api.controller;
 
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -8,7 +10,13 @@ import ua.com.alevel.api.dto.request.BankAccountRequestDto;
 import ua.com.alevel.api.dto.response.BankAccountResponseDto;
 import ua.com.alevel.facade.BankAccountFacade;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -34,6 +42,23 @@ public class BankAccountController extends BaseController {
     @GetMapping("/balance/{id}")
     public ResponseEntity<BigDecimal> findBalanceByBankAccount(@PathVariable Long id) {
         return ResponseEntity.ok(bankAccountFacade.findBalanceByBankAccount(id));
+    }
+    @GetMapping("/accountStatement/{id}")
+    public ResponseEntity getAccountStatement(@PathVariable Long id, HttpServletRequest request) {
+        String filename = bankAccountFacade.getAccountStatement(id);
+        File file2Upload = new File("files/" + filename);
+        Path path = Paths.get(file2Upload.getAbsolutePath());
+        ByteArrayResource resource = null;
+        try {
+            resource = new ByteArrayResource(Files.readAllBytes(path));
+        } catch (IOException e) {
+
+        }
+        return ResponseEntity.ok()
+                .contentLength(file2Upload.length())
+                .contentType(MediaType.parseMediaType("text/csv"))
+                .header("Content-Disposition", "attachment; filename=" + filename)
+                .body(resource);
     }
 
     @PostMapping("")
