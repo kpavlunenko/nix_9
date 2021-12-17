@@ -1,5 +1,7 @@
 package ua.com.alevel.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
@@ -18,6 +20,10 @@ import java.util.Optional;
 @Service
 public class BankOperationServiceImpl implements BankOperationService {
 
+    private static final Logger LOGGER_INFO = LoggerFactory.getLogger("info");
+    private static final Logger LOGGER_WARN = LoggerFactory.getLogger("warn");
+    private static final Logger LOGGER_ERROR = LoggerFactory.getLogger("error");
+
     private final CrudRepositoryHelper<BankOperation, BankOperationRepository> repositoryHelper;
     private final BankOperationRepository bankOperationRepository;
 
@@ -33,15 +39,19 @@ public class BankOperationServiceImpl implements BankOperationService {
         if (entity.getOperationType() == OperationType.EXPENSE) {
             entity.setAmount(entity.getAmount().negate());
         }
+        LOGGER_INFO.info("object: BankOperation; stage: start; operation: create");
         repositoryHelper.create(bankOperationRepository, entity);
+        LOGGER_INFO.info("object: BankOperation; stage: finish; operation: create; id = " + entity.getId());
         if (entity.getBankOperationType() == BankOperationType.OUTCOME_TRANSFER) {
             BankOperation bankOperation = new BankOperation();
             bankOperation.setBankAccount(entity.getRecipientBankAccount());
             bankOperation.setOperationType(OperationType.INCOME);
             bankOperation.setBankOperationType(BankOperationType.INCOME_TRANSFER);
             bankOperation.setCategory(entity.getCategory());
-            bankOperation.setAmount(entity.getAmount());
+            bankOperation.setAmount(entity.getAmount().negate());
+            LOGGER_INFO.info("object: BankOperation; stage: start; operation: create");
             repositoryHelper.create(bankOperationRepository, bankOperation);
+            LOGGER_INFO.info("object: BankOperation; stage: finish; operation: create; id = " + entity.getId());
         }
     }
 
@@ -49,13 +59,17 @@ public class BankOperationServiceImpl implements BankOperationService {
     @Transactional
     public void update(BankOperation entity) {
         checkInputDataOnValid(entity);
+        LOGGER_INFO.info("object: BankOperation; stage: start; operation: update; id = " + entity.getId());
         repositoryHelper.update(bankOperationRepository, entity);
+        LOGGER_INFO.info("object: BankOperation; stage: finish; operation: update; id = " + entity.getId());
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
+        LOGGER_WARN.warn("object: BankOperation; stage: start; operation: delete; id = " + id);
         repositoryHelper.delete(bankOperationRepository, id);
+        LOGGER_WARN.warn("object: BankOperation; stage: finish; operation: delete; id = " + id);
     }
 
     @Override
@@ -78,11 +92,16 @@ public class BankOperationServiceImpl implements BankOperationService {
 
     private void checkInputDataOnValid(BankOperation entity) {
         if (entity.getAmount() == BigDecimal.ZERO) {
+            LOGGER_ERROR.error("object: BankOperation; operation: update/create; id = " + entity.getId() + "; problem = " + "amount is empty");
             throw new IncorrectInputData("amount is empty");
         }
         if (entity.getOperationType() == OperationType.EXPENSE) {
            BigDecimal balance = bankOperationRepository.findBalanceByBankAccount(entity.getBankAccount().getId());
+           if (balance == null) {
+               balance = BigDecimal.ZERO;
+           }
            if (balance.compareTo(entity.getAmount()) == -1) {
+               LOGGER_ERROR.error("object: BankOperation; operation: update/create; id = " + entity.getId() + "; problem = " + "on your balance not enough money. your balance " + balance);
                throw new IncorrectInputData("on your balance not enough money. your balance " + balance);
            }
         }

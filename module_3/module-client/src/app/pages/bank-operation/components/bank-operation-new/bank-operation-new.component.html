@@ -42,6 +42,7 @@
             <label for="categoryId">Select category</label>
             <select class="form-control" id="categoryId" aria-describedby="categoryId" formControlName="categoryId"
                     required>
+              <option></option>
               <option *ngFor="let category of categories"
                       value="{{category.id}}">{{category.name}}</option>
             </select>
@@ -50,7 +51,7 @@
             <div class="form-group">
               <label for="recipientBankAccountId">Select recipient bank account</label>
               <select class="form-control" id="recipientBankAccountId" aria-describedby="recipientBankAccountId"
-                      formControlName="recipientBankAccountId" required>
+                      formControlName="recipientBankAccountId">
                 <option *ngFor="let bankAccount of bankAccounts"
                         value="{{bankAccount.id}}">{{bankAccount.name + '(' + bankAccount.iban + ')'}}</option>
               </select>

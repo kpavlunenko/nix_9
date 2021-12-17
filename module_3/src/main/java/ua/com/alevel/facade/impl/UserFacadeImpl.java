@@ -32,10 +32,6 @@ public class UserFacadeImpl implements UserFacade {
         user.setLastName(userRequestDto.getLastName());
         user.setEmail(userRequestDto.getEmail());
         user.setPhone(userRequestDto.getPhone());
-        user.setBankAccounts(userRequestDto.getBankAccountIds().stream()
-                .filter(bankAccountId -> bankAccountId != null)
-                .map(bankAccountId -> bankAccountService.findById(bankAccountId).get())
-                .collect(Collectors.toSet()));
         userService.create(user);
     }
 
