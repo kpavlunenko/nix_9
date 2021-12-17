@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
+import ua.com.alevel.persistence.dao.BankOperationDao;
 import ua.com.alevel.persistence.entity.BankAccount;
 import ua.com.alevel.persistence.entity.BankOperation;
 import ua.com.alevel.persistence.repository.BankAccountRepository;
@@ -31,13 +32,15 @@ public class BankAccountServiceImpl implements BankAccountService {
     private final CrudRepositoryHelper<BankAccount, BankAccountRepository> repositoryHelper;
     private final BankAccountRepository bankAccountRepository;
     private final BankOperationRepository bankOperationRepository;
+    private final BankOperationDao bankOperationDao;
 
     public BankAccountServiceImpl(CrudRepositoryHelper<BankAccount, BankAccountRepository> repositoryHelper,
                                   BankAccountRepository bankAccountRepository,
-                                  BankOperationRepository bankOperationRepository) {
+                                  BankOperationRepository bankOperationRepository, BankOperationDao bankOperationDao) {
         this.repositoryHelper = repositoryHelper;
         this.bankAccountRepository = bankAccountRepository;
         this.bankOperationRepository = bankOperationRepository;
+        this.bankOperationDao = bankOperationDao;
     }
 
     @Override
@@ -113,7 +116,8 @@ public class BankAccountServiceImpl implements BankAccountService {
         header[4] = "category";
         csvFile.add(header);
 
-        List<BankOperation> bankOperations = bankOperationRepository.findAllByBankAccount_Id(id);
+//        List<BankOperation> bankOperations = bankOperationRepository.findAllByBankAccount_Id(id);
+        List<BankOperation> bankOperations = bankOperationDao.findOperationByBankAccountId(id);
         bankOperations.forEach(bankOperation -> csvFile.add(new String[] {
                 bankOperation.getId().toString(),
                 bankOperation.getCreated().toString(),
