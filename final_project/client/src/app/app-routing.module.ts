@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'business_directions',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/business-direction/business-direction.module').then(module => module.BusinessDirectionModule)
+  },
+  {
+    path: 'nomenclatures',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/nomenclature/nomenclature.module').then(module => module.NomenclatureModule)
   }
 ];
 

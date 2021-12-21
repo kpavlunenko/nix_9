@@ -3,5 +3,6 @@ export const appConst = {
   counterpartiesPath: 'counterparties',
   typesPath: 'types',
   agreementsPath: 'agreements',
-  businessDirectionsPath: 'business_directions'
+  businessDirectionsPath: 'business_directions',
+  nomenclaturesPath: 'nomenclatures'
 }
