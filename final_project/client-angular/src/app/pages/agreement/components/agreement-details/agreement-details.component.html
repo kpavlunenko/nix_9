@@ -1,0 +1,51 @@
+<div *ngIf="agreement">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Company details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{agreement.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{agreement.name}}</td>
+            </tr>
+            <tr>
+              <th>agreement type</th>
+              <td>{{agreement.agreementType}}</td>
+            </tr>
+            <tr>
+              <th>company</th>
+              <td>{{agreement.company.name}}</td>
+            </tr>
+            <tr>
+              <th>counterparty</th>
+              <td>{{agreement.counterparty.name}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{agreement.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{agreement.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{agreement.deletionMark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateAgreement()">change</button>
+</div>

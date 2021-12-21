@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Numans');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html,body {
+  background: url('https://getwallpapers.com/wallpaper/full/c/2/6/51481.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+a.nav-item.nav-link {
+  color: white;
+}
+
+.sort {
+  cursor: pointer;
+  margin-right: 2em;
+}
+
+.fa {
+  margin-left: 0.5em;
+}
+
+.page-link {
+  height: 100%;
+  width: 3em;
+  text-align: center;
+}
+
+.dropdown-menu {
+  min-width: 2em !important;
+}
+/* Application-wide Styles */
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 2em;
+}
+body, input[type="text"], button {
+  color: #888;
+  font-family: Cambria, Georgia;
+}
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}

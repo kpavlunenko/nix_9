@@ -1,0 +1,49 @@
+<!--<div class="row">-->
+<!--  <div class="col-12">-->
+<!--    <div class="card mb-2 mt-2">-->
+<!--      <div class="card-header">-->
+<!--        All companies-->
+<!--      </div>-->
+<!--      <div class="card-body">-->
+<!--        <table class="table table-sm table-hover">-->
+<!--          <thead>-->
+          <tr>
+            <ng-container *ngFor="let header of headers">
+              <ng-container *ngIf="header.isSortable">
+                <ng-container *ngIf="header.isActive">
+                  <ng-container *ngIf="header.order == 'desc'">
+                    <th scope="col" (click)="sortOn(header.sort, 'asc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-desc float-right sort" aria-hidden="true" data-sort="" data-order="'desc'"></i>
+                    </th>
+                  </ng-container>
+                  <ng-container *ngIf="header.order == 'asc'">
+                    <th scope="col" (click)="sortOn(header.sort, 'desc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-asc float-right sort" aria-hidden="true" data-sort="header.sort" data-order="'asc'"></i>
+                    </th>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!header.isActive">
+                  <th scope="col" (click)="sortOn(header.sort, 'asc')">
+                    <span [textContent]="header.headerName"></span>
+                    <i class="fa fa-sort float-right sort" aria-hidden="true" data-sort="header.sort" data-order="asc"></i>
+                  </th>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!header.isSortable">
+                <th scope="col">
+                  <span [textContent]="header.headerName"></span>
+                </th>
+              </ng-container>
+            </ng-container>
+          </tr>
+<!--          </thead>-->
+
+<!--        </table>-->
+<!--        -->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

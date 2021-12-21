@@ -1,0 +1,57 @@
+<div *ngIf="businessDirection">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Business direction details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{businessDirection.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{businessDirection.name}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{businessDirection.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{businessDirection.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{businessDirection.deletionMark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Used in companies
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr *ngFor="let company of businessDirection.companies">
+              <td>{{company.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateBusinessDirection()">change</button>
+</div>

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        New business direction
+      </div>
+      <div class="card-body">
+        <form [formGroup]="businessDirectionForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+          </div>
+          <div formArrayName="companyIds">
+            <label for="name">Companies</label>
+            <div class="form-group" *ngFor="let companySelect of getFormsControls()['controls']; let i = index">
+              <div class="input-group mb-3">
+                <select class="form-control" formControlName="{{i}}">
+                  <option *ngFor="let company of companies"
+                          value="{{company.id}}">{{company.name}}</option>
+                </select>
+                <button class="btn btn-danger" (click)="removeCompany(i)">remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary mt-4" (click)="create()">Submit</button>
+            <button class="btn btn-warning mt-4" (click)="addCompany()">Add company</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

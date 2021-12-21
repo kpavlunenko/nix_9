@@ -1,0 +1,64 @@
+<div *ngIf="company">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Company details
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{company.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{company.name}}</td>
+            </tr>
+            <tr>
+              <th>company type</th>
+              <td>{{company.companyType}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{company.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{company.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{company.deletionMark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Used in companies
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr *ngFor="let businessDirection of company.businessDirections">
+              <td>{{businessDirection.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+    <button type="button" class="btn btn-warning" (click)="updateCompany()">change</button>
+    <button type="button" class="btn btn-primary" (click)="goToAgreements()">agreements</button>
+  </div>
+</div>
