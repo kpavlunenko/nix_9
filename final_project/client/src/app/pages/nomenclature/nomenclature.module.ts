@@ -8,6 +8,7 @@ import {
 } from "./components";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NomenclatureRoutingModule} from "./nomenclature-routing.module";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import {NomenclatureRoutingModule} from "./nomenclature-routing.module";
     NomenclatureDetailsComponent,
     NomenclatureUpdateComponent
   ],
-  imports: [
-    CommonModule,
-    NomenclatureRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        NomenclatureRoutingModule,
+        ReactiveFormsModule,
+        MatRadioModule
+    ]
 })
 export class NomenclatureModule {
 }

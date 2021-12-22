@@ -1,1 +1,32 @@
-<p>nomenclature-new works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        New nomenclature
+      </div>
+      <div class="card-body">
+        <form [formGroup]="nomenclatureForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name" required>
+          </div>
+          <mat-radio-group aria-label="Select type of nomenclature" aria-describedby="isProduct"
+                           formControlName="isProduct" [(ngModel)]="isProduct">
+            <mat-radio-button value="true">product</mat-radio-button>
+            <mat-radio-button value="false">service</mat-radio-button>
+          </mat-radio-group>
+          <div class="form-group">
+            <label for="businessDirectionId">Select business direction</label>
+            <select class="form-control" id="businessDirectionId" aria-describedby="businessDirectionId" formControlName="businessDirectionId" required>
+              <option *ngFor="let businessDirection of businessDirections"
+                      value="{{businessDirection.id}}">{{businessDirection.name}}</option>
+            </select>
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary mt-4" [disabled]="nomenclatureForm.invalid" (click)="create()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
