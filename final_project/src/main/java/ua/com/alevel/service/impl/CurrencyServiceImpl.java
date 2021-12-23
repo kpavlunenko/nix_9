@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.Currency;
+import ua.com.alevel.persistence.repository.CurrencyRateRepository;
 import ua.com.alevel.persistence.repository.CurrencyRepository;
 import ua.com.alevel.service.CurrencyService;
 
@@ -18,10 +19,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     private final CrudRepositoryHelper<Currency, CurrencyRepository> repositoryHelper;
     private final CurrencyRepository currencyRepository;
+    private final CurrencyRateRepository currencyRateRepository;
 
-    public CurrencyServiceImpl(CrudRepositoryHelper<Currency, CurrencyRepository> repositoryHelper, CurrencyRepository currencyRepository) {
+    public CurrencyServiceImpl(CrudRepositoryHelper<Currency, CurrencyRepository> repositoryHelper, CurrencyRepository currencyRepository, CurrencyRateRepository currencyRateRepository) {
         this.repositoryHelper = repositoryHelper;
         this.currencyRepository = currencyRepository;
+        this.currencyRateRepository = currencyRateRepository;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     @Transactional
     public void delete(Long id) {
+        currencyRateRepository.deleteAllByCurrency_Id(id);
         repositoryHelper.delete(currencyRepository, id);
     }
 

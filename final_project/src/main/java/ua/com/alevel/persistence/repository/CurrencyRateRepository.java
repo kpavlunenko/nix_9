@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CurrencyRateRepository extends AbstractTableRepository<CurrencyRate> {
     Optional<CurrencyRate> findByDateAndAndCurrency_Id(Date date, Long id);
+    void deleteAllByCurrency_Id(Long id);
 }
