@@ -2,8 +2,8 @@ package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
-import ua.com.alevel.api.dto.request.BusinessDirectionRequestDto;
-import ua.com.alevel.api.dto.response.BusinessDirectionResponseDto;
+import ua.com.alevel.api.dto.request.entity.BusinessDirectionRequestDto;
+import ua.com.alevel.api.dto.response.entity.BusinessDirectionResponseDto;
 import ua.com.alevel.facade.BusinessDirectionFacade;
 import ua.com.alevel.persistence.entity.BusinessDirection;
 import ua.com.alevel.service.BusinessDirectionService;

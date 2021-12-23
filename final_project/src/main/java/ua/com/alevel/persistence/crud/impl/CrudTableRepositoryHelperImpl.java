@@ -7,11 +7,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ua.com.alevel.exception.EntityNotFoundException;
-import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
-import ua.com.alevel.persistence.entity.BaseEntity;
-import ua.com.alevel.persistence.repository.AbstractRepository;
-import ua.com.alevel.persistence.specification.AbstractSpecification;
-import ua.com.alevel.persistence.specification.impl.AbstractSpecificationImpl;
+import ua.com.alevel.persistence.crud.CrudTableRepositoryHelper;
+import ua.com.alevel.persistence.entity.BaseTable;
+import ua.com.alevel.persistence.repository.AbstractTableRepository;
+import ua.com.alevel.persistence.specification.AbstractTableSpecification;
+import ua.com.alevel.persistence.specification.impl.AbstractTableSpecificationImpl;
 import ua.com.alevel.util.PageAndSortUtil;
 
 import java.util.List;
@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class CrudRepositoryHelperImpl<
-        E extends BaseEntity,
-        R extends AbstractRepository<E>>
-        implements CrudRepositoryHelper<E, R> {
+public class CrudTableRepositoryHelperImpl<
+        E extends BaseTable,
+        R extends AbstractTableRepository<E>>
+        implements CrudTableRepositoryHelper<E, R> {
 
     @Override
     public void create(R repository, E entity) {
@@ -50,7 +50,7 @@ public class CrudRepositoryHelperImpl<
     public List<E> findAll(R repository, Map<String, String[]> parameterMap, Class<E> entityClass) {
         Specification<E> specification = null;
         if (MapUtils.isNotEmpty(parameterMap)) {
-            AbstractSpecification<E> abstractSpecification = new AbstractSpecificationImpl<>();
+            AbstractTableSpecification<E> abstractSpecification = new AbstractTableSpecificationImpl<>();
             specification = abstractSpecification.generateCriteriaPredicate(parameterMap, entityClass);
         }
 
@@ -76,7 +76,7 @@ public class CrudRepositoryHelperImpl<
     public long count(R repository, Map<String, String[]> parameterMap, Class<E> entityClass) {
         Specification<E> specification = null;
         if (MapUtils.isNotEmpty(parameterMap)) {
-            AbstractSpecification<E> abstractSpecification = new AbstractSpecificationImpl<>();
+            AbstractTableSpecification<E> abstractSpecification = new AbstractTableSpecificationImpl<>();
             specification = abstractSpecification.generateCriteriaPredicate(parameterMap, entityClass);
         }
         if (specification == null) {

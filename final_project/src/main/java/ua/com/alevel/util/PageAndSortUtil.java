@@ -3,6 +3,7 @@ package ua.com.alevel.util;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.data.domain.Sort;
 import ua.com.alevel.persistence.repository.AbstractRepository;
+import ua.com.alevel.persistence.repository.AbstractTableRepository;
 
 import java.util.Map;
 
@@ -23,6 +24,20 @@ public final class PageAndSortUtil {
     }
 
     public static Integer generateSize(AbstractRepository repository, Map<String, String[]> parameterMap) {
+        int size;
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            if (parameterMap.get("sizeOfPage") != null) {
+                size = Integer.parseInt(parameterMap.get("sizeOfPage")[0]);
+            } else {
+                size = (int) repository.count();
+            }
+        } else {
+            size = (int) repository.count();
+        }
+        return size;
+    }
+
+    public static Integer generateSize(AbstractTableRepository repository, Map<String, String[]> parameterMap) {
         int size;
         if (MapUtils.isNotEmpty(parameterMap)) {
             if (parameterMap.get("sizeOfPage") != null) {

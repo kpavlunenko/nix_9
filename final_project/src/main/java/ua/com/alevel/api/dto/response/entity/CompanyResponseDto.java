@@ -1,6 +1,7 @@
-package ua.com.alevel.api.dto.response;
+package ua.com.alevel.api.dto.response.entity;
 
 import org.apache.commons.collections4.CollectionUtils;
+import ua.com.alevel.api.dto.response.ResponseDto;
 import ua.com.alevel.persistence.entity.Company;
 import ua.com.alevel.persistence.type.CompanyType;
 

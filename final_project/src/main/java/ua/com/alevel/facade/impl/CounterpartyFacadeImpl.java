@@ -2,8 +2,8 @@ package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
-import ua.com.alevel.api.dto.request.CounterpartyRequestDto;
-import ua.com.alevel.api.dto.response.CounterpartyResponseDto;
+import ua.com.alevel.api.dto.request.entity.CounterpartyRequestDto;
+import ua.com.alevel.api.dto.response.entity.CounterpartyResponseDto;
 import ua.com.alevel.facade.CounterpartyFacade;
 import ua.com.alevel.persistence.entity.Counterparty;
 import ua.com.alevel.service.CounterpartyService;

@@ -1,5 +1,6 @@
-package ua.com.alevel.api.dto.response;
+package ua.com.alevel.api.dto.response.entity;
 
+import ua.com.alevel.api.dto.response.ResponseDto;
 import ua.com.alevel.persistence.entity.Nomenclature;
 
 public class NomenclatureResponseDto extends ResponseDto {

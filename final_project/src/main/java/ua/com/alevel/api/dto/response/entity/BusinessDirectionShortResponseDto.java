@@ -1,4 +1,4 @@
-package ua.com.alevel.api.dto.response;
+package ua.com.alevel.api.dto.response.entity;
 
 import ua.com.alevel.persistence.entity.BusinessDirection;
 

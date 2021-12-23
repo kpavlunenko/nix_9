@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import ua.com.alevel.api.dto.request.BusinessDirectionRequestDto;
-import ua.com.alevel.api.dto.response.BusinessDirectionResponseDto;
+import ua.com.alevel.api.dto.request.entity.BusinessDirectionRequestDto;
+import ua.com.alevel.api.dto.response.entity.BusinessDirectionResponseDto;
 import ua.com.alevel.facade.BusinessDirectionFacade;
 
 import java.util.List;

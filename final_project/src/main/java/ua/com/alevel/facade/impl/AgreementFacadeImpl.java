@@ -2,8 +2,8 @@ package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
-import ua.com.alevel.api.dto.request.AgreementRequestDto;
-import ua.com.alevel.api.dto.response.AgreementResponseDto;
+import ua.com.alevel.api.dto.request.entity.AgreementRequestDto;
+import ua.com.alevel.api.dto.response.entity.AgreementResponseDto;
 import ua.com.alevel.facade.AgreementFacade;
 import ua.com.alevel.persistence.entity.Agreement;
 import ua.com.alevel.service.AgreementService;

@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import ua.com.alevel.api.dto.request.CounterpartyRequestDto;
-import ua.com.alevel.api.dto.response.CounterpartyResponseDto;
+import ua.com.alevel.api.dto.request.entity.CounterpartyRequestDto;
+import ua.com.alevel.api.dto.response.entity.CounterpartyResponseDto;
 import ua.com.alevel.facade.CounterpartyFacade;
 
 import java.util.List;

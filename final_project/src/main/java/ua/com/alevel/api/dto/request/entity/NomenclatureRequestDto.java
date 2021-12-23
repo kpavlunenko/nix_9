@@ -1,4 +1,6 @@
-package ua.com.alevel.api.dto.request;
+package ua.com.alevel.api.dto.request.entity;
+
+import ua.com.alevel.api.dto.request.RequestDto;
 
 public class NomenclatureRequestDto extends RequestDto {
 

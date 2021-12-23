@@ -1,5 +1,6 @@
-package ua.com.alevel.api.dto.request;
+package ua.com.alevel.api.dto.request.entity;
 
+import ua.com.alevel.api.dto.request.RequestDto;
 import ua.com.alevel.persistence.type.CompanyType;
 
 import java.util.List;
