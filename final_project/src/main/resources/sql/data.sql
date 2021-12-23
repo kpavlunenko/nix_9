@@ -65,6 +65,6 @@ insert into nomenclatures values (6, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTA
 insert into nomenclatures values (7, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Kitchen design', false, true, 1);
 insert into nomenclatures values (8, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Furniture installation', false, true, 1);
 
-insert into currencies values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'UAH', '980');
-insert into currencies values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'USD', '840');
-insert into currencies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'EUR', '978');
+insert into currencies values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '980', 'UAH');
+insert into currencies values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '840', 'USD');
+insert into currencies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '978', 'EUR');

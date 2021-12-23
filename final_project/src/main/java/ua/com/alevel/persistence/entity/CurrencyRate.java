@@ -8,11 +8,7 @@ import java.util.Date;
 @Table(name = "currency_rates")
 public class CurrencyRate extends BaseTable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @OneToOne
@@ -50,5 +46,13 @@ public class CurrencyRate extends BaseTable {
 
     public Integer getFrequencyRate() {
         return frequencyRate;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
