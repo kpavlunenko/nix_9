@@ -1,0 +1,43 @@
+<div *ngIf="currency">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Currency details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{currency.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{currency.name}}</td>
+            </tr>
+            <tr>
+              <th>code</th>
+              <td>{{currency.code}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{currency.created}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{currency.updated}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{currency.deletionMark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateCurrency()">change</button>
+</div>

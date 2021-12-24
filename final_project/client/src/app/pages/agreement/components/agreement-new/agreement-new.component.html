@@ -8,7 +8,7 @@
         <form [formGroup]="agreementForm" (ngSubmit)="create()">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name" required>
           </div>
           <div class="form-group">
             <label for="agreementType">Select agreement type</label>

@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'nomenclatures',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/nomenclature/nomenclature.module').then(module => module.NomenclatureModule)
+  },
+  {
+    path: 'currencies',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/currency/currency.module').then(module => module.CurrencyModule)
   }
 ];
 

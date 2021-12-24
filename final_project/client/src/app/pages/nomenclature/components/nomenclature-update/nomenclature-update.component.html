@@ -23,7 +23,7 @@
             </select>
           </div>
           <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary mt-4" (click)="update()">Submit</button>
+            <button class="btn btn-primary mt-4" [disabled]="nomenclatureForm.invalid" (click)="update()">Submit</button>
           </div>
         </form>
       </div>

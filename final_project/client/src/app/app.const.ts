@@ -4,5 +4,6 @@ export const appConst = {
   typesPath: 'types',
   agreementsPath: 'agreements',
   businessDirectionsPath: 'business_directions',
-  nomenclaturesPath: 'nomenclatures'
+  nomenclaturesPath: 'nomenclatures',
+  currenciesPath: 'currencies'
 }

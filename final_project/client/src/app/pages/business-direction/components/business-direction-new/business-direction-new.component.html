@@ -8,7 +8,7 @@
         <form [formGroup]="businessDirectionForm">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name" required>
           </div>
           <div formArrayName="companyIds">
             <label for="name">Companies</label>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary mt-4" (click)="create()">Submit</button>
+            <button class="btn btn-primary mt-4" [disabled]="businessDirectionForm.invalid" (click)="create()">Submit</button>
             <button class="btn btn-warning mt-4" (click)="addCompany()">Add company</button>
           </div>
         </form>
