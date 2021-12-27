@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
         DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class })
-public class FinalProjectApplication {
+public class ServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FinalProjectApplication.class, args);
+        SpringApplication.run(ServerApplication.class, args);
     }
 
 }
