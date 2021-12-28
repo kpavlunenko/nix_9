@@ -5,21 +5,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.alevel.api.dto.response.auth.MessageResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = EntityNotFoundException.class)
-    public ResponseEntity<String> defaultErrorHandler(EntityNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\": \"" + exception.getMessage() + "\"}");
+    public ResponseEntity defaultErrorHandler(EntityNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(exception.getMessage()));
     }
 
     @ExceptionHandler(value = IncorrectInputData.class)
-    public ResponseEntity<String> IncorrectInputDataErrorHandler(IncorrectInputData exception) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("showMessage", true);
-        mav.addObject("errorMessage", exception.getMessage());
-        mav.setViewName("error");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\": \"" + exception.getMessage() + "\"}");
+    public ResponseEntity IncorrectInputDataErrorHandler(IncorrectInputData exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(value = EntityExistException.class)
+    public ResponseEntity EntityExistExceptionErrorHandler(EntityExistException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(exception.getMessage()));
     }
 }
