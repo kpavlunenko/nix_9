@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage.service";
 import {Router} from "@angular/router";
+import {NgxPermissionsService} from "ngx-permissions";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,16 @@ export class AppComponent {
   title = 'client-angular';
   isLoggedIn = false;
   isRegistration = false;
+  roles: string[] = [];
+
   constructor(private tokenStorageService: TokenStorageService,
+              private permissionsService: NgxPermissionsService,
               private _router: Router) {
   }
 
   ngOnInit() {
+    this.roles = this.tokenStorageService.getUser().roles;
+    this.permissionsService.loadPermissions(this.roles);
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (!this.isLoggedIn && window.location.pathname != '/authentication/register') {
@@ -26,6 +32,8 @@ export class AppComponent {
   successfulLogin(isLoggedIn:boolean){
     this.isLoggedIn = isLoggedIn;
     this.isRegistration = false;
+    this.roles = this.tokenStorageService.getUser().roles;
+    this.permissionsService.loadPermissions(this.roles);
   }
 
   isSignUp(isRegistration:boolean){

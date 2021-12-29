@@ -20,6 +20,7 @@ import {
   AuthenticationModule,
   DashboardModule
 } from "./pages";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    NgxPermissionsModule.forRoot(),
     CompanyModule,
     CounterpartyModule,
     AgreementModule,

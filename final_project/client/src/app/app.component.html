@@ -20,9 +20,7 @@
                 Directories
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <ng-container *ngIf="false">
                 <li><a class="dropdown-item" href="/companies">Companies</a></li>
-                </ng-container>
                 <li><a class="dropdown-item" href="/business_directions">Business directions</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -33,7 +31,9 @@
                   <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item" href="/nomenclatures">Nomenclatures</a></li>
+                <ng-template ngxPermissionsOnly="ROLE_ADMIN">
                 <li><a class="dropdown-item" href="/currencies">Currencies</a></li>
+                </ng-template>
               </ul>
             </li>
           </ul>

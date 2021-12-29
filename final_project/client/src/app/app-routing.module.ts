@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {NgxPermissionsGuard} from "ngx-permissions";
 
 const routes: Routes = [
   {
@@ -36,7 +37,14 @@ const routes: Routes = [
   {
     path: 'currencies',
     pathMatch: 'prefix',
-    loadChildren: () => import('./pages/currency/currency.module').then(module => module.CurrencyModule)
+    loadChildren: () => import('./pages/currency/currency.module').then(module => module.CurrencyModule),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: 'ROLE_ADMIN',
+        redirectTo: 'dashboard'
+      }
+    }
   },
   {
     path: 'authentication',

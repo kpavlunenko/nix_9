@@ -9,6 +9,7 @@ import {
 import {CompanyRoutingModule} from "./company-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TableModule} from "../table/table.module";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {TableModule} from "../table/table.module";
         CommonModule,
         CompanyRoutingModule,
         ReactiveFormsModule,
-        TableModule
+        TableModule,
+        NgxPermissionsModule
     ]
 })
 export class CompanyModule {
