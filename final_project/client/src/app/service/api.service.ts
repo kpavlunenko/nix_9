@@ -33,7 +33,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
     );
   }
 
-  getById(apiUrl: string, id: number): Observable<RESPONSE_DTO> {
+  getById(apiUrl: string, id: number|string): Observable<RESPONSE_DTO> {
     return this._http.get(apiUrl + '/' + id, this._getOptions()).pipe(
       map((res: any) => {
         return res
@@ -109,7 +109,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
     );
   }
 
-  update(apiUrl: string, id: number, dto: REQUEST_DTO): Observable<boolean> {
+  update(apiUrl: string, id: number|string, dto: REQUEST_DTO): Observable<boolean> {
     return this._http.put(apiUrl + '/' + id, dto, this._getOptions()).pipe(
       map((res: any) => {
         return res

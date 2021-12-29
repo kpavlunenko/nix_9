@@ -45,4 +45,8 @@ export class AppComponent {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  userDetails() {
+    this._router.navigateByUrl('users/details');
+  }
 }

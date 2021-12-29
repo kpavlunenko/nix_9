@@ -18,7 +18,8 @@ import {
   NomenclatureModule,
   CurrencyModule,
   AuthenticationModule,
-  DashboardModule
+  DashboardModule,
+  UserModule
 } from "./pages";
 import {NgxPermissionsModule} from "ngx-permissions";
 
@@ -41,7 +42,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
     NomenclatureModule,
     CurrencyModule,
     AuthenticationModule,
-    DashboardModule
+    DashboardModule,
+    UserModule
   ],
   providers: [ErrorDialogService,
     authInterceptorProviders],

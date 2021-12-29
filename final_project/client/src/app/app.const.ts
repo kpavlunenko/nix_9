@@ -6,5 +6,6 @@ export const appConst = {
   businessDirectionsPath: 'business_directions',
   nomenclaturesPath: 'nomenclatures',
   currenciesPath: 'currencies',
+  usersPath: 'users',
   authenticationPath: 'auth'
 }

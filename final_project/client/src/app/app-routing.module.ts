@@ -57,6 +57,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/dashboard/dashboard.module').then(module => module.DashboardModule)
   },
   {
+    path: 'users',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/user/user.module').then(module => module.UserModule)
+  },
+  {
     path: '**',
     redirectTo: 'dashboard'
   }
