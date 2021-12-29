@@ -23,7 +23,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore
@@ -40,7 +41,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore
@@ -61,7 +63,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore
@@ -78,7 +81,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore
@@ -95,7 +99,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore
@@ -112,7 +117,8 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       catchError(error => {
         let data = {};
         data = {
-          message: error.error.error,
+          error: error.error.error,
+          message: error.error.message,
           status: error.status
         };
         // @ts-ignore

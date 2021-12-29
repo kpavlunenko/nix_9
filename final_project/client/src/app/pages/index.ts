@@ -5,3 +5,5 @@ export * from './business-direction/business-direction.module';
 export * from './nomenclature/nomenclature.module';
 export * from './currency/currency.module';
 export * from './table/table.module';
+export * from './authentication/authentication.module';
+export * from './dashboard/dashboard.module';

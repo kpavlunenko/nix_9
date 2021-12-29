@@ -8,6 +8,7 @@ import {ErrorDialogComponent} from './pages/error-dialog/error-dialog.component'
 import {ErrorDialogService} from "./service/error-dialog.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDialogModule} from "@angular/material/dialog";
+import {authInterceptorProviders} from "./interceptor/auth.interceptor";
 
 import {
   AgreementModule,
@@ -15,7 +16,9 @@ import {
   CounterpartyModule,
   BusinessDirectionModule,
   NomenclatureModule,
-  CurrencyModule
+  CurrencyModule,
+  AuthenticationModule,
+  DashboardModule
 } from "./pages";
 
 @NgModule({
@@ -34,9 +37,12 @@ import {
     AgreementModule,
     BusinessDirectionModule,
     NomenclatureModule,
-    CurrencyModule
+    CurrencyModule,
+    AuthenticationModule,
+    DashboardModule
   ],
-  providers: [ErrorDialogService],
+  providers: [ErrorDialogService,
+    authInterceptorProviders],
   bootstrap: [AppComponent],
   entryComponents: [ErrorDialogComponent]
 })

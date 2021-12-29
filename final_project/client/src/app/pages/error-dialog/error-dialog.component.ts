@@ -10,6 +10,6 @@ export class ErrorDialogComponent {
 
   title = 'Angular-Interceptor';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string, status: string} ) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {status: string, error: string, message: string} ) { }
 
 }

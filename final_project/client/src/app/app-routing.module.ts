@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'companies',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -37,6 +37,20 @@ const routes: Routes = [
     path: 'currencies',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/currency/currency.module').then(module => module.CurrencyModule)
+  },
+  {
+    path: 'authentication',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/authentication/authentication.module').then(module => module.AuthenticationModule)
+  },
+  {
+    path: 'dashboard',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(module => module.DashboardModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard'
   }
 ];
 

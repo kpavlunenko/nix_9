@@ -3,7 +3,7 @@ package ua.com.alevel.api.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.com.alevel.api.dto.request.auth.LoginRequest;
-import ua.com.alevel.api.dto.request.auth.SignupRequest;
+import ua.com.alevel.api.dto.request.auth.SignUpRequest;
 import ua.com.alevel.api.dto.response.auth.MessageResponse;
 import ua.com.alevel.facade.AuthenticationFacade;
 import ua.com.alevel.facade.RegistrationFacade;
@@ -26,7 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
         registrationFacade.registration(signUpRequest);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

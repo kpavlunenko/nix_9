@@ -1,8 +1,8 @@
 package ua.com.alevel.facade;
 
-import ua.com.alevel.api.dto.request.auth.SignupRequest;
+import ua.com.alevel.api.dto.request.auth.SignUpRequest;
 
 public interface RegistrationFacade {
 
-    void registration(SignupRequest dto);
+    void registration(SignUpRequest dto);
 }
