@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.com.alevel.persistence.type.AgreementType;
 import ua.com.alevel.persistence.type.CompanyType;
 import ua.com.alevel.persistence.type.CounterpartyType;
+import ua.com.alevel.persistence.type.RoleType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,11 @@ public class TypesController extends BaseController {
     @GetMapping("/agreementTypes")
     public ResponseEntity<List<AgreementType>> findAllAgreementTypes() {
         return ResponseEntity.ok(Arrays.stream(AgreementType.values()).toList());
+    }
+
+    @GetMapping("/roleTypes")
+    public ResponseEntity<List<RoleType>> findAllRoleTypes() {
+        return ResponseEntity.ok(Arrays.stream(RoleType.values()).toList());
     }
 
 }

@@ -31,8 +31,14 @@
                   <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item" href="/nomenclatures">Nomenclatures</a></li>
-                <ng-template ngxPermissionsOnly="ROLE_ADMIN">
+                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
                   <li><a class="dropdown-item" href="/currencies">Currencies</a></li>
+                </ng-template>
+                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="/users">Users</a></li>
                 </ng-template>
               </ul>
             </li>

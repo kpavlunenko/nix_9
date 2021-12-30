@@ -1,19 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from "@angular/router";
-import { UserItemsComponent, UserDetailsComponent, UserUpdateComponent } from "./components";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from "@angular/router";
+import {UserItemsComponent, UserDetailsComponent, UserUpdateComponent} from "./components";
+import {NgxPermissionsGuard} from "ngx-permissions";
 
 const routes: Routes = [
   {
     path: '',
-    component: UserItemsComponent
+    component: UserItemsComponent,
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: 'ROLE_ADMIN',
+        redirectTo: 'dashboard'
+      }
+    }
   },
   {
-    path: 'details',
+    path: 'details/:email',
     component: UserDetailsComponent
   },
   {
-    path: 'update',
+    path: 'update/:email',
     component: UserUpdateComponent
   }
 ];
@@ -28,4 +36,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {
+}

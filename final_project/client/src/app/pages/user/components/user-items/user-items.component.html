@@ -1,1 +1,104 @@
-<p>user-items works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        All users
+      </div>
+      <div class="card-body">
+        <table class="table table-sm table-hover">
+          <thead>
+          <tr>
+            <ng-container *ngFor="let header of headers">
+              <ng-container *ngIf="header.isSortable">
+                <ng-container *ngIf="header.isActive">
+                  <ng-container *ngIf="header.order == 'desc'">
+                    <th scope="col" (click)="sortOn(header.sort, 'asc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-desc float-right sort" aria-hidden="true" data-sort="" data-order="'desc'"></i>
+                    </th>
+                  </ng-container>
+                  <ng-container *ngIf="header.order == 'asc'">
+                    <th scope="col" (click)="sortOn(header.sort, 'desc')">
+                      <span [textContent]="header.headerName"></span>
+                      <i class="fa fa-sort-asc float-right sort" aria-hidden="true" data-sort="header.sort" data-order="'asc'"></i>
+                    </th>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!header.isActive">
+                  <th scope="col" (click)="sortOn(header.sort, 'asc')">
+                    <span [textContent]="header.headerName"></span>
+                    <i class="fa fa-sort float-right sort" aria-hidden="true" data-sort="header.sort" data-order="asc"></i>
+                  </th>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!header.isSortable">
+                <th scope="col">
+                  <span [textContent]="header.headerName"></span>
+                </th>
+              </ng-container>
+            </ng-container>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.roleType }}</td>
+            <td>{{ user.enabled }}</td>
+            <td>
+              <a routerLink="/users/details/{{user.email}}" type="button" class="btn btn-primary">details</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-md-end">
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="p-1">Showing {{(currentPage - 1) * sizeOfPage + 1}} to {{countOfItems < currentPage * sizeOfPage ? countOfItems : currentPage * sizeOfPage}} of {{countOfItems}} entries</div>
+            <div class="p-1">
+              <div class="btn-group dropup">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span [textContent]="sizeOfPage"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <section *ngFor="let size of pageSizeItems">
+                    <li><a class="dropdown-item" text="{{size}}" (click)="changeSizeOfPage(size)"></a></li>
+                  </section>
+                </ul>
+              </div>
+            </div>
+            <div class="p-1" style="margin-top: 1em !important;">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li [attr.class]="currentPage != 1 ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="First Page" (click)="setCurrentPage(1)"><i class="fa fa-fast-backward"></i></a>
+                  </li>
+                  <li [attr.class]="currentPage != 1 ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Previous Page" (click)="setCurrentPage(currentPage - 1)"><i class="fa fa-backward"></i></a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" title="Previous Page">{{currentPage}}</a>
+                  </li>
+                  <li [attr.class]="currentPage != totalPageSize ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Next Page" (click)="setCurrentPage(currentPage + 1)"><i class="fa fa-forward"></i></a>
+                  </li>
+                  <li [attr.class]="currentPage != totalPageSize ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" title="Last Page" (click)="setCurrentPage(totalPageSize)"><i class="fa fa-fast-forward"></i></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="p-1">
+              <a class="page-link btn btn-secondary" (click)="getUsers()" title="Refresh Page"><i class="fa fa-refresh"></i></a>
+            </div>
+            <div class="p-1">
+              <a class="page-link btn btn-secondary" href="/users" title="Reset Page"><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

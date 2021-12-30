@@ -3,8 +3,6 @@ package ua.com.alevel.service.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.EntityExistException;
 import ua.com.alevel.exception.IncorrectInputData;
@@ -22,19 +20,19 @@ public class PersonalServiceImpl implements PersonalService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final PersonalRepository personalRepository;
-    private final CrudRepositoryHelper<Personal, PersonalRepository> crudRepositoryHelper;
+    private final CrudRepositoryHelper<Personal, PersonalRepository> repositoryHelper;
 
 
     public PersonalServiceImpl(
             BCryptPasswordEncoder bCryptPasswordEncoder,
-            PersonalRepository personalRepository, CrudRepositoryHelper<Personal, PersonalRepository> crudRepositoryHelper) {
+            PersonalRepository personalRepository, CrudRepositoryHelper<Personal, PersonalRepository> repositoryHelper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.personalRepository = personalRepository;
-        this.crudRepositoryHelper = crudRepositoryHelper;
+        this.repositoryHelper = repositoryHelper;
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
+    @Transactional
     public void create(Personal entity) {
         if (StringUtils.isEmpty(entity.getEmail()) || StringUtils.isEmpty(entity.getPassword())) {
             throw new IncorrectInputData("login or password is empty");
@@ -43,31 +41,45 @@ public class PersonalServiceImpl implements PersonalService {
             throw new EntityExistException("this personal is exist");
         }
         entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
-        crudRepositoryHelper.create(personalRepository, entity);
+        repositoryHelper.create(personalRepository, entity);
     }
 
     @Override
+    @Transactional
     public void update(Personal entity) {
-
+        if (StringUtils.isEmpty(entity.getPassword())) {
+            throw new IncorrectInputData("password is empty");
+        }
+        repositoryHelper.update(personalRepository, entity);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
 
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Personal> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Personal> findAll(Map<String, String[]> parameterMap) {
-        return null;
+    @Transactional(readOnly = true)
+    public Optional<Personal> findByEmail(String email) {
+        return personalRepository.findByEmail(email);
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Personal> findAll(Map<String, String[]> parameterMap) {
+        return repositoryHelper.findAll(personalRepository, parameterMap, Personal.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public long count(Map<String, String[]> parameterMap) {
-        return 0;
+        return repositoryHelper.count(personalRepository, parameterMap, Personal.class);
     }
 }

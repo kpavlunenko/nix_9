@@ -13,7 +13,7 @@ export class TokenStorageService {
   }
 
   signOut() {
-    this.cookieService.deleteAll();
+    this.cookieService.deleteAll('/');
   }
 
   public saveToken(token: string) {

@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage.service";
 import {Router} from "@angular/router";
 import {NgxPermissionsService} from "ngx-permissions";
+import {environment} from "../environments/environment.prod";
+import {appConst} from "./app.const";
+import {appConstRole} from "./app.const.role";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +17,7 @@ export class AppComponent {
   isRegistration = false;
   roles: string[] = [];
 
+  public appConstRole = appConstRole;
   constructor(private tokenStorageService: TokenStorageService,
               private permissionsService: NgxPermissionsService,
               private _router: Router) {
@@ -47,6 +51,6 @@ export class AppComponent {
   }
 
   userDetails() {
-    this._router.navigateByUrl('users/details');
+    this._router.navigateByUrl('users/details/' + this.tokenStorageService.getUser().username);
   }
 }

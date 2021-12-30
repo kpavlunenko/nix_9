@@ -8,6 +8,7 @@ import {
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
 import {UserRoutingModule} from "./user-routing.module";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import {UserRoutingModule} from "./user-routing.module";
     UserDetailsComponent,
     UserUpdateComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    ReactiveFormsModule,
-    MatRadioModule
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        NgxPermissionsModule
+    ]
 })
 export class UserModule {
 }

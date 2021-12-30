@@ -1,1 +1,47 @@
-<p>user-details works!</p>
+<div *ngIf="user">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          User details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{user.id}}</td>
+            </tr>
+            <tr>
+              <th>first name</th>
+              <td>{{user.firstName}}</td>
+            </tr>
+            <tr>
+              <th>last name</th>
+              <td>{{user.lastName}}</td>
+            </tr>
+            <tr>
+              <th>birthday</th>
+              <td>{{user.birthDay | date:'yyyy-MM-dd'}}</td>
+            </tr>
+            <tr>
+              <th>email</th>
+              <td>{{user.email}}</td>
+            </tr>
+            <tr>
+              <th>enabled</th>
+              <td>{{user.enabled}}</td>
+            </tr>
+            <tr>
+              <th>role type</th>
+              <td>{{user.roleType}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateUser()">change</button>
+</div>

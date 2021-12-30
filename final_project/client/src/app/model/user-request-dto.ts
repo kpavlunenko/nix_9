@@ -7,4 +7,5 @@ export interface UserRequestDto {
   birthDay: Date;
   firstName: string;
   lastName: string;
+  password: string;
 }
