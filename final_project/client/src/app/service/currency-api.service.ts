@@ -4,8 +4,8 @@ import {appConst} from "../app.const";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {Observable} from "rxjs";
-import {CurrencyRequestDto} from "../model/currency-request-dto";
-import {CurrencyResponseDto} from "../model/currency-response-dto";
+import {CurrencyRequestDto} from "../model/currency/currency-request-dto";
+import {CurrencyResponseDto} from "../model/currency/currency-response-dto";
 
 @Injectable({
   providedIn: 'root'

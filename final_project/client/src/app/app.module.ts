@@ -17,12 +17,12 @@ import {
   BusinessDirectionModule,
   NomenclatureModule,
   CurrencyModule,
+  CurrencyRateModule,
   AuthenticationModule,
   DashboardModule,
   UserModule
 } from "./pages";
 import {NgxPermissionsModule} from "ngx-permissions";
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +36,7 @@ import {NgxPermissionsModule} from "ngx-permissions";
     MatDialogModule,
     NgxPermissionsModule.forRoot(),
     CompanyModule,
+    CurrencyRateModule,
     CounterpartyModule,
     AgreementModule,
     BusinessDirectionModule,

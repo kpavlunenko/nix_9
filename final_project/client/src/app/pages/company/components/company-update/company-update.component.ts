@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyRequestDto} from "../../../../model/company-request-dto";
+import {CompanyRequestDto} from "../../../../model/company/company-request-dto";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CompanyApiService} from "../../../../service/company-api.service";
 import {TypeApiService} from "../../../../service/type-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {CompanyResponseDto} from "../../../../model/company-response-dto";
+import {CompanyResponseDto} from "../../../../model/company/company-response-dto";
 import {Observable} from "rxjs";
-import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction/business-direction-response-dto";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {HttpParams} from "@angular/common/http";
 

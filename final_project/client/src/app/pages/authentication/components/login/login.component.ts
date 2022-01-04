@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../../../service/auth.service";
 import {TokenStorageService} from "../../../../service/token-storage.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginRequestDto} from "../../../../model/login-request-dto";
+import {LoginRequestDto} from "../../../../model/auth/login-request-dto";
 import {Router} from "@angular/router";
 
 @Component({

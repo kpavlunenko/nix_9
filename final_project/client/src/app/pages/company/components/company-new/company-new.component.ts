@@ -4,9 +4,9 @@ import { Location } from "@angular/common";
 
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import { CompanyApiService } from "../../../../service/company-api.service";
-import { CompanyRequestDto } from "../../../../model/company-request-dto";
+import { CompanyRequestDto } from "../../../../model/company/company-request-dto";
 import { TypeApiService } from "../../../../service/type-api.service";
-import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction/business-direction-response-dto";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {HttpParams} from "@angular/common/http";
 

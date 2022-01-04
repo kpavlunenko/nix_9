@@ -3,8 +3,8 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService } from "./api.service";
 
-import { CounterpartyResponseDto} from "../model/counterparty-response-dto";
-import { CounterpartyRequestDto} from "../model/counterparty-request-dto";
+import { CounterpartyResponseDto} from "../model/counterparty/counterparty-response-dto";
+import { CounterpartyRequestDto} from "../model/counterparty/counterparty-request-dto";
 import { appConst } from "../app.const";
 import { environment } from "../../environments/environment.prod";
 

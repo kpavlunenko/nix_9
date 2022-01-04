@@ -31,7 +31,7 @@ public class Personal extends User {
 
     public Personal() {
         super();
-        setRoleType(RoleType.ROLE_PERSONAL);
+        setRoleType(RoleType.ROLE_SALES_MANAGER);
     }
 
     public Date getBirthDay() {

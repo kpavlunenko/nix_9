@@ -1,0 +1,39 @@
+<div *ngIf="currencyRate">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Currency rate details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{currencyRate.id}}</td>
+            </tr>
+            <tr>
+              <th>date</th>
+              <td>{{currencyRate.date}}</td>
+            </tr>
+            <tr>
+              <th>currency</th>
+              <td>{{currencyRate.currency.name}}</td>
+            </tr>
+            <tr>
+              <th>rate</th>
+              <td>{{currencyRate.rate}}</td>
+            </tr>
+            <tr>
+              <th>frequency rate</th>
+              <td>{{currencyRate.frequencyRate}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateCurrencyRate()">change</button>
+</div>

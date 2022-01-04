@@ -3,7 +3,7 @@ import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {HttpParams} from "@angular/common/http";
-import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction/business-direction-response-dto";
 
 @Component({
   selector: 'app-business-direction-items',

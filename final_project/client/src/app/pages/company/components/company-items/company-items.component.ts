@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
-import {CompanyResponseDto} from '../../../../model/company-response-dto';
+import {CompanyResponseDto} from '../../../../model/company/company-response-dto';
 import {CompanyApiService} from "../../../../service/company-api.service";
 import {TableHeader} from "../../../../model/table-header";
 import {HttpParams} from "@angular/common/http";

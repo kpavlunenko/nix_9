@@ -4,8 +4,8 @@ import {appConst} from "../app.const";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {Observable} from "rxjs";
-import {UserRequestDto} from "../model/user-request-dto";
-import {UserResponseDto} from "../model/user-response-dto";
+import {UserRequestDto} from "../model/user/user-request-dto";
+import {UserResponseDto} from "../model/user/user-response-dto";
 
 @Injectable({
   providedIn: 'root'

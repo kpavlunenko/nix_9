@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
-import {CurrencyResponseDto} from "../../../../model/currency-response-dto";
+import {CurrencyResponseDto} from "../../../../model/currency/currency-response-dto";
 import {CurrencyApiService} from "../../../../service/currency-api.service";
 
 @Component({

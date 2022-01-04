@@ -3,8 +3,8 @@ import {environment} from "../../environments/environment.prod";
 import {appConst} from "../app.const";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService} from "./api.service";
-import {BusinessDirectionRequestDto} from "../model/business-direction-request-dto";
-import {BusinessDirectionResponseDto} from "../model/business-direction-response-dto";
+import {BusinessDirectionRequestDto} from "../model/business-direction/business-direction-request-dto";
+import {BusinessDirectionResponseDto} from "../model/business-direction/business-direction-response-dto";
 import {Observable} from "rxjs";
 
 @Injectable({

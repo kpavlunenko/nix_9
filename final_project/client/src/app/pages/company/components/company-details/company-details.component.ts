@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import {Router} from "@angular/router";
 
-import { CompanyResponseDto } from "../../../../model/company-response-dto";
+import { CompanyResponseDto } from "../../../../model/company/company-response-dto";
 import { CompanyApiService } from "../../../../service/company-api.service";
 
 @Component({

@@ -5,7 +5,7 @@ import {Location} from "@angular/common";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TypeApiService} from "../../../../service/type-api.service";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
-import {CounterpartyRequestDto} from "../../../../model/counterparty-request-dto";
+import {CounterpartyRequestDto} from "../../../../model/counterparty/counterparty-request-dto";
 
 @Component({
   selector: 'app-counterparty-new',

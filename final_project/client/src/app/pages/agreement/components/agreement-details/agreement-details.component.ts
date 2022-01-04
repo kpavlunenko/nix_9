@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
+import {AgreementResponseDto} from "../../../../model/agreement/agreement-response-dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {AgreementApiService} from "../../../../service/agreement-api.service";

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
-import {NomenclatureResponseDto} from "../../../../model/nomenclature-response-dto";
+import {NomenclatureResponseDto} from "../../../../model/nomenclature/nomenclature-response-dto";
 import {NomenclatureApiService} from "../../../../service/nomenclature-api.service";
 
 @Component({

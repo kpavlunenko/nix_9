@@ -3,7 +3,7 @@ import {TableHeader} from "../../../../model/table-header";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {HttpParams} from "@angular/common/http";
-import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
+import {AgreementResponseDto} from "../../../../model/agreement/agreement-response-dto";
 
 @Component({
   selector: 'app-agreement-items',

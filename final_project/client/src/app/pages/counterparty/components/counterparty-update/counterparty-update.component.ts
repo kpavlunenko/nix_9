@@ -4,9 +4,9 @@ import {TypeApiService} from "../../../../service/type-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {Observable} from "rxjs";
-import {CounterpartyResponseDto} from "../../../../model/counterparty-response-dto";
+import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
-import {CounterpartyRequestDto} from "../../../../model/counterparty-request-dto";
+import {CounterpartyRequestDto} from "../../../../model/counterparty/counterparty-request-dto";
 
 @Component({
   selector: 'app-counterparty-update',

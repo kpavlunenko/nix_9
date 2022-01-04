@@ -4,6 +4,7 @@ export * from './agreement/agreement.module';
 export * from './business-direction/business-direction.module';
 export * from './nomenclature/nomenclature.module';
 export * from './currency/currency.module';
+export * from './currency-rate/currency-rate.module';
 export * from './table/table.module';
 export * from './authentication/authentication.module';
 export * from './dashboard/dashboard.module';

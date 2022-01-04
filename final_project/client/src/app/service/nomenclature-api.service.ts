@@ -4,8 +4,8 @@ import {appConst} from "../app.const";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {Observable} from "rxjs";
-import {NomenclatureRequestDto} from "../model/nomenclature-request-dto";
-import {NomenclatureResponseDto} from "../model/nomenclature-response-dto";
+import {NomenclatureRequestDto} from "../model/nomenclature/nomenclature-request-dto";
+import {NomenclatureResponseDto} from "../model/nomenclature/nomenclature-response-dto";
 
 @Injectable({
   providedIn: 'root'

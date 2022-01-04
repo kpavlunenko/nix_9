@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AgreementRequestDto} from "../../../../model/agreement-request-dto";
-import {CompanyResponseDto} from "../../../../model/company-response-dto";
-import {CounterpartyResponseDto} from "../../../../model/counterparty-response-dto";
+import {AgreementRequestDto} from "../../../../model/agreement/agreement-request-dto";
+import {CompanyResponseDto} from "../../../../model/company/company-response-dto";
+import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {TypeApiService} from "../../../../service/type-api.service";
@@ -10,7 +10,7 @@ import {CounterpartyApiService} from "../../../../service/counterparty-api.servi
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {HttpParams} from "@angular/common/http";
-import {AgreementResponseDto} from "../../../../model/agreement-response-dto";
+import {AgreementResponseDto} from "../../../../model/agreement/agreement-response-dto";
 import {Observable} from "rxjs";
 
 @Component({

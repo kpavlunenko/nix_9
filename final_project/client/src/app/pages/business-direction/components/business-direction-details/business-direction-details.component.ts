@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction/business-direction-response-dto";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
-import {UserResponseDto} from "../../../../model/user-response-dto";
+import {UserResponseDto} from "../../../../model/user/user-response-dto";
 import {UserApiService} from "../../../../service/user-api.service";
 
 @Component({

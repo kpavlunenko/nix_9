@@ -5,8 +5,8 @@ import {environment} from "../../environments/environment.prod";
 import {appConst} from "../app.const";
 import {map} from "rxjs/operators";
 import {ErrorDialogService} from "./error-dialog.service";
-import {SignUpRequestDto} from "../model/sign-up-request-dto";
-import {LoginRequestDto} from "../model/login-request-dto";
+import {SignUpRequestDto} from "../model/auth/sign-up-request-dto";
+import {LoginRequestDto} from "../model/auth/login-request-dto";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

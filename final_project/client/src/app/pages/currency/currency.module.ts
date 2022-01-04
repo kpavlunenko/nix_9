@@ -7,9 +7,7 @@ import {
   CurrencyUpdateComponent
 } from "./components";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TableModule} from "../table/table.module";
 import {CurrencyRoutingModule} from "./currency-routing.module";
-
 
 @NgModule({
   declarations: [
@@ -21,8 +19,7 @@ import {CurrencyRoutingModule} from "./currency-routing.module";
   imports: [
     CommonModule,
     CurrencyRoutingModule,
-    ReactiveFormsModule,
-    TableModule
+    ReactiveFormsModule
   ]
 })
 export class CurrencyModule {

@@ -47,6 +47,18 @@ const routes: Routes = [
     }
   },
   {
+    path: 'currency_rates',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/currency-rate/currency-rate.module').then(module => module.CurrencyRateModule),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: 'ROLE_ADMIN',
+        redirectTo: 'dashboard'
+      }
+    }
+  },
+  {
     path: 'authentication',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/authentication/authentication.module').then(module => module.AuthenticationModule)

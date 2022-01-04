@@ -3,8 +3,8 @@ import {Observable} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {CurrencyRequestDto} from "../../../../model/currency-request-dto";
-import {CurrencyResponseDto} from "../../../../model/currency-response-dto";
+import {CurrencyRequestDto} from "../../../../model/currency/currency-request-dto";
+import {CurrencyResponseDto} from "../../../../model/currency/currency-response-dto";
 import {CurrencyApiService} from "../../../../service/currency-api.service";
 
 @Component({

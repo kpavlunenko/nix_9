@@ -3,8 +3,8 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiService } from "./api.service";
 
-import {AgreementResponseDto} from "../model/agreement-response-dto";
-import {AgreementRequestDto} from "../model/agreement-request-dto";
+import {AgreementResponseDto} from "../model/agreement/agreement-response-dto";
+import {AgreementRequestDto} from "../model/agreement/agreement-request-dto";
 import { appConst } from "../app.const";
 import { environment } from "../../environments/environment.prod";
 

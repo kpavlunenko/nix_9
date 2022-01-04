@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {NomenclatureApiService} from "../../../../service/nomenclature-api.service";
-import {NomenclatureResponseDto} from "../../../../model/nomenclature-response-dto";
+import {NomenclatureResponseDto} from "../../../../model/nomenclature/nomenclature-response-dto";
 
 @Component({
   selector: 'app-nomenclature-details',

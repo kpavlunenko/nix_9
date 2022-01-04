@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {BusinessDirectionRequestDto} from "../../../../model/business-direction-request-dto";
+import {BusinessDirectionRequestDto} from "../../../../model/business-direction/business-direction-request-dto";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {CompanyApiService} from "../../../../service/company-api.service";
-import {CompanyResponseDto} from "../../../../model/company-response-dto";
+import {CompanyResponseDto} from "../../../../model/company/company-response-dto";
 import {HttpParams} from "@angular/common/http";
 
 @Component({

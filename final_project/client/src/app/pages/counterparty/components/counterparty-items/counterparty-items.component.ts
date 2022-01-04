@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TableHeader} from "../../../../model/table-header";
 import {HttpParams} from "@angular/common/http";
-import {CounterpartyResponseDto} from "../../../../model/counterparty-response-dto";
+import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
 
 @Component({

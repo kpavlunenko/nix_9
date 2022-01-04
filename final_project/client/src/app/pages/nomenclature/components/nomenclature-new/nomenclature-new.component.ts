@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {BusinessDirectionResponseDto} from "../../../../model/business-direction-response-dto";
+import {BusinessDirectionResponseDto} from "../../../../model/business-direction/business-direction-response-dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BusinessDirectionApiService} from "../../../../service/business-direction-api.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {HttpParams} from "@angular/common/http";
-import {NomenclatureRequestDto} from "../../../../model/nomenclature-request-dto";
+import {NomenclatureRequestDto} from "../../../../model/nomenclature/nomenclature-request-dto";
 import {NomenclatureApiService} from "../../../../service/nomenclature-api.service";
 
 @Component({

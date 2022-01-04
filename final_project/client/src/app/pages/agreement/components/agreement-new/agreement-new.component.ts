@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AgreementRequestDto} from "../../../../model/agreement-request-dto";
+import {AgreementRequestDto} from "../../../../model/agreement/agreement-request-dto";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TypeApiService} from "../../../../service/type-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,8 +7,8 @@ import {Location} from "@angular/common";
 import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {CompanyApiService} from "../../../../service/company-api.service";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
-import {CompanyResponseDto} from "../../../../model/company-response-dto";
-import {CounterpartyResponseDto} from "../../../../model/counterparty-response-dto";
+import {CompanyResponseDto} from "../../../../model/company/company-response-dto";
+import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {HttpParams} from "@angular/common/http";
 
 @Component({

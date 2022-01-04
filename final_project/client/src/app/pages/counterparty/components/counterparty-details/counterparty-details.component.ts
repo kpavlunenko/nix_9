@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import {Router} from "@angular/router";
-import {CounterpartyResponseDto} from "../../../../model/counterparty-response-dto";
+import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
 
 @Component({

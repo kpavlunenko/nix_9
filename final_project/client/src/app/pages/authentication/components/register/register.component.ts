@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../../../service/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SignUpRequestDto} from "../../../../model/sign-up-request-dto";
+import {SignUpRequestDto} from "../../../../model/auth/sign-up-request-dto";
 import {Router} from "@angular/router";
 
 @Component({
