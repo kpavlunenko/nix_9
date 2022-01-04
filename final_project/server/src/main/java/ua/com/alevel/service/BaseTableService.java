@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface BaseTableService <ENTITY extends BaseTable> {
+public interface BaseTableService<ENTITY extends BaseTable> {
 
     void create(ENTITY entity);
     void update(ENTITY entity);

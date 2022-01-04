@@ -31,13 +31,13 @@ public class PriceTypeController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Boolean> createNewNomenclature(@RequestBody PriceTypeRequestDto priceTypeRequestDto) {
+    public ResponseEntity<Boolean> createNewPriceType(@RequestBody PriceTypeRequestDto priceTypeRequestDto) {
         priceTypeFacade.create(priceTypeRequestDto);
         return ResponseEntity.ok(true);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Boolean> updateNomenclature(@PathVariable Long id, @RequestBody PriceTypeRequestDto priceTypeRequestDto) {
+    public ResponseEntity<Boolean> updatePriceType(@PathVariable Long id, @RequestBody PriceTypeRequestDto priceTypeRequestDto) {
         priceTypeFacade.update(priceTypeRequestDto, id);
         return ResponseEntity.ok(true);
     }

@@ -2,11 +2,13 @@ package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudTableRepositoryHelper;
 import ua.com.alevel.persistence.entity.CurrencyRate;
 import ua.com.alevel.persistence.repository.CurrencyRateRepository;
 import ua.com.alevel.service.CurrencyRateService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,12 +27,14 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     @Override
     @Transactional
     public void create(CurrencyRate entity) {
+        checkInputDataOnValid(entity);
         repositoryHelper.create(currencyRateRepository, entity);
     }
 
     @Override
     @Transactional
     public void update(CurrencyRate entity) {
+        checkInputDataOnValid(entity);
         repositoryHelper.update(currencyRateRepository, entity);
     }
 
@@ -56,5 +60,15 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     @Transactional(readOnly = true)
     public long count(Map<String, String[]> parameterMap) {
         return repositoryHelper.count(currencyRateRepository, parameterMap, CurrencyRate.class);
+    }
+
+    private void checkInputDataOnValid(CurrencyRate entity) {
+        if (entity.getRate() == BigDecimal.ZERO) {
+            throw new IncorrectInputData("rate can not be 0");
+        }
+        Optional<CurrencyRate> currencyRateOptional = currencyRateRepository.findByDateAndAndCurrency_Id(entity.getDate(), entity.getCurrency().getId());
+        if (currencyRateOptional.isPresent() && currencyRateOptional.get().getId() != entity.getId()) {
+            throw new IncorrectInputData("currency rate with current currency is exist on this date");
+        }
     }
 }
