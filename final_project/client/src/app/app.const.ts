@@ -7,6 +7,8 @@ export const appConst = {
   nomenclaturesPath: 'nomenclatures',
   currenciesPath: 'currencies',
   currencyRatesPath: 'currency_rates',
+  priceTypesPath: 'price_types',
+  pricesPath: 'prices',
   usersPath: 'personals',
   authenticationPath: 'auth'
 }

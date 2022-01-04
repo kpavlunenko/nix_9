@@ -18,6 +18,8 @@ import {
   NomenclatureModule,
   CurrencyModule,
   CurrencyRateModule,
+  PriceModule,
+  PriceTypeModule,
   AuthenticationModule,
   DashboardModule,
   UserModule
@@ -38,6 +40,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
     CompanyModule,
     CurrencyRateModule,
     CounterpartyModule,
+    PriceModule,
+    PriceTypeModule,
     AgreementModule,
     BusinessDirectionModule,
     NomenclatureModule,

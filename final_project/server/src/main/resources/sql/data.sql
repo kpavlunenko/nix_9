@@ -71,3 +71,14 @@ insert into currencies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(
 
 insert into price_types values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'retail price');
 insert into price_types values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'wholesale price');
+
+insert into prices values (1, CURRENT_TIMESTAMP(), 150.00, 1, 1);
+insert into prices values (2, CURRENT_TIMESTAMP(), 250.00, 2, 1);
+insert into prices values (3, CURRENT_TIMESTAMP(), 350.00, 3, 1);
+insert into prices values (4, CURRENT_TIMESTAMP(), 450.00, 4, 1);
+insert into prices values (5, CURRENT_TIMESTAMP(), 550.00, 5, 1);
+insert into prices values (6, CURRENT_TIMESTAMP(), 100.00, 1, 2);
+insert into prices values (7, CURRENT_TIMESTAMP(), 200.00, 2, 2);
+insert into prices values (8, CURRENT_TIMESTAMP(), 300.00, 3, 2);
+insert into prices values (9, CURRENT_TIMESTAMP(), 400.00, 4, 2);
+insert into prices values (10, CURRENT_TIMESTAMP(), 500.00, 5, 2);

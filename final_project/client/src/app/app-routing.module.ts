@@ -59,6 +59,16 @@ const routes: Routes = [
     }
   },
   {
+    path: 'prices',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/price/price.module').then(module => module.PriceModule)
+  },
+  {
+    path: 'price_types',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/price-type/price-type.module').then(module => module.PriceTypeModule)
+  },
+  {
     path: 'authentication',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/authentication/authentication.module').then(module => module.AuthenticationModule)

@@ -26,12 +26,12 @@ export class CurrencyRateApiService {
     return this._apiService.getById(this._apiUrl,id);
   }
 
-  create(currency: CurrencyRateRequestDto): Observable<boolean> {
-    return this._apiService.create(this._apiUrl, currency);
+  create(currencyRate: CurrencyRateRequestDto): Observable<boolean> {
+    return this._apiService.create(this._apiUrl, currencyRate);
   }
 
-  update(id: number, currency: CurrencyRateRequestDto): Observable<boolean> {
-    return this._apiService.update(this._apiUrl, id, currency);
+  update(id: number, currencyRate: CurrencyRateRequestDto): Observable<boolean> {
+    return this._apiService.update(this._apiUrl, id, currencyRate);
   }
 
   count(httpParams: HttpParams): Observable<number> {
