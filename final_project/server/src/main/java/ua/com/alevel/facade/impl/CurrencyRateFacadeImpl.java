@@ -41,7 +41,7 @@ public class CurrencyRateFacadeImpl implements CurrencyRateFacade {
         currencyRate.setRate(currencyRateRequestDto.getRate());
         currencyRate.setFrequencyRate(currencyRateRequestDto.getFrequencyRate());
         currencyRate.setCurrency(currencyService.findById(currencyRateRequestDto.getCurrencyId()).get());
-        currencyRateService.create(currencyRate);
+        currencyRateService.update(currencyRate);
     }
 
     @Override

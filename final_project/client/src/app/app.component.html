@@ -21,11 +21,10 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="/companies">Companies</a></li>
-                <li><a class="dropdown-item" href="/business_directions">Business directions</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <li><a class="dropdown-item" href="/counterparties">Counterparties</a></li>
+                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
+                <li><a class="dropdown-item" href="/business_directions">Business directions</a></li>
+                </ng-template>
                 <li><a class="dropdown-item" href="/agreements">Agreements</a></li>
                 <li>
                   <hr class="dropdown-divider">

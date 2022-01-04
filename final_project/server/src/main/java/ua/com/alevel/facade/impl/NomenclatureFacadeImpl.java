@@ -43,7 +43,7 @@ public class NomenclatureFacadeImpl implements NomenclatureFacade {
         nomenclature.setProduct(nomenclatureRequestDto.getProduct());
         nomenclature.setService(nomenclatureRequestDto.getService());
         nomenclature.setBusinessDirection(businessDirectionService.findById(nomenclatureRequestDto.getBusinessDirectionId()).get());
-        nomenclatureService.create(nomenclature);
+        nomenclatureService.update(nomenclature);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class CurrencyFacadeImpl implements CurrencyFacade {
         currency.setUpdated(new Date());
         currency.setName(currencyRequestDto.getName());
         currency.setCode(currencyRequestDto.getCode());
-        currencyService.create(currency);
+        currencyService.update(currency);
     }
 
     @Override
