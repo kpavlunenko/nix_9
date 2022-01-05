@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {formatDate, Location} from "@angular/common";
 import {CurrencyRateRequestDto} from "../../../../model/currency-rate/currency-rate-request-dto";

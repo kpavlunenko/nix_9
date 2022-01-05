@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CurrencyResponseDto} from "../../../../model/currency/currency-response-dto";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CurrencyApiService} from "../../../../service/currency-api.service";
 import {Location} from "@angular/common";
 import {UserResponseDto} from "../../../../model/user/user-response-dto";
 import {UserApiService} from "../../../../service/user-api.service";

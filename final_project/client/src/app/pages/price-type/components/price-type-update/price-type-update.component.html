@@ -1,1 +1,20 @@
-<p>price-type-update works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        Update price type
+      </div>
+      <div class="card-body">
+        <form [formGroup]="priceTypeForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name" required>
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary mt-4" [disabled]="priceTypeForm.invalid" (click)="update()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

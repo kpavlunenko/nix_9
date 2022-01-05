@@ -1,1 +1,39 @@
-<p>price-type-details works!</p>
+<div *ngIf="priceType">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Price type details
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{priceType.id}}</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td>{{priceType.name}}</td>
+            </tr>
+            <tr>
+              <th>created</th>
+              <td>{{priceType.created  | date:'medium'}}</td>
+            </tr>
+            <tr>
+              <th>updated</th>
+              <td>{{priceType.updated  | date:'medium'}}</td>
+            </tr>
+            <tr>
+              <th>deletion mark</th>
+              <td>{{priceType.deletionMark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updatePriceType()">change</button>
+</div>
