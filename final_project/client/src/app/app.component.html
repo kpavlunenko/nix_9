@@ -32,16 +32,12 @@
                 <li><a class="dropdown-item" href="/nomenclatures">Nomenclatures</a></li>
                 <li><a class="dropdown-item" href="/price_types">Price types</a></li>
                 <li><a class="dropdown-item" href="/prices">Prices</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
                   <li><a class="dropdown-item" href="/currencies">Currencies</a></li>
-                </ng-template>
-                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
                   <li><a class="dropdown-item" href="/currency_rates">Currency rates</a></li>
-                </ng-template>
-                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
                   <li>
                     <hr class="dropdown-divider">
                   </li>
