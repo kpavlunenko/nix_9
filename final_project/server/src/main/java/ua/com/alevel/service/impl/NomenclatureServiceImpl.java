@@ -7,6 +7,7 @@ import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.Nomenclature;
 import ua.com.alevel.persistence.repository.NomenclatureRepository;
+import ua.com.alevel.persistence.repository.PriceRepository;
 import ua.com.alevel.service.NomenclatureService;
 
 import java.util.List;
@@ -18,10 +19,12 @@ public class NomenclatureServiceImpl implements NomenclatureService {
 
     private final CrudRepositoryHelper<Nomenclature, NomenclatureRepository> repositoryHelper;
     private final NomenclatureRepository nomenclatureRepository;
+    private final PriceRepository priceRepository;
 
-    public NomenclatureServiceImpl(CrudRepositoryHelper<Nomenclature, NomenclatureRepository> repositoryHelper, NomenclatureRepository nomenclatureRepository) {
+    public NomenclatureServiceImpl(CrudRepositoryHelper<Nomenclature, NomenclatureRepository> repositoryHelper, NomenclatureRepository nomenclatureRepository, PriceRepository priceRepository) {
         this.repositoryHelper = repositoryHelper;
         this.nomenclatureRepository = nomenclatureRepository;
+        this.priceRepository = priceRepository;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     @Override
     @Transactional
     public void delete(Long id) {
+        priceRepository.deleteAllByNomenclature_Id(id);
         repositoryHelper.delete(nomenclatureRepository, id);
     }
 

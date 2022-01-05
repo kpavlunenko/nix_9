@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.PriceType;
+import ua.com.alevel.persistence.repository.PriceRepository;
 import ua.com.alevel.persistence.repository.PriceTypeRepository;
 import ua.com.alevel.service.PriceTypeService;
 
@@ -18,10 +19,12 @@ public class PriceTypeServiceImpl implements PriceTypeService {
 
     private final CrudRepositoryHelper<PriceType, PriceTypeRepository> repositoryHelper;
     private final PriceTypeRepository priceTypeRepository;
+    private final PriceRepository priceRepository;
 
-    public PriceTypeServiceImpl(CrudRepositoryHelper<PriceType, PriceTypeRepository> repositoryHelper, PriceTypeRepository priceTypeRepository) {
+    public PriceTypeServiceImpl(CrudRepositoryHelper<PriceType, PriceTypeRepository> repositoryHelper, PriceTypeRepository priceTypeRepository, PriceRepository priceRepository) {
         this.repositoryHelper = repositoryHelper;
         this.priceTypeRepository = priceTypeRepository;
+        this.priceRepository = priceRepository;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class PriceTypeServiceImpl implements PriceTypeService {
     @Override
     @Transactional
     public void delete(Long id) {
+        priceRepository.deleteAllByPriceType_Id(id);
         repositoryHelper.delete(priceTypeRepository, id);
     }
 
