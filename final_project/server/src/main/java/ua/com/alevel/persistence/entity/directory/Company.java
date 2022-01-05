@@ -1,5 +1,6 @@
-package ua.com.alevel.persistence.entity;
+package ua.com.alevel.persistence.entity.directory;
 
+import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.type.CompanyType;
 
 import javax.persistence.*;

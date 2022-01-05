@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.CurrencyRequestDto;
 import ua.com.alevel.api.dto.response.entity.CurrencyResponseDto;
 import ua.com.alevel.facade.CurrencyFacade;
-import ua.com.alevel.persistence.entity.Currency;
+import ua.com.alevel.persistence.entity.directory.Currency;
 import ua.com.alevel.service.CurrencyService;
 
 import java.util.Date;

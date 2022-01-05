@@ -1,4 +1,7 @@
-package ua.com.alevel.persistence.entity;
+package ua.com.alevel.persistence.entity.directory;
+
+import ua.com.alevel.persistence.entity.BaseTable;
+import ua.com.alevel.persistence.entity.register.PriceType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

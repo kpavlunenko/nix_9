@@ -1,6 +1,6 @@
 package ua.com.alevel.api.dto.response.entity;
 
-import ua.com.alevel.persistence.entity.Company;
+import ua.com.alevel.persistence.entity.directory.Company;
 
 public class CompanyShortResponseDto {
 

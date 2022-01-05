@@ -2,7 +2,7 @@ package ua.com.alevel.api.dto.response.table;
 
 import ua.com.alevel.api.dto.response.TableResponseDto;
 import ua.com.alevel.api.dto.response.entity.CurrencyResponseDto;
-import ua.com.alevel.persistence.entity.CurrencyRate;
+import ua.com.alevel.persistence.entity.register.CurrencyRate;
 
 import java.math.BigDecimal;
 

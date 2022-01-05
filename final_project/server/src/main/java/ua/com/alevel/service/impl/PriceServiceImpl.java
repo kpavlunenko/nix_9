@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudTableRepositoryHelper;
-import ua.com.alevel.persistence.entity.Price;
+import ua.com.alevel.persistence.entity.directory.Price;
 import ua.com.alevel.persistence.repository.PriceRepository;
 import ua.com.alevel.service.PriceService;
 

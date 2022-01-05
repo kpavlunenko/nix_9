@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
-import ua.com.alevel.persistence.entity.Company;
+import ua.com.alevel.persistence.entity.directory.Company;
 import ua.com.alevel.persistence.repository.CompanyRepository;
 import ua.com.alevel.service.AgreementService;
 import ua.com.alevel.service.CompanyService;

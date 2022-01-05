@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
-import ua.com.alevel.persistence.entity.BusinessDirection;
+import ua.com.alevel.persistence.entity.directory.BusinessDirection;
 import ua.com.alevel.persistence.repository.BusinessDirectionRepository;
 import ua.com.alevel.service.BusinessDirectionService;
 

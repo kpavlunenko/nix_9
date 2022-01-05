@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.CounterpartyRequestDto;
 import ua.com.alevel.api.dto.response.entity.CounterpartyResponseDto;
 import ua.com.alevel.facade.CounterpartyFacade;
-import ua.com.alevel.persistence.entity.Counterparty;
+import ua.com.alevel.persistence.entity.directory.Counterparty;
 import ua.com.alevel.service.CounterpartyService;
 
 import java.util.Date;

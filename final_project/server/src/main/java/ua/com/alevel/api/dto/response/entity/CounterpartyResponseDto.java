@@ -1,7 +1,7 @@
 package ua.com.alevel.api.dto.response.entity;
 
 import ua.com.alevel.api.dto.response.ResponseDto;
-import ua.com.alevel.persistence.entity.Counterparty;
+import ua.com.alevel.persistence.entity.directory.Counterparty;
 import ua.com.alevel.persistence.type.CounterpartyType;
 
 public class CounterpartyResponseDto extends ResponseDto {

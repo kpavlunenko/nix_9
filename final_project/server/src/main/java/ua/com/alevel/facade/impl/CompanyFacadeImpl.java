@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.CompanyRequestDto;
 import ua.com.alevel.api.dto.response.entity.CompanyResponseDto;
 import ua.com.alevel.facade.CompanyFacade;
-import ua.com.alevel.persistence.entity.Company;
+import ua.com.alevel.persistence.entity.directory.Company;
 import ua.com.alevel.service.BusinessDirectionService;
 import ua.com.alevel.service.CompanyService;
 

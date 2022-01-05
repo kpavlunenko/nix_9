@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.NomenclatureRequestDto;
 import ua.com.alevel.api.dto.response.entity.NomenclatureResponseDto;
 import ua.com.alevel.facade.NomenclatureFacade;
-import ua.com.alevel.persistence.entity.Nomenclature;
+import ua.com.alevel.persistence.entity.directory.Nomenclature;
 import ua.com.alevel.service.BusinessDirectionService;
 import ua.com.alevel.service.NomenclatureService;
 

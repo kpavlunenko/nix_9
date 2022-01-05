@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.AgreementRequestDto;
 import ua.com.alevel.api.dto.response.entity.AgreementResponseDto;
 import ua.com.alevel.facade.AgreementFacade;
-import ua.com.alevel.persistence.entity.Agreement;
+import ua.com.alevel.persistence.entity.directory.Agreement;
 import ua.com.alevel.service.AgreementService;
 import ua.com.alevel.service.CompanyService;
 import ua.com.alevel.service.CounterpartyService;

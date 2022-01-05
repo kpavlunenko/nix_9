@@ -1,4 +1,6 @@
-package ua.com.alevel.persistence.entity;
+package ua.com.alevel.persistence.entity.register;
+
+import ua.com.alevel.persistence.entity.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

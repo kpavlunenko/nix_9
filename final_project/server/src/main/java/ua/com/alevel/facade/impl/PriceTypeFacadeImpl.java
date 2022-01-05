@@ -5,7 +5,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.entity.PriceTypeRequestDto;
 import ua.com.alevel.api.dto.response.entity.PriceTypeResponseDto;
 import ua.com.alevel.facade.PriceTypeFacade;
-import ua.com.alevel.persistence.entity.PriceType;
+import ua.com.alevel.persistence.entity.register.PriceType;
 import ua.com.alevel.service.PriceTypeService;
 
 import java.util.Date;
