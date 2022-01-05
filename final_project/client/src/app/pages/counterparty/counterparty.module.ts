@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CounterpartyItemsComponent, CounterpartyDetailsComponent, CounterpartyNewComponent, CounterpartyUpdateComponent } from "./components";
 import { CounterpartyRoutingModule } from "./counterparty-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -11,11 +12,12 @@ import { ReactiveFormsModule } from "@angular/forms";
     CounterpartyNewComponent,
     CounterpartyUpdateComponent
   ],
-  imports: [
-    CommonModule,
-    CounterpartyRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        CounterpartyRoutingModule,
+        ReactiveFormsModule,
+        NgxPermissionsModule
+    ]
 })
 export class CounterpartyModule {
 }

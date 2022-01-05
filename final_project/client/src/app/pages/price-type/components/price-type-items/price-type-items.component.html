@@ -47,14 +47,26 @@
               <a routerLink="/price_types/details/{{priceType.id}}" type="button" class="btn btn-primary">details</a>
             </td>
             <td>
-              <button type="button" class="btn btn-danger" (click)="deleteById(priceType.id)">delete</button>
+              <div *ngxPermissionsOnly="[appConstRole.admin]; else elseBlock; then thenBlock">main</div>
+              <ng-template #thenBlock>
+                <button type="button" class="btn btn-danger" [disabled]="false" (click)="deleteById(priceType.id)">delete</button>
+              </ng-template>
+              <ng-template #elseBlock>
+                <button type="button" class="btn btn-danger" [disabled]="true" (click)="deleteById(priceType.id)">delete</button>
+              </ng-template>
             </td>
           </tr>
           </tbody>
         </table>
         <div class="d-flex justify-content-between">
           <div class="p-1">
-            <button type="button" class="btn btn-primary" (click)="createPriceType()">add</button>
+            <div *ngxPermissionsOnly="[appConstRole.admin]; else elseBlock; then thenBlock">main</div>
+            <ng-template #thenBlock>
+              <button type="button" class="btn btn-primary" [disabled]="false" (click)="createPriceType()">add</button>
+            </ng-template>
+            <ng-template #elseBlock>
+              <button type="button" class="btn btn-primary" [disabled]="true" (click)="createPriceType()">add</button>
+            </ng-template>
           </div>
           <div class="d-flex justify-content-end align-items-center">
             <div class="p-1">Showing {{(currentPage - 1) * sizeOfPage + 1}} to {{countOfItems < currentPage * sizeOfPage ? countOfItems : currentPage * sizeOfPage}} of {{countOfItems}} entries</div>

@@ -5,6 +5,7 @@ import {CompanyResponseDto} from '../../../../model/company/company-response-dto
 import {CompanyApiService} from "../../../../service/company-api.service";
 import {TableHeader} from "../../../../model/table-header";
 import {HttpParams} from "@angular/common/http";
+import {appConstRole} from 'src/app/app.const.role';
 
 @Component({
   selector: 'app-companies',
@@ -13,6 +14,7 @@ import {HttpParams} from "@angular/common/http";
 })
 export class CompanyItemsComponent implements OnInit {
 
+  appConstRole = appConstRole;
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;

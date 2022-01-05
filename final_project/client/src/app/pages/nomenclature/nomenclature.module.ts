@@ -9,6 +9,7 @@ import {
 import {ReactiveFormsModule} from "@angular/forms";
 import {NomenclatureRoutingModule} from "./nomenclature-routing.module";
 import {MatRadioModule} from "@angular/material/radio";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MatRadioModule} from "@angular/material/radio";
         CommonModule,
         NomenclatureRoutingModule,
         ReactiveFormsModule,
-        MatRadioModule
+        MatRadioModule,
+        NgxPermissionsModule
     ]
 })
 export class NomenclatureModule {

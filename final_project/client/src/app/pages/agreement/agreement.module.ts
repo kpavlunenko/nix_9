@@ -8,7 +8,7 @@ import {
 } from "./components";
 import {AgreementRoutingModule} from "./agreement-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
-
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -17,11 +17,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     AgreementDetailsComponent,
     AgreementUpdateComponent
   ],
-  imports: [
-    CommonModule,
-    AgreementRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        AgreementRoutingModule,
+        ReactiveFormsModule,
+        NgxPermissionsModule
+    ]
 })
 export class AgreementModule {
 }

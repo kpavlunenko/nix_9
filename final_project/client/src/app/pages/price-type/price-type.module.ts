@@ -9,6 +9,7 @@ import {
 import {ReactiveFormsModule} from "@angular/forms";
 import {PriceTypeRoutingModule} from "./price-type-routing.module";
 import {MatRadioModule} from "@angular/material/radio";
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import {MatRadioModule} from "@angular/material/radio";
     PriceTypeDetailsComponent,
     PriceTypeUpdateComponent
   ],
-  imports: [
-    CommonModule,
-    PriceTypeRoutingModule,
-    ReactiveFormsModule,
-    MatRadioModule
-  ]
+    imports: [
+        CommonModule,
+        PriceTypeRoutingModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        NgxPermissionsModule
+    ]
 })
 export class PriceTypeModule {
 }

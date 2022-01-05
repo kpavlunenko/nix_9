@@ -49,7 +49,7 @@
               <a routerLink="/companies/details/{{company.id}}" type="button" class="btn btn-primary">details</a>
             </td>
             <td>
-              <div *ngxPermissionsOnly="['ROLE_ADMIN']; else elseBlock; then thenBlock">main</div>
+              <div *ngxPermissionsOnly="[appConstRole.admin]; else elseBlock; then thenBlock">main</div>
               <ng-template #thenBlock>
                 <div><button type="button" class="btn btn-danger" [disabled]="false" (click)="deleteById(company.id)">delete</button></div>
               </ng-template>
@@ -62,7 +62,13 @@
         </table>
         <div class="d-flex justify-content-between">
           <div class="p-1">
-            <button type="button" class="btn btn-primary" (click)="createCompany()">add</button>
+            <div *ngxPermissionsOnly="[appConstRole.admin]; else elseBlock; then thenBlock">main</div>
+            <ng-template #thenBlock>
+              <button type="button" class="btn btn-primary" [disabled]="false" (click)="createCompany()">add</button>
+            </ng-template>
+            <ng-template #elseBlock>
+              <button type="button" class="btn btn-primary" [disabled]="true" (click)="createCompany()">add</button>
+            </ng-template>
           </div>
           <div class="d-flex justify-content-end align-items-center">
             <div class="p-1">Showing {{(currentPage - 1) * sizeOfPage + 1}} to {{countOfItems < currentPage * sizeOfPage ? countOfItems : currentPage * sizeOfPage}} of {{countOfItems}} entries</div>

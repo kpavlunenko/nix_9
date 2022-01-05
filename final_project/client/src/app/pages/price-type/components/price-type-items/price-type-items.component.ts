@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
 import {PriceTypeResponseDto} from "../../../../model/price-type/price-type-response-dto";
 import {PriceTypeApiService} from "../../../../service/price-type-api.service";
+import {appConstRole} from 'src/app/app.const.role';
 
 @Component({
   selector: 'app-price-type-items',
@@ -12,6 +13,7 @@ import {PriceTypeApiService} from "../../../../service/price-type-api.service";
 })
 export class PriceTypeItemsComponent implements OnInit {
 
+  appConstRole = appConstRole;
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;

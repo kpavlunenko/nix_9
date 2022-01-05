@@ -52,8 +52,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/companies/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers(HttpMethod.GET, "/api/personals/", "/api/personals").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/api/companies/**",
+                        "/api/counterparties/**",
+                        "/api/agreements/**",
+                        "/api/nomenclatures/**",
+                        "/api/price_types/**",
+                        "/api/prices/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.PUT, "/api/companies/**",
+                        "/api/price_types/**",
+                        "/api/nomenclatures/**",
+                        "/api/prices/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST, "/api/companies/**",
+                        "/api/nomenclatures/**",
+                        "/api/price_types/**",
+                        "/api/prices/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.GET, "/api/personals/",
+                        "/api/personals").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableHeader} from "../../../../model/table-header";
 import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
 import {NomenclatureResponseDto} from "../../../../model/nomenclature/nomenclature-response-dto";
 import {NomenclatureApiService} from "../../../../service/nomenclature-api.service";
+import {appConstRole} from 'src/app/app.const.role';
 
 @Component({
   selector: 'app-nomenclature-items',
@@ -12,6 +13,7 @@ import {NomenclatureApiService} from "../../../../service/nomenclature-api.servi
 })
 export class NomenclatureItemsComponent implements OnInit {
 
+  appConstRole = appConstRole;
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;

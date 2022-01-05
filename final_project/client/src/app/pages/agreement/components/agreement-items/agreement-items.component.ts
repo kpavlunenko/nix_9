@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {HttpParams} from "@angular/common/http";
 import {AgreementResponseDto} from "../../../../model/agreement/agreement-response-dto";
+import {appConstRole} from "../../../../app.const.role";
 
 @Component({
   selector: 'app-agreement-items',
@@ -12,6 +13,7 @@ import {AgreementResponseDto} from "../../../../model/agreement/agreement-respon
 })
 export class AgreementItemsComponent implements OnInit {
 
+  appConstRole = appConstRole;
   companyId: string = "";
   counterpartyId: string = "";
   currentPage: number = 1;
@@ -89,7 +91,7 @@ export class AgreementItemsComponent implements OnInit {
 
   createAgreement(): void {
     this._router.navigate(['agreements/new'], {
-      queryParams: { companyId: this.companyId, counterpartyId: this.counterpartyId}
+      queryParams: {companyId: this.companyId, counterpartyId: this.counterpartyId}
     });
   }
 

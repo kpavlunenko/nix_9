@@ -18,7 +18,7 @@
             </select>
           </div>
           <div formArrayName="businessDirectionIds">
-            <label for="name">Companies</label>
+            <label for="name">Business directions</label>
             <div class="form-group" *ngFor="let companySelect of getFormsControls()['controls']; let i = index">
               <div class="input-group mb-3">
                 <select class="form-control" formControlName="{{i}}">

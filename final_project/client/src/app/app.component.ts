@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage.service";
 import {Router} from "@angular/router";
 import {NgxPermissionsService} from "ngx-permissions";
-import {environment} from "../environments/environment.prod";
-import {appConst} from "./app.const";
 import {appConstRole} from "./app.const.role";
 
 @Component({

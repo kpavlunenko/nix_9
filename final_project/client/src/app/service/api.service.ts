@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError, Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ErrorDialogService } from "./error-dialog.service";
+import {map} from 'rxjs/operators';
+import {ErrorDialogService} from "./error-dialog.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,11 @@ import { ErrorDialogService } from "./error-dialog.service";
 export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
 
   constructor(private _http: HttpClient,
-              public errorDialogService: ErrorDialogService) { }
+              public errorDialogService: ErrorDialogService) {
+  }
 
   getAll(apiUrl: string, httpParams: HttpParams): Observable<RESPONSE_DTO[]> {
-    return this._http.get(apiUrl,{
+    return this._http.get(apiUrl, {
       params: httpParams,
       headers: new HttpHeaders({})
     }).pipe(
@@ -33,7 +34,7 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
     );
   }
 
-  getById(apiUrl: string, id: number|string): Observable<RESPONSE_DTO> {
+  getById(apiUrl: string, id: number | string): Observable<RESPONSE_DTO> {
     return this._http.get(apiUrl + '/' + id, this._getOptions()).pipe(
       map((res: any) => {
         return res
@@ -80,11 +81,19 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       }),
       catchError(error => {
         let data = {};
-        data = {
-          error: error.error.error,
-          message: error.error.message,
-          status: error.status
-        };
+        if (error.error == null && error.status == 403) {
+          data = {
+            error: "",
+            message: 'you have not permission for this operation',
+            status: error.status
+          };
+        } else {
+          data = {
+            error: error.error.error,
+            message: error.error.message,
+            status: error.status
+          };
+        }
         // @ts-ignore
         throw this.errorDialogService.openDialog(data);
       })
@@ -98,29 +107,45 @@ export class ApiService<REQUEST_DTO, RESPONSE_DTO> {
       }),
       catchError(error => {
         let data = {};
-        data = {
-          error: error.error.error,
-          message: error.error.message,
-          status: error.status
-        };
+        if (error.error == null && error.status == 403) {
+          data = {
+            error: "",
+            message: 'you have not permission for this operation',
+            status: error.status
+          };
+        } else {
+          data = {
+            error: error.error.error,
+            message: error.error.message,
+            status: error.status
+          };
+        }
         // @ts-ignore
         throw this.errorDialogService.openDialog(data);
       })
     );
   }
 
-  update(apiUrl: string, id: number|string, dto: REQUEST_DTO): Observable<boolean> {
+  update(apiUrl: string, id: number | string, dto: REQUEST_DTO): Observable<boolean> {
     return this._http.put(apiUrl + '/' + id, dto, this._getOptions()).pipe(
       map((res: any) => {
         return res
       }),
       catchError(error => {
         let data = {};
-        data = {
-          error: error.error.error,
-          message: error.error.message,
-          status: error.status
-        };
+        if (error.error == null && error.status == 403) {
+          data = {
+            error: "",
+            message: 'you have not permission for this operation',
+            status: error.status
+          };
+        } else {
+          data = {
+            error: error.error.error,
+            message: error.error.message,
+            status: error.status
+          };
+        }
         // @ts-ignore
         throw this.errorDialogService.openDialog(data);
       })

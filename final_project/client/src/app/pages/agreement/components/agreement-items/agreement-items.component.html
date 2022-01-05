@@ -50,7 +50,13 @@
               <a routerLink="/agreements/details/{{agreement.id}}" type="button" class="btn btn-primary">details</a>
             </td>
             <td>
-              <button type="button" class="btn btn-danger" (click)="deleteById(agreement.id)">delete</button>
+              <div *ngxPermissionsOnly="[appConstRole.admin]; else elseBlock; then thenBlock">main</div>
+              <ng-template #thenBlock>
+                <button type="button" class="btn btn-danger" [disabled]="false" (click)="deleteById(agreement.id)">delete</button>
+              </ng-template>
+              <ng-template #elseBlock>
+                <button type="button" class="btn btn-danger" [disabled]="true" (click)="deleteById(agreement.id)">delete</button>
+              </ng-template>
             </td>
           </tr>
           </tbody>

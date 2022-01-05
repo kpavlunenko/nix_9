@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
 import {PriceResponseDto} from "../../../../model/prices/price-response-dto";
 import {PriceApiService} from "../../../../service/price-api.service";
+import { appConstRole } from 'src/app/app.const.role';
 
 @Component({
   selector: 'app-price-items',
@@ -12,6 +13,7 @@ import {PriceApiService} from "../../../../service/price-api.service";
 })
 export class PriceItemsComponent implements OnInit {
 
+  appConstRole = appConstRole;
   currentPage: number = 1;
   countOfItems: number = 0;
   totalPageSize: number = 0;

@@ -4,6 +4,7 @@ import {TableHeader} from "../../../../model/table-header";
 import {HttpParams} from "@angular/common/http";
 import {CounterpartyResponseDto} from "../../../../model/counterparty/counterparty-response-dto";
 import {CounterpartyApiService} from "../../../../service/counterparty-api.service";
+import {appConstRole} from 'src/app/app.const.role';
 
 @Component({
   selector: 'app-counterparty-items',
@@ -11,6 +12,8 @@ import {CounterpartyApiService} from "../../../../service/counterparty-api.servi
   styleUrls: ['./counterparty-items.component.css']
 })
 export class CounterpartyItemsComponent implements OnInit {
+
+  appConstRole = appConstRole;
 
   currentPage: number = 1;
   countOfItems: number = 0;
