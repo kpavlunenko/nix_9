@@ -11,3 +11,4 @@ export * from './table/table.module';
 export * from './authentication/authentication.module';
 export * from './dashboard/dashboard.module';
 export * from './user/user.module';
+export * from './sales-invoice/sales-invoice.module';

@@ -4,6 +4,7 @@ import {PriceTypeResponseDto} from "../price-type/price-type-response-dto";
 
 export interface PriceResponseDto extends TableResponseDto {
 
+  date: Date;
   priceType: PriceTypeResponseDto;
   nomenclature: NomenclatureResponseDto
   price: number;

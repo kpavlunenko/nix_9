@@ -4,6 +4,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.api.dto.response.ResponseDto;
 import ua.com.alevel.persistence.entity.document.SalesInvoice;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ public class SalesInvoiceResponseDto extends ResponseDto {
     private AgreementResponseDto agreement;
     private CurrencyResponseDto currency;
     private PriceTypeResponseDto priceType;
+    private BigDecimal sum;
     private SalesInvoiceGoodResponseDto[] salesInvoiceGoods;
 
     public SalesInvoiceResponseDto() {
@@ -32,12 +34,23 @@ public class SalesInvoiceResponseDto extends ResponseDto {
         this.agreement = new AgreementResponseDto(salesInvoice.getAgreement());
         this.currency = new CurrencyResponseDto(salesInvoice.getCurrency());
         this.priceType = new PriceTypeResponseDto(salesInvoice.getPriceType());
+        this.sum = salesInvoice.getSalesInvoiceGoods().stream()
+                .map(good -> good.getSum())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         if (CollectionUtils.isNotEmpty(salesInvoice.getSalesInvoiceGoods())){
             this.salesInvoiceGoods = salesInvoice.getSalesInvoiceGoods()
                     .stream().map(SalesInvoiceGoodResponseDto::new).collect(Collectors.toList()).toArray(new SalesInvoiceGoodResponseDto[0]);
         } else {
             this.salesInvoiceGoods = new SalesInvoiceGoodResponseDto[0];
         }
+    }
+
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
     }
 
     public Date getDate() {

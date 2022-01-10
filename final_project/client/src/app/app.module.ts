@@ -22,9 +22,11 @@ import {
   PriceTypeModule,
   AuthenticationModule,
   DashboardModule,
+  SalesInvoiceModule,
   UserModule
 } from "./pages";
 import {NgxPermissionsModule} from "ngx-permissions";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +50,7 @@ import {NgxPermissionsModule} from "ngx-permissions";
     CurrencyModule,
     AuthenticationModule,
     DashboardModule,
+    SalesInvoiceModule,
     UserModule
   ],
   providers: [ErrorDialogService,

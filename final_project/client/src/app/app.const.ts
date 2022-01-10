@@ -9,6 +9,7 @@ export const appConst = {
   currencyRatesPath: 'currency_rates',
   priceTypesPath: 'price_types',
   pricesPath: 'prices',
+  salesInvoicePath: 'sales_invoices',
   usersPath: 'personals',
   authenticationPath: 'auth'
 }
