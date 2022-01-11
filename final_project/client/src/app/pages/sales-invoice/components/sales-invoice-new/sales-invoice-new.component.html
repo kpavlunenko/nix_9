@@ -14,7 +14,7 @@
           <div class="input-group mb-1">
             <div class="input-group mb-2">
               <label class="input-group-text" for="date">Date</label>
-              <input type="date" class="form-control" id="date" aria-describedby="date" formControlName="date" required>
+              <input type="datetime-local" class="form-control" id="date" aria-describedby="date" formControlName="date" required>
             </div>
             <div class="input-group mb-2">
               <label class="input-group-text" for="counterpartyId">Counterparty</label>
@@ -38,8 +38,8 @@
             </div>
             <div class="input-group mb-2">
               <label class="input-group-text" for="agreementId">Agreement</label>
-              <select class="form-select" id="agreementId" aria-describedby="agreementId" formControlName="agreementId"
-                      required>
+              <select class="form-select" id="agreementId" aria-describedby="agreementId" formControlName="agreementId" required>
+                <option value=""></option>
                 <option *ngFor="let agreement of agreements"
                         value="{{agreement.id}}">{{agreement.name}}</option>
               </select>

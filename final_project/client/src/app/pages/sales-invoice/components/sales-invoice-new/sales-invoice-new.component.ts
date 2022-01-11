@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PriceTypeResponseDto} from "../../../../model/price-type/price-type-response-dto";
 import {NomenclatureResponseDto} from "../../../../model/nomenclature/nomenclature-response-dto";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {formatDate, Location} from "@angular/common";
+import {Location} from "@angular/common";
 import {PriceTypeApiService} from "../../../../service/price-type-api.service";
 import {NomenclatureApiService} from "../../../../service/nomenclature-api.service";
 import {Router} from "@angular/router";
@@ -26,15 +26,15 @@ import {PriceApiService} from "../../../../service/price-api.service";
 })
 export class SalesInvoiceNewComponent implements OnInit {
 
+  currentDate: Date = new Date();
   companies?: CompanyShortResponseDto[];
   counterparties?: CounterpartyResponseDto[];
   agreements?: AgreementResponseDto[];
   priceTypes?: PriceTypeResponseDto[];
   currencies?: CurrencyResponseDto[];
   nomenclatures?: NomenclatureResponseDto[];
-
   salesInvoiceForm = new FormGroup({
-    date: new FormControl(formatDate(new Date(), 'yyyy-MM-dd', 'en-US')),
+    date: new FormControl(new Date().toISOString().slice(0, 16)),
     companyId: new FormControl(''),
     counterpartyId: new FormControl(''),
     agreementId: new FormControl(''),
