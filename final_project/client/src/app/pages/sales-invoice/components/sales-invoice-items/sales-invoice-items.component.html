@@ -42,7 +42,7 @@
           <tbody>
           <tr *ngFor="let salesInvoice of salesInvoices">
             <td>{{ salesInvoice.id }}</td>
-            <td>{{ salesInvoice.date | date:'medium'}}</td>
+            <td>{{ salesInvoice.date | date:'medium' }}</td>
             <td>{{ salesInvoice.company.name }}</td>
             <td>{{ salesInvoice.counterparty.name }}</td>
             <td>{{ salesInvoice.currency.name }}</td>

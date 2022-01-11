@@ -1,1 +1,117 @@
-<p>sales-invoice-new works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        New sales invoice
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="salesInvoiceForm">
+
+          <div class="input-group mb-1">
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="date">Date</label>
+              <input type="date" class="form-control" id="date" aria-describedby="date" formControlName="date" required>
+            </div>
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="counterpartyId">Counterparty</label>
+              <select class="form-select" id="counterpartyId" aria-describedby="counterpartyId"
+                      formControlName="counterpartyId"
+                      (change)="counterpartyOnChange()" required>
+                <option *ngFor="let counterparty of counterparties"
+                        value="{{counterparty.id}}">{{counterparty.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group mb-1">
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="companyId">Company</label>
+              <select class="form-select" id="companyId" aria-describedby="companyId" formControlName="companyId"
+                      (change)="companyOnChange()" required>
+                <option *ngFor="let company of companies"
+                        value="{{company.id}}">{{company.name}}</option>
+              </select>
+            </div>
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="agreementId">Agreement</label>
+              <select class="form-select" id="agreementId" aria-describedby="agreementId" formControlName="agreementId"
+                      required>
+                <option *ngFor="let agreement of agreements"
+                        value="{{agreement.id}}">{{agreement.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group mb-1">
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="priceTypeId">Price type</label>
+              <select class="form-select" id="priceTypeId" aria-describedby="priceTypeId" formControlName="priceTypeId"
+                      (change)="priceTypeOnChange()" required>
+                <option *ngFor="let priceType of priceTypes"
+                        value="{{priceType.id}}">{{priceType.name}}</option>
+              </select>
+            </div>
+            <div class="input-group mb-2">
+              <label class="input-group-text" for="currencyId">Currency</label>
+              <select class="form-select" id="currencyId" aria-describedby="currencyId" formControlName="currencyId"
+                      required>
+                <option *ngFor="let currency of currencies"
+                        value="{{currency.id}}">{{currency.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-header">
+            Goods
+          </div>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nomenclature</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Sum</th>
+              <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody formArrayName="salesInvoiceGoods">
+            <tr *ngFor="let companySelect of getFormsControls()['controls']; let i = index" formGroupName="{{i}}">
+                <td>{{i + 1}}</td>
+                <td>
+                  <select class="form-select" id="nomenclatureId" aria-describedby="nomenclatureId" formControlName="nomenclatureId"
+                          (change)="nomenclatureOnChange(i)" required>
+                    <option *ngFor="let nomenclature of nomenclatures"
+                            value="{{nomenclature.id}}">{{nomenclature.name}}</option>
+                  </select>
+                </td>
+                <td><input type="number" class="form-control" id="price" aria-describedby="price"
+                           formControlName="price" oninput="this.value = Math.abs(this.value)"
+                           (change)="priceOnChange(i)" required></td>
+                <td><input type="number" class="form-control" id="quantity" aria-describedby="quantity"
+                           formControlName="quantity" min="0" oninput="this.value = Math.abs(this.value)"
+                           (change)="quantityOnChange(i)" required></td>
+                <td><input type="number" class="form-control" id="sum" aria-describedby="sum" formControlName="sum"
+                           readonly required></td>
+                <td>
+                  <button type="button" class="btn btn-danger" (click)="removeRow(i)">remove</button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <button class="btn btn-warning mt-4" (click)="addRow()">Add new row</button>
+
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary mt-4" [disabled]="salesInvoiceForm.invalid" (click)="create()">Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

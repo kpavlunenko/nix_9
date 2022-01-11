@@ -10,8 +10,10 @@ import ua.com.alevel.service.NomenclatureService;
 import ua.com.alevel.service.PriceService;
 import ua.com.alevel.service.PriceTypeService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,6 +65,17 @@ public class PriceFacadeImpl implements PriceFacade {
         List<Price> all = priceService.findAll(parameterMap);
         List<PriceResponseDto> items = all.stream().map(PriceResponseDto::new).collect(Collectors.toList());
         return items;
+    }
+
+    @Override
+    public PriceResponseDto getNomenclaturePrice(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        Optional<Price> price = priceService.getNomenclaturePrice(parameterMap);
+        if (price.isPresent()) {
+            return new PriceResponseDto(priceService.getNomenclaturePrice(parameterMap).get());
+        } else {
+            return new PriceResponseDto();
+        }
     }
 
     @Override

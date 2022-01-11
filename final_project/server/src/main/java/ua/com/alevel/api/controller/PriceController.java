@@ -52,4 +52,9 @@ public class PriceController {
     public ResponseEntity<PriceResponseDto> details(@PathVariable Long id) {
         return ResponseEntity.ok(priceFacade.findById(id));
     }
+
+    @GetMapping("/nomenclaturePrice")
+    public ResponseEntity<PriceResponseDto> getNomenclaturePrice (WebRequest request) {
+        return ResponseEntity.ok(priceFacade.getNomenclaturePrice(request));
+    }
 }

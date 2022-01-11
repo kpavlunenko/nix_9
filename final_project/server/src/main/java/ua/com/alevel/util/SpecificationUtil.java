@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.entity.BaseTable;
+import ua.com.alevel.persistence.type.AgreementType;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
@@ -39,6 +40,11 @@ public final class SpecificationUtil {
                     if (BaseEntity.class.isAssignableFrom(field.getType())) {
                         if (params.length == 1 && StringUtils.isNotEmpty(params[0])) {
                             predicates.add(criteriaBuilder.equal(root.get(field.getName()).get("id"), Long.parseLong(params[0])));
+                        }
+                    }
+                    if (AgreementType.class.isAssignableFrom(field.getType())) {
+                        if (params.length == 1 && StringUtils.isNotEmpty(params[0])) {
+                            predicates.add(criteriaBuilder.equal(root.get(field.getName()), AgreementType.valueOf(params[0])));
                         }
                     }
                 }

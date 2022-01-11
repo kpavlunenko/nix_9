@@ -1,1 +1,74 @@
-<p>sales-invoice-details works!</p>
+<div *ngIf="salesInvoice">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Sales invoice details
+        </div>
+<!--        <div class="btn-group" role="group" aria-label="Basic example">-->
+<!--          <button type="button" class="btn btn-info">Info</button>-->
+<!--          <button type="button" class="btn btn-success">Goods</button>-->
+<!--        </div>-->
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>id</th>
+              <td>{{salesInvoice.id}}</td>
+            </tr>
+            <tr>
+              <th>date</th>
+              <td>{{salesInvoice.date | date:'medium' }}</td>
+            </tr>
+            <tr>
+              <th>company</th>
+              <td>{{salesInvoice.company.name}}</td>
+            </tr>
+            <tr>
+              <th>counterparty</th>
+              <td>{{salesInvoice.counterparty.name}}</td>
+            </tr>
+            <tr>
+              <th>agreement</th>
+              <td>{{salesInvoice.agreement.name}}</td>
+            </tr>
+            <tr>
+              <th>price type</th>
+              <td>{{salesInvoice.priceType.name}}</td>
+            </tr>
+            <tr>
+              <th>currency</th>
+              <td>{{salesInvoice.currency.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="card-header">
+            Goods
+          </div>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nomenclature</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Sum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rowOfGood of salesInvoice.salesInvoiceGoods; index as i">
+              <td>{{i + 1}}</td>
+              <td>{{ rowOfGood.nomenclature.name }}</td>
+              <td>{{ rowOfGood.price }}</td>
+              <td>{{ rowOfGood.quantity }}</td>
+              <td>{{ rowOfGood.sum }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
+  <button type="button" class="btn btn-warning" (click)="updateSalesInvoice()">change</button>
+</div>
