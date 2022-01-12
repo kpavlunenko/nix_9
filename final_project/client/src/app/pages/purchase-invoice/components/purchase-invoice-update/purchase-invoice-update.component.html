@@ -2,14 +2,14 @@
   <div class="col-12">
     <div class="card mb-2 mt-2">
       <div class="card-header">
-        Update sales invoice
+        Update purchase invoice
       </div>
       <div class="row">
         <div class="col-sm-6">
         </div>
       </div>
       <div class="card-body">
-        <form [formGroup]="salesInvoiceForm">
+        <form [formGroup]="purchaseInvoiceForm">
 
           <div class="input-group mb-1">
             <div class="input-group mb-2">
@@ -48,14 +48,6 @@
 
           <div class="input-group mb-1">
             <div class="input-group mb-2">
-              <label class="input-group-text" for="priceTypeId">Price type</label>
-              <select class="form-select" id="priceTypeId" aria-describedby="priceTypeId" formControlName="priceTypeId"
-                      (change)="priceTypeOnChange()" required>
-                <option *ngFor="let priceType of priceTypes"
-                        value="{{priceType.id}}">{{priceType.name}}</option>
-              </select>
-            </div>
-            <div class="input-group mb-2">
               <label class="input-group-text" for="currencyId">Currency</label>
               <select class="form-select" id="currencyId" aria-describedby="currencyId" formControlName="currencyId"
                       required>
@@ -79,12 +71,12 @@
               <th scope="col">Delete</th>
             </tr>
             </thead>
-            <tbody formArrayName="salesInvoiceGoods">
+            <tbody formArrayName="purchaseInvoiceGoods">
             <tr *ngFor="let companySelect of getFormsControls()['controls']; let i = index" formGroupName="{{i}}">
               <td>{{i + 1}}</td>
               <td>
                 <select class="form-select" id="nomenclatureId" aria-describedby="nomenclatureId" formControlName="nomenclatureId"
-                        (change)="nomenclatureOnChange(i)" required>
+                        required>
                   <option *ngFor="let nomenclature of nomenclatures"
                           value="{{nomenclature.id}}">{{nomenclature.name}}</option>
                 </select>
@@ -107,7 +99,7 @@
           <button class="btn btn-warning mt-4" (click)="addRow()">Add new row</button>
 
           <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary mt-4" [disabled]="salesInvoiceForm.invalid" (click)="update()">Submit
+            <button class="btn btn-primary mt-4" [disabled]="purchaseInvoiceForm.invalid" (click)="update()">Submit
             </button>
           </div>
         </form>

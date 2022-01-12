@@ -10,6 +10,7 @@ export const appConst = {
   priceTypesPath: 'price_types',
   pricesPath: 'prices',
   salesInvoicePath: 'sales_invoices',
+  purchaseInvoicePath: 'purchase_invoices',
   usersPath: 'personals',
   authenticationPath: 'auth'
 }

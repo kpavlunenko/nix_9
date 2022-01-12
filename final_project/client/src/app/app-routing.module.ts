@@ -74,6 +74,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sales-invoice/sales-invoice.module').then(module => module.SalesInvoiceModule)
   },
   {
+    path: 'purchase_invoices',
+    pathMatch: 'prefix',
+    loadChildren: () => import('./pages/purchase-invoice/purchase-invoice.module').then(module => module.PurchaseInvoiceModule)
+  },
+  {
     path: 'authentication',
     pathMatch: 'prefix',
     loadChildren: () => import('./pages/authentication/authentication.module').then(module => module.AuthenticationModule)

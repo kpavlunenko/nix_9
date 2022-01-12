@@ -23,6 +23,7 @@ import {
   AuthenticationModule,
   DashboardModule,
   SalesInvoiceModule,
+  PurchaseInvoiceModule,
   UserModule
 } from "./pages";
 import {NgxPermissionsModule} from "ngx-permissions";
@@ -51,6 +52,7 @@ import {NgxPermissionsModule} from "ngx-permissions";
     AuthenticationModule,
     DashboardModule,
     SalesInvoiceModule,
+    PurchaseInvoiceModule,
     UserModule
   ],
   providers: [ErrorDialogService,

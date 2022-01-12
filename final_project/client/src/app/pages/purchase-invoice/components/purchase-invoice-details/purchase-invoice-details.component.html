@@ -1,40 +1,36 @@
-<div *ngIf="salesInvoice">
+<div *ngIf="purchaseInvoice">
   <div class="row">
     <div class="col-12">
       <div class="card mb-2 mt-2">
         <div class="card-header">
-          Sales invoice details
+          Purchase invoice details
         </div>
         <div class="card-body">
           <table class="table table-hover">
             <tbody>
             <tr>
               <th>id</th>
-              <td>{{salesInvoice.id}}</td>
+              <td>{{purchaseInvoice.id}}</td>
             </tr>
             <tr>
               <th>date</th>
-              <td>{{salesInvoice.date | date:'medium' }}</td>
+              <td>{{purchaseInvoice.date | date:'medium' }}</td>
             </tr>
             <tr>
               <th>company</th>
-              <td>{{salesInvoice.company.name}}</td>
+              <td>{{purchaseInvoice.company.name}}</td>
             </tr>
             <tr>
               <th>counterparty</th>
-              <td>{{salesInvoice.counterparty.name}}</td>
+              <td>{{purchaseInvoice.counterparty.name}}</td>
             </tr>
             <tr>
               <th>agreement</th>
-              <td>{{salesInvoice.agreement.name}}</td>
-            </tr>
-            <tr>
-              <th>price type</th>
-              <td>{{salesInvoice.priceType.name}}</td>
+              <td>{{purchaseInvoice.agreement.name}}</td>
             </tr>
             <tr>
               <th>currency</th>
-              <td>{{salesInvoice.currency.name}}</td>
+              <td>{{purchaseInvoice.currency.name}}</td>
             </tr>
             </tbody>
           </table>
@@ -52,7 +48,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let rowOfGood of salesInvoice.salesInvoiceGoods; index as i">
+            <tr *ngFor="let rowOfGood of purchaseInvoice.purchaseInvoiceGoods; index as i">
               <td>{{i + 1}}</td>
               <td>{{ rowOfGood.nomenclature.name }}</td>
               <td>{{ rowOfGood.price }}</td>
@@ -66,5 +62,5 @@
     </div>
   </div>
   <button type="button" class="btn btn-primary" (click)="goBack()">back</button>
-  <button type="button" class="btn btn-warning" (click)="updateSalesInvoice()">change</button>
+  <button type="button" class="btn btn-warning" (click)="updatePurchaseInvoice()">change</button>
 </div>
