@@ -2,18 +2,18 @@ package ua.com.alevel.persistence.entity.document.tabularpart;
 
 import ua.com.alevel.persistence.entity.BaseTable;
 import ua.com.alevel.persistence.entity.directory.Nomenclature;
-import ua.com.alevel.persistence.entity.document.SalesInvoice;
+import ua.com.alevel.persistence.entity.document.PurchaseInvoice;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "sales_invoices_goods")
-public class SalesInvoiceGood extends BaseTable {
+@Table(name = "purchase_invoices_goods")
+public class PurchaseInvoiceGood extends BaseTable {
 
     @ManyToOne
-    @JoinColumn (name="sales_invoices_goods_id")
-    private SalesInvoice salesInvoice;
+    @JoinColumn(name="purchase_invoices_goods_id")
+    private PurchaseInvoice purchaseInvoice;
 
     @OneToOne
     private Nomenclature nomenclature;
@@ -27,16 +27,16 @@ public class SalesInvoiceGood extends BaseTable {
     @Column(precision = 12, scale = 2)
     private BigDecimal sum;
 
-    public SalesInvoiceGood() {
+    public PurchaseInvoiceGood() {
         super();
     }
 
-    public SalesInvoice getSalesInvoice() {
-        return salesInvoice;
+    public PurchaseInvoice getPurchaseInvoice() {
+        return purchaseInvoice;
     }
 
-    public void setSalesInvoice(SalesInvoice salesInvoice) {
-        this.salesInvoice = salesInvoice;
+    public void setPurchaseInvoice(PurchaseInvoice purchaseInvoice) {
+        this.purchaseInvoice = purchaseInvoice;
     }
 
     public Nomenclature getNomenclature() {
