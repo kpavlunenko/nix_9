@@ -73,11 +73,13 @@ public class StockOfGoodServiceImpl implements StockOfGoodService {
     }
 
     @Override
+    @Transactional
     public void deleteByDocumentIdAndName(Long documentId, String documentName) {
         stockOfGoodRepository.deleteAllByDocumentIdAndDocumentName(documentId, documentName);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<StockOfGood> getStockOfGoodByNomenclatureIdAndCompanyId(Long nomenclatureId, Long companyId, Date date) {
         return stockOfGoodRepository.getStockOfGoodByNomenclatureIdAndCompanyId(nomenclatureId, companyId, date);
     }
