@@ -1,4 +1,4 @@
-package ua.com.alevel.persistence.entity.register;
+package ua.com.alevel.persistence.entity.directory;
 
 import ua.com.alevel.persistence.entity.BaseEntity;
 

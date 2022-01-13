@@ -6,7 +6,7 @@ import ua.com.alevel.persistence.entity.directory.Company;
 import ua.com.alevel.persistence.entity.directory.Counterparty;
 import ua.com.alevel.persistence.entity.directory.Currency;
 import ua.com.alevel.persistence.entity.document.tabularpart.SalesInvoiceGood;
-import ua.com.alevel.persistence.entity.register.PriceType;
+import ua.com.alevel.persistence.entity.directory.PriceType;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
 package ua.com.alevel.service;
 
-import ua.com.alevel.persistence.entity.directory.Price;
+import ua.com.alevel.persistence.entity.register.Price;
 
 import java.util.Map;
 import java.util.Optional;

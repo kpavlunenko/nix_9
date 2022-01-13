@@ -4,13 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudTableRepositoryHelper;
-import ua.com.alevel.persistence.entity.directory.Nomenclature;
-import ua.com.alevel.persistence.entity.directory.Price;
-import ua.com.alevel.persistence.entity.register.PriceType;
+import ua.com.alevel.persistence.entity.register.Price;
 import ua.com.alevel.persistence.repository.PriceRepository;
 import ua.com.alevel.service.PriceService;
 
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

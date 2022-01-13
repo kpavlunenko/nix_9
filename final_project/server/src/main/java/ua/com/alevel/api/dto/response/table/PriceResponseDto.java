@@ -3,7 +3,7 @@ package ua.com.alevel.api.dto.response.table;
 import ua.com.alevel.api.dto.response.TableResponseDto;
 import ua.com.alevel.api.dto.response.entity.NomenclatureResponseDto;
 import ua.com.alevel.api.dto.response.entity.PriceTypeResponseDto;
-import ua.com.alevel.persistence.entity.directory.Price;
+import ua.com.alevel.persistence.entity.register.Price;
 
 import java.math.BigDecimal;
 

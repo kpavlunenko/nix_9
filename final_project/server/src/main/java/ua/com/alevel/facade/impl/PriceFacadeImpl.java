@@ -5,12 +5,11 @@ import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.table.PriceRequestDto;
 import ua.com.alevel.api.dto.response.table.PriceResponseDto;
 import ua.com.alevel.facade.PriceFacade;
-import ua.com.alevel.persistence.entity.directory.Price;
+import ua.com.alevel.persistence.entity.register.Price;
 import ua.com.alevel.service.NomenclatureService;
 import ua.com.alevel.service.PriceService;
 import ua.com.alevel.service.PriceTypeService;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

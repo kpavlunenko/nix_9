@@ -7,8 +7,10 @@ import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.document.PurchaseInvoice;
 import ua.com.alevel.persistence.entity.document.tabularpart.PurchaseInvoiceGood;
+import ua.com.alevel.persistence.entity.register.StockOfGood;
 import ua.com.alevel.persistence.repository.PurchaseInvoiceRepository;
 import ua.com.alevel.service.PurchaseInvoiceService;
+import ua.com.alevel.service.StockOfGoodService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,10 +22,15 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
 
     private final CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper;
     private final PurchaseInvoiceRepository purchaseInvoiceRepository;
+    private final StockOfGoodService stockOfGoodService;
 
-    public PurchaseInvoiceServiceImpl(CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper, PurchaseInvoiceRepository purchaseInvoiceRepository) {
+    public PurchaseInvoiceServiceImpl(CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper,
+                                      PurchaseInvoiceRepository purchaseInvoiceRepository,
+                                      StockOfGoodService stockOfGoodService
+    ) {
         this.repositoryHelper = repositoryHelper;
         this.purchaseInvoiceRepository = purchaseInvoiceRepository;
+        this.stockOfGoodService = stockOfGoodService;
     }
 
     @Override
@@ -31,18 +38,22 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     public void create(PurchaseInvoice entity) {
         checkInputDataOnValid(entity);
         repositoryHelper.create(purchaseInvoiceRepository, entity);
+        createRecordsForTableStockAndGoods(entity);
     }
 
     @Override
     @Transactional
     public void update(PurchaseInvoice entity) {
         checkInputDataOnValid(entity);
+        stockOfGoodService.deleteByDocumentIdAndName(entity.getId(), entity.getClass().getSimpleName());
         repositoryHelper.update(purchaseInvoiceRepository, entity);
+        createRecordsForTableStockAndGoods(entity);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
+        stockOfGoodService.deleteByDocumentIdAndName(id, PurchaseInvoice.class.getSimpleName());
         repositoryHelper.delete(purchaseInvoiceRepository, id);
     }
 
@@ -62,6 +73,21 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     @Transactional(readOnly = true)
     public long count(Map<String, String[]> parameterMap) {
         return repositoryHelper.count(purchaseInvoiceRepository, parameterMap, PurchaseInvoice.class);
+    }
+
+    private void createRecordsForTableStockAndGoods(PurchaseInvoice entity) {
+        for (PurchaseInvoiceGood purchaseInvoiceGood : entity.getPurchaseInvoiceGoods()) {
+            StockOfGood stockOfGood = new StockOfGood();
+            stockOfGood.setDate(entity.getDate());
+            stockOfGood.setDocumentId(entity.getId());
+            stockOfGood.setDocumentName(entity.getClass().getSimpleName());
+            stockOfGood.setCompany(entity.getCompany());
+            stockOfGood.setNomenclature(purchaseInvoiceGood.getNomenclature());
+            stockOfGood.setQuantity(purchaseInvoiceGood.getQuantity());
+            stockOfGood.setCost(purchaseInvoiceGood.getSum());
+            stockOfGood.setConsignment(entity);
+            stockOfGoodService.create(stockOfGood);
+        }
     }
 
     private void checkInputDataOnValid(PurchaseInvoice entity) {
