@@ -77,6 +77,9 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
 
     private void createRecordsForTableStockAndGoods(PurchaseInvoice entity) {
         for (PurchaseInvoiceGood purchaseInvoiceGood : entity.getPurchaseInvoiceGoods()) {
+            if (purchaseInvoiceGood.getNomenclature().getService()) {
+                continue;
+            }
             StockOfGood stockOfGood = new StockOfGood();
             stockOfGood.setDate(entity.getDate());
             stockOfGood.setDocumentId(entity.getId());

@@ -76,6 +76,9 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
 
     private void createRecordsForTableStockAndGoods(SalesInvoice entity) {
         for (SalesInvoiceGood salesInvoiceGood : entity.getSalesInvoiceGoods()) {
+            if (salesInvoiceGood.getNomenclature().getService()) {
+                continue;
+            }
             List<StockOfGood> stockOfFreeGoods = stockOfGoodService.getStockOfGoodByNomenclatureIdAndCompanyId(salesInvoiceGood.getNomenclature().getId(),
                     entity.getCompany().getId(),
                     entity.getDate());
