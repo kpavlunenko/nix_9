@@ -258,6 +258,6 @@ insert into stock_of_goods values (44, -390.00, '2022-01-13 16:03:00', 10, 'Sale
 insert into sales_income values (26, 800.00, '2022-01-13 16:03:00', 505.00, 3.00, 1305.00, 13, 3, 10);
 insert into sales_income values (27, 390.00, '2022-01-13 16:03:00', 790.00, 2.00, 1180.00, 13, 5, 10);
 
-insert into users values ('ADMIN', 1, '2021-12-28 17:08:57', false, '2021-12-28 17:08:57', 'admin@gmail.com', true, '$2a$10$z/1zdFEnrRaqCZ94yUp6nO1fRU0597GPoEME6YenxGrZR4uWsC.Te', 'ROLE_ADMIN', '1993-04-28 00:00:00', 'Admin', 'Admin');
+insert into users values ('PERSONAL', 1, '2021-12-28 17:08:57', false, '2021-12-28 17:08:57', 'admin@gmail.com', true, '$2a$10$z/1zdFEnrRaqCZ94yUp6nO1fRU0597GPoEME6YenxGrZR4uWsC.Te', 'ROLE_ADMIN', '1993-04-28 00:00:00', 'Admin', 'Admin');
 insert into users values ('PERSONAL', 2, '2021-12-28 17:08:57', false, '2021-12-28 17:08:57', 'sales_manager@gmail.com', true, '$2a$10$z/1zdFEnrRaqCZ94yUp6nO1fRU0597GPoEME6YenxGrZR4uWsC.Te', 'ROLE_SALES_MANAGER', '1993-04-28 00:00:00', 'Sales', 'Manager');
 insert into users values ('PERSONAL', 3, '2021-12-28 17:08:57', false, '2021-12-28 17:08:57', 'purchusing_manager@gmail.com', true, '$2a$10$z/1zdFEnrRaqCZ94yUp6nO1fRU0597GPoEME6YenxGrZR4uWsC.Te', 'ROLE_PURCHASING_MANAGER', '1993-04-28 00:00:00', 'Purchusing', 'Manager');
