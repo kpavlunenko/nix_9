@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<div class="card mb-2 mt-2">
+  <div class="card-header">
+    Sales
+  </div>
+  <div style="display: block">
+    <canvas height="120" baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"></canvas>
+  </div>
+</div>

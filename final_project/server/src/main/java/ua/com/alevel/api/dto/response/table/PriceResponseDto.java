@@ -6,9 +6,12 @@ import ua.com.alevel.api.dto.response.entity.PriceTypeResponseDto;
 import ua.com.alevel.persistence.entity.register.Price;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class PriceResponseDto extends TableResponseDto {
 
+    private Long id;
+    private Date date;
     private PriceTypeResponseDto priceType;
     private NomenclatureResponseDto nomenclature;
     private BigDecimal price;
@@ -18,11 +21,27 @@ public class PriceResponseDto extends TableResponseDto {
     }
 
     public PriceResponseDto(Price price) {
-        setId(price.getId());
-        setDate(price.getDate());
+        this.id = price.getId();
+        this.date = price.getDate();
         this.price = price.getPrice();
         this.priceType = new PriceTypeResponseDto(price.getPriceType());
         this.nomenclature = new NomenclatureResponseDto(price.getNomenclature());
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public PriceTypeResponseDto getPriceType() {

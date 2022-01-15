@@ -9,6 +9,7 @@ import {ErrorDialogService} from "./service/error-dialog.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDialogModule} from "@angular/material/dialog";
 import {authInterceptorProviders} from "./interceptor/auth.interceptor";
+import { NgChartsModule } from 'ng2-charts';
 
 import {
   AgreementModule,
@@ -53,7 +54,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
     DashboardModule,
     SalesInvoiceModule,
     PurchaseInvoiceModule,
-    UserModule
+    UserModule,
+    NgChartsModule
   ],
   providers: [ErrorDialogService,
     authInterceptorProviders],

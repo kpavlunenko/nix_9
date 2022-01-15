@@ -1,5 +1,6 @@
 package ua.com.alevel.service.impl;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
@@ -9,6 +10,7 @@ import ua.com.alevel.persistence.repository.SalesIncomeRepository;
 import ua.com.alevel.service.SalesIncomeService;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -66,6 +68,14 @@ public class SalesIncomeServiceImpl implements SalesIncomeService {
     @Transactional
     public void deleteBySalesInvoice(Long id) {
         salesIncomeRepository.deleteAllBySalesInvoice_Id(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<SalesIncome> getSalesIncomeByPeriod(Map<String, String[]> parameterMap) {
+        List<SalesIncome> salesIncomes = repositoryHelper.findAll(salesIncomeRepository, parameterMap, SalesIncome.class);
+        salesIncomes.forEach(salesIncome -> salesIncome.setDate(DateUtils.truncate(salesIncome.getDate(), Calendar.DATE)));
+        return salesIncomes;
     }
 
     private void checkInputDataOnValid(SalesIncome entity) {
