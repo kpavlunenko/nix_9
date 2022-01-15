@@ -33,11 +33,19 @@ export class AuthService {
       }),
       catchError(error => {
         let data = {};
-        data = {
-          error: error.error.error,
-          message: error.error.message,
-          status: error.status
-        };
+        if (error.error.error == null) {
+          data = {
+            error: "",
+            message: 'problem with connect to server',
+            status: error.status
+          };
+        } else {
+          data = {
+            error: error.error.error,
+            message: error.error.message,
+            status: error.status
+          };
+        }
         // @ts-ignore
         throw this.errorDialogService.openDialog(data);
       })
@@ -51,11 +59,19 @@ export class AuthService {
       }),
       catchError(error => {
         let data = {};
-        data = {
-          error: error.error.error,
-          message: error.error.message,
-          status: error.status
-        };
+        if (error.error.error == null) {
+          data = {
+            error: "",
+            message: 'problem with connect to server',
+            status: error.status
+          };
+        } else {
+          data = {
+            error: error.error.error,
+            message: error.error.message,
+            status: error.status
+          };
+        }
         // @ts-ignore
         throw this.errorDialogService.openDialog(data);
       })
