@@ -55,7 +55,9 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="/sales_invoices">Sales invoice</a></li>
+                <ng-template ngxPermissionsOnly="{{appConstRole.admin}}">
                 <li><a class="dropdown-item" href="/purchase_invoices">Purchase invoice</a></li>
+                </ng-template>
               </ul>
             </li>
           </ul>

@@ -3,6 +3,8 @@ import {CompanyApiService} from "../../../../service/company-api.service";
 import {SalesIncomeApiService} from "../../../../service/sales-income-api.service";
 import {HttpParams} from "@angular/common/http";
 import {formatDate} from "@angular/common";
+import { appConstRole } from 'src/app/app.const.role';
+import {NgxPermissionsService} from "ngx-permissions";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +12,8 @@ import {formatDate} from "@angular/common";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  public appConstRole = appConstRole;
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -24,7 +28,8 @@ export class DashboardComponent implements OnInit {
     {data: [0], label: 'profit'}
   ];
 
-  constructor(private _salesIncomeApiService: SalesIncomeApiService) {
+  constructor(private _salesIncomeApiService: SalesIncomeApiService,
+              private permissionsService: NgxPermissionsService) {
   }
 
   ngOnInit() {
@@ -32,7 +37,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getSalesIncome(): void {
-    // this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
     this._salesIncomeApiService.getSalesIncomes(this.initHttpParams())
       .subscribe(salesIncomes => {
         let dates: string[] = [];
@@ -44,10 +48,17 @@ export class DashboardComponent implements OnInit {
           profit.push(salesIncome.profit);
         }
         this.barChartLabels = dates;
-        this.barChartData = [
-          {data: revenue, label: 'revenue'},
-          {data: profit, label: 'profit'}
-        ]
+        if (this.permissionsService.getPermission(this.appConstRole.sales_manager)) {
+          this.barChartData = [
+            {data: revenue, label: 'revenue'}
+          ]
+        } else {
+          this.barChartData = [
+            {data: revenue, label: 'revenue'},
+            {data: profit, label: 'profit'}
+          ]
+        }
+
       });
   }
 
