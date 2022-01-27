@@ -1,3 +1,21 @@
+delete from sales_income;
+delete from stock_of_goods;
+delete from sales_invoices_goods;
+delete from sales_invoices;
+delete from purchase_invoices_goods;
+delete from purchase_invoices;
+delete from company_business_direction;
+delete from agreements;
+delete from companies;
+delete from counterparties;
+delete from currency_rates;
+delete from currencies;
+delete from prices;
+delete from price_types;
+delete from nomenclatures;
+delete from business_directions;
+delete from users;
+
 insert into companies values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CORP', 'Norda Stelo');
 insert into companies values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'INC', 'Air Canada');
 insert into companies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'IBC', 'Barrick Gold');
@@ -29,21 +47,21 @@ insert into counterparties values (13, CURRENT_TIMESTAMP(), false, CURRENT_TIMES
 insert into counterparties values (14, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT', '492481044095', 'George Soros');
 insert into counterparties values (15, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER', '670949926702', 'John Malone');
 
-insert into agreements values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1002', 2, 3);
-insert into agreements values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1003', 2, 4);
-insert into agreements values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1004', 2, 6);
-insert into agreements values (4, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1005', 8, 14);
-insert into agreements values (5, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1006', 8, 11);
-insert into agreements values (6, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement №1007', 13, 10);
-insert into agreements values (7, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1009', 13, 12);
-insert into agreements values (8, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1010', 13, 15);
-insert into agreements values (9, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1011', 13, 9);
-insert into agreements values (10, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1012', 2, 2);
-insert into agreements values (11, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1013', 7, 9);
-insert into agreements values (12, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement №1014', 6, 5);
-insert into agreements values (13, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement №1009', 13, 11);
-insert into agreements values (14, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement №1010', 13, 13);
-insert into agreements values (15, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement №1011', 13, 14);
+insert into agreements values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1002', 2, 3);
+insert into agreements values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1003', 2, 4);
+insert into agreements values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1004', 2, 6);
+insert into agreements values (4, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1005', 8, 14);
+insert into agreements values (5, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1006', 8, 11);
+insert into agreements values (6, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'Supply agreement 1007', 13, 10);
+insert into agreements values (7, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1009', 13, 12);
+insert into agreements values (8, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1010', 13, 15);
+insert into agreements values (9, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1011', 13, 9);
+insert into agreements values (10, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1012', 2, 2);
+insert into agreements values (11, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1013', 7, 9);
+insert into agreements values (12, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'SUPPLIER_AGREEMENT', 'Purchase agreement 1014', 6, 5);
+insert into agreements values (13, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement 1009', 13, 11);
+insert into agreements values (14, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement 1010', 13, 13);
+insert into agreements values (15, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'CLIENT_AGREEMENT', 'agreement 1011', 13, 14);
 
 insert into business_directions values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'Furniture manufacturing');
 insert into business_directions values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'IT');
@@ -73,6 +91,8 @@ insert into currencies values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(
 insert into currencies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '978', 'EUR');
 
 insert into currency_rates values (1, '2022-01-03 13:05:00', 1, 1, 1);
+insert into currency_rates values (2, '2022-01-03 13:05:00', 1, 28, 2);
+insert into currency_rates values (3, '2022-01-03 13:05:00', 1, 31, 3);
 
 insert into price_types values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'retail price');
 insert into price_types values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'wholesale price');
