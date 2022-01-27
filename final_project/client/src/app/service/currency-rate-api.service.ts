@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment.prod";
 import {appConst} from "../app.const";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {ApiService} from "./api.service";
-import {Observable} from "rxjs";
+import {catchError, Observable} from "rxjs";
 import {CurrencyRateRequestDto} from "../model/currency-rate/currency-rate-request-dto";
 import {CurrencyRateResponseDto} from "../model/currency-rate/currency-rate-response-dto";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,27 @@ export class CurrencyRateApiService {
 
   count(httpParams: HttpParams): Observable<number> {
     return this._apiService.count(this._apiUrl + '/count', httpParams);
+  }
+
+  getRateOnDate(httpParams: HttpParams): Observable<CurrencyRateResponseDto> {
+    return this._http.get(this._apiUrl + '/' + 'rate_on_date', {
+      params: httpParams,
+      headers: new HttpHeaders({})
+    }).pipe(
+      map((res: any) => {
+        return res
+      }),
+      catchError(error => {
+        let data = {};
+        data = {
+          error: error.error.error,
+          message: error.error.message,
+          status: error.status
+        };
+        // @ts-ignore
+        throw this.errorDialogService.openDialog(data);
+      })
+    );
   }
 
   deleteById(id: number): Observable<boolean> {

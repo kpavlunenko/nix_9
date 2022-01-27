@@ -52,4 +52,9 @@ public class CurrencyRateController {
     public ResponseEntity<CurrencyRateResponseDto> details(@PathVariable Long id) {
         return ResponseEntity.ok(currencyRateFacade.findById(id));
     }
+
+    @GetMapping("/rate_on_date")
+    public ResponseEntity<CurrencyRateResponseDto> getOnDate(WebRequest request) {
+        return ResponseEntity.ok(currencyRateFacade.findByDateAndAndCurrencyId(request));
+    }
 }

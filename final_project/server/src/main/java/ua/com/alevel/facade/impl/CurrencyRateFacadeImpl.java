@@ -4,13 +4,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.api.dto.request.table.CurrencyRateRequestDto;
 import ua.com.alevel.api.dto.response.table.CurrencyRateResponseDto;
+import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.facade.CurrencyRateFacade;
 import ua.com.alevel.persistence.entity.register.CurrencyRate;
 import ua.com.alevel.service.CurrencyRateService;
 import ua.com.alevel.service.CurrencyService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,5 +69,23 @@ public class CurrencyRateFacadeImpl implements CurrencyRateFacade {
     public long count(WebRequest request) {
         Map<String, String[]> parameterMap = request.getParameterMap();
         return currencyRateService.count(parameterMap);
+    }
+
+    @Override
+    public CurrencyRateResponseDto findByDateAndAndCurrencyId(WebRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (parameterMap.get("currency") != null && parameterMap.get("date") != null) {
+            Long currencyId = 0L;
+            Date date = new Date();
+            try {
+                currencyId = Long.parseLong(parameterMap.get("currency")[0]);
+                date = new Date(Long.parseLong(parameterMap.get("date")[0]));
+            } catch (IllegalArgumentException e) {
+                throw new IncorrectInputData("parameters for query is wrong");
+            }
+            return new CurrencyRateResponseDto(currencyRateService.findByDateAndAndCurrencyId(date, currencyId).get());
+        } else {
+            throw new IncorrectInputData("parameters for query is wrong");
+        }
     }
 }

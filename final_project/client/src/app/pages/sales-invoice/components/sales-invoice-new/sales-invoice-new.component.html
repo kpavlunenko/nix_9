@@ -17,13 +17,13 @@
               <input type="datetime-local" class="form-control" id="date" aria-describedby="date" formControlName="date" required>
             </div>
             <div class="input-group mb-2">
-              <label class="input-group-text" for="counterpartyId">Counterparty</label>
               <select class="form-select" id="counterpartyId" aria-describedby="counterpartyId"
                       formControlName="counterpartyId"
                       (change)="counterpartyOnChange()" required>
                 <option *ngFor="let counterparty of counterparties"
                         value="{{counterparty.id}}">{{counterparty.name}}</option>
               </select>
+              <label class="input-group-text" for="counterpartyId">Counterparty</label>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
             <div class="input-group mb-2">
               <label class="input-group-text" for="currencyId">Currency</label>
               <select class="form-select" id="currencyId" aria-describedby="currencyId" formControlName="currencyId"
-                      required>
+                      (change)="currencyOnChange()" required>
                 <option *ngFor="let currency of currencies"
                         value="{{currency.id}}">{{currency.name}}</option>
               </select>

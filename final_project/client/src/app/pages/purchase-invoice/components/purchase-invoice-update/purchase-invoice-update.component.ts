@@ -18,6 +18,7 @@ import {PurchaseInvoiceRequestDto} from "../../../../model/purchase-invoice/purc
 import {Observable} from "rxjs";
 import {SalesInvoiceResponseDto} from "../../../../model/sales-invoice/sales-invoice-response-dto";
 import {PurchaseInvoiceResponseDto} from "../../../../model/purchase-invoice/purchase-invoice-response-dto";
+import {CurrencyRateApiService} from "../../../../service/currency-rate-api.service";
 
 @Component({
   selector: 'app-purchase-invoice-update',
@@ -26,6 +27,7 @@ import {PurchaseInvoiceResponseDto} from "../../../../model/purchase-invoice/pur
 })
 export class PurchaseInvoiceUpdateComponent implements OnInit {
 
+  currencyRate: Number = 1;
   id: number = 0;
   @Input() purchaseInvoiceResponseDto?: Observable<PurchaseInvoiceResponseDto>;
 
@@ -56,6 +58,7 @@ export class PurchaseInvoiceUpdateComponent implements OnInit {
               private _counterpartyApiService: CounterpartyApiService,
               private _agreementApiService: AgreementApiService,
               private _currencyApiService: CurrencyApiService,
+              private _currencyRateApiService: CurrencyRateApiService,
               private _nomenclatureApiService: NomenclatureApiService,
               private _router: Router,
               private _location: Location,
@@ -106,6 +109,7 @@ export class PurchaseInvoiceUpdateComponent implements OnInit {
       }))
     this.purchaseInvoiceResponseDto.subscribe(purchaseInvoiceResponseDto => {
       this.removeRow(0);
+      this.getCurrencyRate();
       purchaseInvoiceResponseDto.purchaseInvoiceGoods.forEach(value => {
         (<FormArray>this.purchaseInvoiceForm.controls["purchaseInvoiceGoods"]).push(new FormGroup({
           nomenclatureId: new FormControl(value.nomenclature.id),
@@ -121,6 +125,17 @@ export class PurchaseInvoiceUpdateComponent implements OnInit {
       .set('sort', 'name')
       .set('order', 'asc'))
       .subscribe(nomenclatures => this.nomenclatures = nomenclatures);
+  }
+
+  getCurrencyRate(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.purchaseInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.purchaseInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        this.currencyRate = currencyRate;
+      });
   }
 
   getCurrencies(): void {
@@ -176,6 +191,24 @@ export class PurchaseInvoiceUpdateComponent implements OnInit {
 
   quantityOnChange(rowId: number): void {
     this.recalculateRow(rowId);
+  }
+
+  currencyOnChange(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.purchaseInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.purchaseInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        for (let i = 0; i < this.purchaseInvoiceForm.value.purchaseInvoiceGoods.length; i++) {
+          let price = this.purchaseInvoiceForm.value.purchaseInvoiceGoods[i].price;
+          // @ts-ignore
+          price = price * this.currencyRate / currencyRate;
+          this.purchaseInvoiceForm.value.purchaseInvoiceGoods[i].price = parseFloat(price).toFixed(2);
+          this.recalculateRow(i);
+        }
+        this.currencyRate = currencyRate;
+      });
   }
 
   recalculateRow(rowId: number): void {

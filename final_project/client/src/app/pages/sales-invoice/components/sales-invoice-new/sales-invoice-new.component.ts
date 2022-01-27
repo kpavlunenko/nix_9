@@ -18,6 +18,8 @@ import {AgreementApiService} from "../../../../service/agreement-api.service";
 import {CurrencyResponseDto} from "../../../../model/currency/currency-response-dto";
 import {CurrencyApiService} from "../../../../service/currency-api.service";
 import {PriceApiService} from "../../../../service/price-api.service";
+import {CurrencyRateApiService} from "../../../../service/currency-rate-api.service";
+import {appConst} from "../../../../app.const";
 
 @Component({
   selector: 'app-sales-invoice-new',
@@ -26,6 +28,7 @@ import {PriceApiService} from "../../../../service/price-api.service";
 })
 export class SalesInvoiceNewComponent implements OnInit {
 
+  currencyRate: Number = 1;
   currentDate: Date = new Date();
   companies?: CompanyShortResponseDto[];
   counterparties?: CounterpartyResponseDto[];
@@ -38,7 +41,7 @@ export class SalesInvoiceNewComponent implements OnInit {
     companyId: new FormControl(''),
     counterpartyId: new FormControl(''),
     agreementId: new FormControl(''),
-    currencyId: new FormControl(''),
+    currencyId: new FormControl(appConst.accountingCurrency),
     priceTypeId: new FormControl(''),
     salesInvoiceGoods: new FormArray([
       new FormGroup({
@@ -57,6 +60,7 @@ export class SalesInvoiceNewComponent implements OnInit {
               private _priceTypeApiService: PriceTypeApiService,
               private _priceApiService: PriceApiService,
               private _currencyApiService: CurrencyApiService,
+              private _currencyRateApiService: CurrencyRateApiService,
               private _nomenclatureApiService: NomenclatureApiService,
               private _router: Router,
               private _location: Location) {
@@ -162,9 +166,28 @@ export class SalesInvoiceNewComponent implements OnInit {
       .set('date', Date.parse(this.salesInvoiceForm.value.date))
     )
       .subscribe(prices => {
-        let price = Number(prices.price);
-        this.salesInvoiceForm.value.salesInvoiceGoods[rowId].price = price;
+        // @ts-ignore
+        let price = Number(prices.price) / this.currencyRate;
+        this.salesInvoiceForm.value.salesInvoiceGoods[rowId].price = parseFloat(String(price)).toFixed(2);
         this.recalculateRow(rowId);
+      });
+  }
+
+  currencyOnChange(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.salesInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.salesInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        for (let i = 0; i < this.salesInvoiceForm.value.salesInvoiceGoods.length; i++) {
+          let price = this.salesInvoiceForm.value.salesInvoiceGoods[i].price;
+          // @ts-ignore
+          price = price * this.currencyRate / currencyRate;
+          this.salesInvoiceForm.value.salesInvoiceGoods[i].price = parseFloat(price).toFixed(2);
+          this.recalculateRow(i);
+        }
+        this.currencyRate = currencyRate;
       });
   }
 

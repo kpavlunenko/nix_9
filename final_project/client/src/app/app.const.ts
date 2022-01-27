@@ -13,5 +13,6 @@ export const appConst = {
   purchaseInvoicePath: 'purchase_invoices',
   salesIncomePath: 'sales_incomes',
   usersPath: 'personals',
-  authenticationPath: 'auth'
+  authenticationPath: 'auth',
+  accountingCurrency: '1'
 }

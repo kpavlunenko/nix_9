@@ -20,6 +20,7 @@ import {HttpParams} from "@angular/common/http";
 import {SalesInvoiceRequestDto} from "../../../../model/sales-invoice/sales-invoice-request-dto";
 import {Observable} from "rxjs";
 import {SalesInvoiceResponseDto} from "../../../../model/sales-invoice/sales-invoice-response-dto";
+import {CurrencyRateApiService} from "../../../../service/currency-rate-api.service";
 
 @Component({
   selector: 'app-sales-invoice-update',
@@ -28,6 +29,7 @@ import {SalesInvoiceResponseDto} from "../../../../model/sales-invoice/sales-inv
 })
 export class SalesInvoiceUpdateComponent implements OnInit {
 
+  currencyRate: Number = 1;
   id: number = 0;
   @Input() salesInvoiceResponseDto?: Observable<SalesInvoiceResponseDto>;
   currentDate: Date = new Date();
@@ -61,6 +63,7 @@ export class SalesInvoiceUpdateComponent implements OnInit {
               private _priceTypeApiService: PriceTypeApiService,
               private _priceApiService: PriceApiService,
               private _currencyApiService: CurrencyApiService,
+              private _currencyRateApiService: CurrencyRateApiService,
               private _nomenclatureApiService: NomenclatureApiService,
               private _router: Router,
               private _location: Location,
@@ -114,6 +117,7 @@ export class SalesInvoiceUpdateComponent implements OnInit {
       }))
     this.salesInvoiceResponseDto.subscribe(salesInvoiceResponseDto => {
       this.removeRow(0);
+      this.getCurrencyRate();
       salesInvoiceResponseDto.salesInvoiceGoods.forEach(value => {
       (<FormArray>this.salesInvoiceForm.controls["salesInvoiceGoods"]).push(new FormGroup({
         nomenclatureId: new FormControl(value.nomenclature.id),
@@ -129,6 +133,17 @@ export class SalesInvoiceUpdateComponent implements OnInit {
       .set('sort', 'name')
       .set('order', 'asc'))
       .subscribe(nomenclatures => this.nomenclatures = nomenclatures);
+  }
+
+  getCurrencyRate(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.salesInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.salesInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        this.currencyRate = currencyRate;
+      });
   }
 
   getCurrencies(): void {
@@ -198,9 +213,28 @@ export class SalesInvoiceUpdateComponent implements OnInit {
       .set('date', Date.parse(this.salesInvoiceForm.value.date))
     )
       .subscribe(prices => {
-        let price = Number(prices.price);
-        this.salesInvoiceForm.value.salesInvoiceGoods[rowId].price = price;
+        // @ts-ignore
+        let price = Number(prices.price) / this.currencyRate;
+        this.salesInvoiceForm.value.salesInvoiceGoods[rowId].price = parseFloat(String(price)).toFixed(2);
         this.recalculateRow(rowId);
+      });
+  }
+
+  currencyOnChange(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.salesInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.salesInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        for (let i = 0; i < this.salesInvoiceForm.value.salesInvoiceGoods.length; i++) {
+          let price = this.salesInvoiceForm.value.salesInvoiceGoods[i].price;
+          // @ts-ignore
+          price = price * this.currencyRate / currencyRate;
+          this.salesInvoiceForm.value.salesInvoiceGoods[i].price = parseFloat(price).toFixed(2);
+          this.recalculateRow(i);
+        }
+        this.currencyRate = currencyRate;
       });
   }
 

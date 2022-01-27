@@ -1,14 +1,17 @@
 package ua.com.alevel.service.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.document.PurchaseInvoice;
 import ua.com.alevel.persistence.entity.document.tabularpart.PurchaseInvoiceGood;
+import ua.com.alevel.persistence.entity.register.CurrencyRate;
 import ua.com.alevel.persistence.entity.register.StockOfGood;
 import ua.com.alevel.persistence.repository.PurchaseInvoiceRepository;
+import ua.com.alevel.service.CurrencyRateService;
 import ua.com.alevel.service.PurchaseInvoiceService;
 import ua.com.alevel.service.StockOfGoodService;
 
@@ -20,17 +23,22 @@ import java.util.Optional;
 @Service
 public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
 
+    @Value("${accountingCurrency.code}")
+    private String accountingCurrencyCode;
+
     private final CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper;
     private final PurchaseInvoiceRepository purchaseInvoiceRepository;
     private final StockOfGoodService stockOfGoodService;
+    private final CurrencyRateService currencyRateService;
 
     public PurchaseInvoiceServiceImpl(CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper,
                                       PurchaseInvoiceRepository purchaseInvoiceRepository,
-                                      StockOfGoodService stockOfGoodService
-    ) {
+                                      StockOfGoodService stockOfGoodService,
+                                      CurrencyRateService currencyRateService) {
         this.repositoryHelper = repositoryHelper;
         this.purchaseInvoiceRepository = purchaseInvoiceRepository;
         this.stockOfGoodService = stockOfGoodService;
+        this.currencyRateService = currencyRateService;
     }
 
     @Override
@@ -76,6 +84,15 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     }
 
     private void createRecordsForTableStockAndGoods(PurchaseInvoice entity) {
+        float rate = 1;
+        if (!entity.getCurrency().getCode().equals(accountingCurrencyCode)) {
+            Optional<CurrencyRate> currencyRateOptional = currencyRateService.findByDateAndAndCurrencyId(entity.getDate(), entity.getCurrency().getId());
+            if (currencyRateOptional.isEmpty()) {
+                throw new IncorrectInputData("Can not find rate for currency: " + entity.getCurrency().getName());
+            }
+            rate = currencyRateOptional.get().getRate().floatValue() / currencyRateOptional.get().getFrequencyRate();
+        }
+
         for (PurchaseInvoiceGood purchaseInvoiceGood : entity.getPurchaseInvoiceGoods()) {
             if (purchaseInvoiceGood.getNomenclature().getService()) {
                 continue;
@@ -87,7 +104,7 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
             stockOfGood.setCompany(entity.getCompany());
             stockOfGood.setNomenclature(purchaseInvoiceGood.getNomenclature());
             stockOfGood.setQuantity(purchaseInvoiceGood.getQuantity());
-            stockOfGood.setCost(purchaseInvoiceGood.getSum());
+            stockOfGood.setCost(BigDecimal.valueOf(purchaseInvoiceGood.getSum().floatValue() * rate));
             stockOfGood.setConsignment(entity);
             stockOfGoodService.create(stockOfGood);
         }

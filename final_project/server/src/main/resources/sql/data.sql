@@ -72,6 +72,8 @@ insert into currencies values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(
 insert into currencies values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '840', 'USD');
 insert into currencies values (3, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), '978', 'EUR');
 
+insert into currency_rates values (1, '2022-01-03 13:05:00', 1, 1, 1);
+
 insert into price_types values (1, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'retail price');
 insert into price_types values (2, CURRENT_TIMESTAMP(), false, CURRENT_TIMESTAMP(), 'wholesale price');
 
@@ -88,7 +90,7 @@ insert into prices values (10, '2022-01-03 13:05:00', 415.00, 5, 2);
 insert into prices values (11, '2022-01-10 12:05:00', 590.00, 5, 1);
 insert into prices values (12, '2022-01-10 12:05:00', 515.00, 5, 2);
 
-insert into purchase_invoices values (1, '2022-01-03 13:05:00', false, '2022-01-03 13:05:00', '2022-01-03 13:05:00', 10, 2, 2, 2);
+insert into purchase_invoices values (1, '2022-01-03 13:05:00', false, '2022-01-03 13:05:00', '2022-01-03 13:05:00', 10, 2, 2, 1);
 insert into purchase_invoices_goods values (1, 110.0000, 15.00, 1650.00, 4, 1);
 insert into purchase_invoices_goods values (2, 150.0000, 15.00, 2250.00, 5, 1);
 insert into purchase_invoices_goods values (3, 170.0000, 15.00, 2550.00, 3, 1);
@@ -101,7 +103,7 @@ insert into stock_of_goods values (3, 2550.00, '2022-01-03 13:05:00', 1, 'Purcha
 insert into stock_of_goods values (4, 2925.00, '2022-01-03 13:05:00', 1, 'PurchaseInvoice', 15.00, 2, 1, 2);
 insert into stock_of_goods values (5, 3150.00, '2022-01-03 13:05:00', 1, 'PurchaseInvoice', 15.00, 2, 1, 1);
 
-insert into purchase_invoices values (2, '2022-01-04 14:35:00', false, '2022-01-04 14:35:00', '2022-01-04 14:35:00', 10, 2, 2, 2);
+insert into purchase_invoices values (2, '2022-01-04 14:35:00', false, '2022-01-04 14:35:00', '2022-01-04 14:35:00', 10, 2, 2, 1);
 insert into purchase_invoices_goods values (6, 135.0000, 5.00, 675.00, 4, 2);
 insert into purchase_invoices_goods values (7, 160.0000, 5.00, 800.00, 5, 2);
 insert into purchase_invoices_goods values (8, 150.0000, 5.00, 750.00, 3, 2);
@@ -114,7 +116,7 @@ insert into stock_of_goods values (8, 750.00, '2022-01-04 14:35:00', 2, 'Purchas
 insert into stock_of_goods values (9, 900.00, '2022-01-04 14:35:00', 2, 'PurchaseInvoice', 5.00, 2, 2, 2);
 insert into stock_of_goods values (10, 1350.00, '2022-01-04 14:35:00', 2, 'PurchaseInvoice', 5.00, 2, 2, 1);
 
-insert into purchase_invoices values (3, '2022-01-05 12:10:00', false, '2022-01-05 12:10:00', '2022-01-05 12:10:00', 8, 13, 15, 2);
+insert into purchase_invoices values (3, '2022-01-05 12:10:00', false, '2022-01-05 12:10:00', '2022-01-05 12:10:00', 8, 13, 15, 1);
 insert into purchase_invoices_goods values (11, 230.0000, 15.00, 3450.00, 4, 3);
 insert into purchase_invoices_goods values (12, 195.0000, 15.00, 2925.00, 5, 3);
 insert into purchase_invoices_goods values (13, 170.0000, 15.00, 2550.00, 3, 3);
@@ -127,7 +129,7 @@ insert into stock_of_goods values (13, 2550.00, '2022-01-05 12:10:00', 3, 'Purch
 insert into stock_of_goods values (14, 3525.00, '2022-01-05 12:10:00', 3, 'PurchaseInvoice', 15.00, 13, 3, 2);
 insert into stock_of_goods values (15, 4650.00, '2022-01-05 12:10:00', 3, 'PurchaseInvoice', 15.00, 13, 3, 1);
 
-insert into purchase_invoices values (4, '2022-01-06 12:10:00', false, '2022-01-06 12:10:00', '2022-01-06 12:10:00', 9, 13, 9, 2);
+insert into purchase_invoices values (4, '2022-01-06 12:10:00', false, '2022-01-06 12:10:00', '2022-01-06 12:10:00', 9, 13, 9, 1);
 insert into purchase_invoices_goods values (16, 290.0000, 10.00, 2900.00, 4, 4);
 insert into purchase_invoices_goods values (17, 245.0000, 10.00, 2450.00, 5, 4);
 insert into purchase_invoices_goods values (18, 315.0000, 10.00, 3150.00, 3, 4);
@@ -140,7 +142,7 @@ insert into stock_of_goods values (18, 3150.00, '2022-01-06 12:10:00', 4, 'Purch
 insert into stock_of_goods values (19, 1500.00, '2022-01-06 12:10:00', 4, 'PurchaseInvoice', 10.00, 13, 4, 2);
 insert into stock_of_goods values (20, 2320.00, '2022-01-06 12:10:00', 4, 'PurchaseInvoice', 10.00, 13, 4, 1);
 
-insert into sales_invoices values (1, '2022-01-05 15:54:00', false, '2022-01-05 15:54:00', '2022-01-05 15:54:00', 1, 2, 3, 2, 2);
+insert into sales_invoices values (1, '2022-01-05 15:54:00', false, '2022-01-05 15:54:00', '2022-01-05 15:54:00', 1, 2, 3, 1, 2);
 insert into sales_invoices_goods values (1, 415.0000, 3.00, 1245.00, 5, 1);
 insert into sales_invoices_goods values (2, 150.0000, 1.00, 150.00, 8, 1);
 
@@ -149,7 +151,7 @@ insert into stock_of_goods values (21, -450.00, '2022-01-05 15:54:00', 1, 'Sales
 insert into sales_income values (1, 450.00, '2022-01-05 15:54:00', 795.00, 3.00, 1245.00, 2, 5, 1);
 insert into sales_income values (2, 0.00, '2022-01-05 15:54:00', 150.00, 1.00, 150.00, 2, 8, 1);
 
-insert into sales_invoices values (2, '2022-01-06 15:55:00', false, '2022-01-06 15:55:00', '2022-01-06 15:55:00', 2, 2, 4, 2, 1);
+insert into sales_invoices values (2, '2022-01-06 15:55:00', false, '2022-01-06 15:55:00', '2022-01-06 15:55:00', 2, 2, 4, 1, 1);
 insert into sales_invoices_goods values (3, 435.0000, 1.00, 435.00, 3, 2);
 insert into sales_invoices_goods values (4, 450.0000, 3.00, 1350.00, 1, 2);
 insert into sales_invoices_goods values (5, 435.0000, 2.00, 870.00, 3, 2);
@@ -162,7 +164,7 @@ insert into sales_income values (3, 170.00, '2022-01-06 15:55:00', 265.00, 1.00,
 insert into sales_income values (4, 630.00, '2022-01-06 15:55:00', 720.00, 3.00, 1350.00, 2, 1, 2);
 insert into sales_income values (5, 340.00, '2022-01-06 15:55:00', 530.00, 2.00, 870.00, 2, 3, 2);
 
-insert into sales_invoices values (3, '2022-01-08 15:56:00', false, '2022-01-08 15:56:00', '2022-01-08 15:56:00', 2, 2, 4, 2, 2);
+insert into sales_invoices values (3, '2022-01-08 15:56:00', false, '2022-01-08 15:56:00', '2022-01-08 15:56:00', 2, 2, 4, 1, 2);
 insert into sales_invoices_goods values (6, 430.0000, 1.00, 430.00, 4, 3);
 insert into sales_invoices_goods values (7, 395.0000, 2.00, 790.00, 1, 3);
 insert into sales_invoices_goods values (8, 365.0000, 3.00, 1095.00, 3, 3);
@@ -177,7 +179,7 @@ insert into sales_income values (7, 420.00, '2022-01-08 15:56:00', 370.00, 2.00,
 insert into sales_income values (8, 510.00, '2022-01-08 15:56:00', 585.00, 3.00, 1095.00, 2, 3, 3);
 insert into sales_income values (9, 0.00, '2022-01-08 15:56:00', 1350.00, 1.00, 1350.00, 2, 7, 3);
 
-insert into sales_invoices values (4, '2022-01-07 15:56:00', false, '2022-01-07 15:56:00', '2022-01-07 15:56:00', 1, 2, 3, 2, 1);
+insert into sales_invoices values (4, '2022-01-07 15:56:00', false, '2022-01-07 15:56:00', '2022-01-07 15:56:00', 1, 2, 3, 1, 1);
 insert into sales_invoices_goods values (10, 435.0000, 1.00, 435.00, 3, 4);
 insert into sales_invoices_goods values (11, 590.0000, 1.00, 590.00, 5, 4);
 insert into sales_invoices_goods values (12, 470.0000, 1.00, 470.00, 2, 4);
@@ -190,7 +192,7 @@ insert into sales_income values (10, 170.00, '2022-01-07 15:56:00', 265.00, 1.00
 insert into sales_income values (11, 150.00, '2022-01-07 15:56:00', 440.00, 1.00, 590.00, 2, 5, 4);
 insert into sales_income values (12, 195.00, '2022-01-07 15:56:00', 275.00, 1.00, 470.00, 2, 2, 4);
 
-insert into sales_invoices values (5, '2022-01-13 15:57:00', false, '2022-01-13 15:57:00', '2022-01-13 15:57:00', 2, 2, 4, 2, 2);
+insert into sales_invoices values (5, '2022-01-13 15:57:00', false, '2022-01-13 15:57:00', '2022-01-13 15:57:00', 2, 2, 4, 1, 2);
 insert into sales_invoices_goods values (13, 365.0000, 1.00, 365.00, 3, 5);
 insert into sales_invoices_goods values (14, 430.0000, 3.00, 1290.00, 4, 5);
 insert into sales_invoices_goods values (15, 365.0000, 5.00, 1825.00, 3, 5);
@@ -203,7 +205,7 @@ insert into sales_income values (13, 170.00, '2022-01-13 15:57:00', 195.00, 1.00
 insert into sales_income values (14, 330.00, '2022-01-13 15:57:00', 960.00, 3.00, 1290.00, 2, 4, 5);
 insert into sales_income values (15, 850.00, '2022-01-13 15:57:00', 975.00, 5.00, 1825.00, 2, 3, 5);
 
-insert into sales_invoices values (6, '2022-01-07 19:00:00', false, '2022-01-07 19:00:00', '2022-01-07 19:00:00', 13, 13, 11, 2, 1);
+insert into sales_invoices values (6, '2022-01-07 19:00:00', false, '2022-01-07 19:00:00', '2022-01-07 19:00:00', 13, 13, 11, 1, 1);
 insert into sales_invoices_goods values (16, 490.0000, 1.00, 490.00, 5, 6);
 insert into sales_invoices_goods values (17, 515.0000, 1.00, 515.00, 4, 6);
 insert into sales_invoices_goods values (18, 435.0000, 1.00, 435.00, 3, 6);
@@ -226,28 +228,28 @@ insert into sales_income values (20, 310.00, '2022-01-07 19:00:00', 140.00, 1.00
 insert into sales_income values (21, 0.00, '2022-01-07 19:00:00', 750.00, 1.00, 750.00, 13, 6, 6);
 insert into sales_income values (22, 0.00, '2022-01-07 19:00:00', 750.00, 1.00, 750.00, 13, 8, 6);
 
-insert into sales_invoices values (7, '2022-01-08 16:02:00', false, '2022-01-08 16:02:00', '2022-01-08 16:02:00', 14, 13, 13, 2, 1);
+insert into sales_invoices values (7, '2022-01-08 16:02:00', false, '2022-01-08 16:02:00', '2022-01-08 16:02:00', 14, 13, 13, 1, 1);
 insert into sales_invoices_goods values (23, 515.0000, 5.00, 2575.00, 4, 7);
 
 insert into stock_of_goods values (39, -1150.00, '2022-01-08 16:02:00', 7, 'SalesInvoice', -5.00, 13, 3, 4);
 
 insert into sales_income values (23, 1150.00, '2022-01-08 16:02:00', 1425.00, 5.00, 2575.00, 13, 4, 7);
 
-insert into sales_invoices values (8, '2022-01-09 16:02:00', false, '2022-01-09 16:02:00', '2022-01-09 16:02:00', 15, 13, 14, 2, 1);
+insert into sales_invoices values (8, '2022-01-09 16:02:00', false, '2022-01-09 16:02:00', '2022-01-09 16:02:00', 15, 13, 14, 1, 1);
 insert into sales_invoices_goods values (24, 450.0000, 11.00, 4950.00, 1, 8);
 
 insert into stock_of_goods values (40, -3410.00, '2022-01-09 16:02:00', 8, 'SalesInvoice', -11.00, 13, 3, 1);
 
 insert into sales_income values (24, 3410.00, '2022-01-09 16:02:00', 1540.00, 11.00, 4950.00, 13, 1, 8);
 
-insert into sales_invoices values (9, '2022-01-10 16:02:00', false, '2022-01-10 16:02:00', '2022-01-10 16:02:00', 13, 13, 11, 2, 1);
+insert into sales_invoices values (9, '2022-01-10 16:02:00', false, '2022-01-10 16:02:00', '2022-01-10 16:02:00', 13, 13, 11, 1, 1);
 insert into sales_invoices_goods values (25, 435.0000, 13.00, 5655.00, 3, 9);
 
 insert into stock_of_goods values (41, -2210.00, '2022-01-10 16:02:00', 9, 'SalesInvoice', -13.00, 13, 3, 3);
 
 insert into sales_income values (25, 2210.00, '2022-01-10 16:02:00', 3445.00, 13.00, 5655.00, 13, 3, 9);
 
-insert into sales_invoices values (10, '2022-01-13 16:03:00', false, '2022-01-13 16:03:00', '2022-01-13 16:03:00', 14, 13, 13, 2, 1);
+insert into sales_invoices values (10, '2022-01-13 16:03:00', false, '2022-01-13 16:03:00', '2022-01-13 16:03:00', 14, 13, 13, 1, 1);
 insert into sales_invoices_goods values (26, 435.0000, 3.00, 1305.00, 3, 10);
 insert into sales_invoices_goods values (27, 590.0000, 2.00, 1180.00, 5, 10);
 

@@ -58,7 +58,7 @@
             <div class="input-group mb-2">
               <label class="input-group-text" for="currencyId">Currency</label>
               <select class="form-select" id="currencyId" aria-describedby="currencyId" formControlName="currencyId"
-                      required>
+                      (change)="currencyOnChange()" required>
                 <option *ngFor="let currency of currencies"
                         value="{{currency.id}}">{{currency.name}}</option>
               </select>

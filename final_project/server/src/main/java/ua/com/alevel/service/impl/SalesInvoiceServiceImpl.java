@@ -1,12 +1,14 @@
 package ua.com.alevel.service.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.document.SalesInvoice;
 import ua.com.alevel.persistence.entity.document.tabularpart.SalesInvoiceGood;
+import ua.com.alevel.persistence.entity.register.CurrencyRate;
 import ua.com.alevel.persistence.entity.register.SalesIncome;
 import ua.com.alevel.persistence.entity.register.StockOfGood;
 import ua.com.alevel.persistence.repository.*;
@@ -21,15 +23,20 @@ import java.util.stream.Collectors;
 @Service
 public class SalesInvoiceServiceImpl implements SalesInvoiceService {
 
+    @Value("${accountingCurrency.code}")
+    private String accountingCurrencyCode;
+
     private final CrudRepositoryHelper<SalesInvoice, SalesInvoiceRepository> repositoryHelper;
     private final SalesInvoiceRepository salesInvoiceRepository;
     private final StockOfGoodService stockOfGoodService;
+    private final CurrencyRateService currencyRateService;
     private final SalesIncomeService salesIncomeService;
 
-    public SalesInvoiceServiceImpl(CrudRepositoryHelper<SalesInvoice, SalesInvoiceRepository> repositoryHelper, SalesInvoiceRepository salesInvoiceRepository, StockOfGoodService stockOfGoodService, SalesIncomeService salesIncomeService) {
+    public SalesInvoiceServiceImpl(CrudRepositoryHelper<SalesInvoice, SalesInvoiceRepository> repositoryHelper, SalesInvoiceRepository salesInvoiceRepository, StockOfGoodService stockOfGoodService, CurrencyRateService currencyRateService, SalesIncomeService salesIncomeService) {
         this.repositoryHelper = repositoryHelper;
         this.salesInvoiceRepository = salesInvoiceRepository;
         this.stockOfGoodService = stockOfGoodService;
+        this.currencyRateService = currencyRateService;
         this.salesIncomeService = salesIncomeService;
     }
 
@@ -78,18 +85,27 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
     }
 
     private void createRecordsForTableStockAndGoods(SalesInvoice entity) {
+        float rate = 1;
+        if (!entity.getCurrency().getCode().equals(accountingCurrencyCode)) {
+            Optional<CurrencyRate> currencyRateOptional = currencyRateService.findByDateAndAndCurrencyId(entity.getDate(), entity.getCurrency().getId());
+            if (currencyRateOptional.isEmpty()) {
+                throw new IncorrectInputData("Can not find rate for currency: " + entity.getCurrency().getName());
+            }
+            rate = currencyRateOptional.get().getRate().floatValue() / currencyRateOptional.get().getFrequencyRate();
+        }
+
         for (SalesInvoiceGood salesInvoiceGood : entity.getSalesInvoiceGoods()) {
             SalesIncome salesIncome = new SalesIncome();
             salesIncome.setCompany(entity.getCompany());
             salesIncome.setDate(entity.getDate());
             salesIncome.setSalesInvoice(entity);
             salesIncome.setQuantity(salesInvoiceGood.getQuantity());
-            salesIncome.setRevenue(salesInvoiceGood.getSum());
             salesIncome.setNomenclature(salesInvoiceGood.getNomenclature());
+            salesIncome.setRevenue(BigDecimal.valueOf(salesInvoiceGood.getSum().doubleValue() * rate));
 
             if (salesInvoiceGood.getNomenclature().getService()) {
                 salesIncome.setCostPrice(BigDecimal.ZERO);
-                salesIncome.setProfit(salesInvoiceGood.getSum());
+                salesIncome.setProfit(BigDecimal.valueOf(salesInvoiceGood.getSum().doubleValue() * rate));
                 salesIncomeService.create(salesIncome);
                 continue;
             }
@@ -129,7 +145,7 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
             }
 
             salesIncome.setCostPrice(BigDecimal.valueOf(costPrice * - 1));
-            salesIncome.setProfit(BigDecimal.valueOf(salesInvoiceGood.getSum().floatValue() - costPrice * - 1));
+            salesIncome.setProfit(BigDecimal.valueOf(salesInvoiceGood.getSum().floatValue() * rate - costPrice * - 1));
             salesIncomeService.create(salesIncome);
         }
     }

@@ -15,6 +15,8 @@ import {Location} from "@angular/common";
 import {HttpParams} from "@angular/common/http";
 import {PurchaseInvoiceApiService} from "../../../../service/purchase-invoice-api.service";
 import {PurchaseInvoiceRequestDto} from "../../../../model/purchase-invoice/purchase-invoice-request-dto";
+import {appConst} from "../../../../app.const";
+import {CurrencyRateApiService} from "../../../../service/currency-rate-api.service";
 
 @Component({
   selector: 'app-purchase-invoice-new',
@@ -23,6 +25,7 @@ import {PurchaseInvoiceRequestDto} from "../../../../model/purchase-invoice/purc
 })
 export class PurchaseInvoiceNewComponent implements OnInit {
 
+  currencyRate: Number = 1;
   currentDate: Date = new Date();
   companies?: CompanyShortResponseDto[];
   counterparties?: CounterpartyResponseDto[];
@@ -34,7 +37,7 @@ export class PurchaseInvoiceNewComponent implements OnInit {
     companyId: new FormControl(''),
     counterpartyId: new FormControl(''),
     agreementId: new FormControl(''),
-    currencyId: new FormControl(''),
+    currencyId: new FormControl(appConst.accountingCurrency),
     purchaseInvoiceGoods: new FormArray([
       new FormGroup({
         nomenclatureId: new FormControl(''),
@@ -50,6 +53,7 @@ export class PurchaseInvoiceNewComponent implements OnInit {
               private _counterpartyApiService: CounterpartyApiService,
               private _agreementApiService: AgreementApiService,
               private _currencyApiService: CurrencyApiService,
+              private _currencyRateApiService: CurrencyRateApiService,
               private _nomenclatureApiService: NomenclatureApiService,
               private _router: Router,
               private _location: Location) {
@@ -140,6 +144,24 @@ export class PurchaseInvoiceNewComponent implements OnInit {
 
   quantityOnChange(rowId: number): void {
     this.recalculateRow(rowId);
+  }
+
+  currencyOnChange(): void {
+    this._currencyRateApiService.getRateOnDate(new HttpParams()
+      .set('currency', this.purchaseInvoiceForm.value.currencyId)
+      .set('date', Date.parse(this.purchaseInvoiceForm.value.date))
+    )
+      .subscribe(currency => {
+        let currencyRate = Number(currency.rate / currency.frequencyRate);
+        for (let i = 0; i < this.purchaseInvoiceForm.value.purchaseInvoiceGoods.length; i++) {
+          let price = this.purchaseInvoiceForm.value.purchaseInvoiceGoods[i].price;
+          // @ts-ignore
+          price = price * this.currencyRate / currencyRate;
+          this.purchaseInvoiceForm.value.purchaseInvoiceGoods[i].price = parseFloat(price).toFixed(2);
+          this.recalculateRow(i);
+        }
+        this.currencyRate = currencyRate;
+      });
   }
 
   recalculateRow(rowId: number): void {

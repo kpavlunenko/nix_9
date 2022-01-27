@@ -9,6 +9,7 @@ import ua.com.alevel.persistence.repository.CurrencyRateRepository;
 import ua.com.alevel.service.CurrencyRateService;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -70,5 +71,14 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
         if (currencyRateOptional.isPresent() && currencyRateOptional.get().getId() != entity.getId()) {
             throw new IncorrectInputData("currency rate with current currency is exist on this date");
         }
+    }
+
+    @Override
+    public Optional<CurrencyRate> findByDateAndAndCurrencyId(Date date, Long id) {
+        Optional<CurrencyRate> currencyRateOptional = currencyRateRepository.findActualRateByDateAndAndCurrency_Id(id, date);
+        if (currencyRateOptional.isEmpty()) {
+            throw new IncorrectInputData("Can not find rate for currency_Id: " + id);
+        }
+        return currencyRateOptional;
     }
 }
