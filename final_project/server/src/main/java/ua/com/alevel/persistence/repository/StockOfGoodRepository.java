@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface StockOfGoodRepository extends AbstractTableRepository<StockOfGood> {
     void deleteAllByDocumentIdAndDocumentName(Long documentId, String documentName);
+    Boolean existsByDocumentNameAndConsignmentId(String documentName, Long documentId);
     @Query(value = "select sum(cost) as cost,\n" +
             "       sum(quantity) as quantity,\n" +
             "       consignment_id,\n" +

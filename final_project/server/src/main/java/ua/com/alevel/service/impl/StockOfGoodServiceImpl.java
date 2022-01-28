@@ -87,6 +87,13 @@ public class StockOfGoodServiceImpl implements StockOfGoodService {
     @Override
     @Transactional
     public void deleteByDocumentIdAndName(Long documentId, String documentName) {
+        if (documentName.equals("PurchaseInvoice")) {
+            Boolean salesExistOnThisPurchaseInvoice = stockOfGoodRepository.existsByDocumentNameAndConsignmentId("SalesInvoice", documentId);
+            if (salesExistOnThisPurchaseInvoice) {
+                loggerService.commit(LoggerLevel.ERROR, "object: " + StockOfGood.class.getSimpleName() + "; operation: delete; documentId = " + documentId + "; documentName = " + documentName + "; problem = " + "You can not change or delete this document, because exist sales with goods from this document");
+                throw new IncorrectInputData("You can not change or delete this document, because exist sales with goods from this document");
+            }
+        }
         loggerService.commit(LoggerLevel.WARN, "object: " + StockOfGood.class.getSimpleName() + "; stage: start; operation: deleteByDocumentIdAndName; documentId = " + documentId + "; documentName = " + documentName);
         stockOfGoodRepository.deleteAllByDocumentIdAndDocumentName(documentId, documentName);
         loggerService.commit(LoggerLevel.WARN, "object: " + StockOfGood.class.getSimpleName() + "; stage: finish; operation: deleteByDocumentIdAndName; documentId = " + documentId + "; documentName = " + documentName);
