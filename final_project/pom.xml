@@ -28,6 +28,8 @@
         <java.version>17</java.version>
         <node.version>v16.13.1</node.version>
         <npm.version>8.1.0</npm.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <logback.version>1.2.9</logback.version>
     </properties>
 
     <dependencies>
@@ -87,6 +89,24 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
+        </dependency>
+
+        <!-- logs -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <!-- jsonwebtoken -->

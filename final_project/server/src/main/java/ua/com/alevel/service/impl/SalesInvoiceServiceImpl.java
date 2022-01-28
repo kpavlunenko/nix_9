@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
+import ua.com.alevel.logger.LoggerLevel;
+import ua.com.alevel.logger.LoggerService;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.document.SalesInvoice;
 import ua.com.alevel.persistence.entity.document.tabularpart.SalesInvoiceGood;
@@ -31,20 +33,24 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
     private final StockOfGoodService stockOfGoodService;
     private final CurrencyRateService currencyRateService;
     private final SalesIncomeService salesIncomeService;
+    private final LoggerService loggerService;
 
-    public SalesInvoiceServiceImpl(CrudRepositoryHelper<SalesInvoice, SalesInvoiceRepository> repositoryHelper, SalesInvoiceRepository salesInvoiceRepository, StockOfGoodService stockOfGoodService, CurrencyRateService currencyRateService, SalesIncomeService salesIncomeService) {
+    public SalesInvoiceServiceImpl(CrudRepositoryHelper<SalesInvoice, SalesInvoiceRepository> repositoryHelper, SalesInvoiceRepository salesInvoiceRepository, StockOfGoodService stockOfGoodService, CurrencyRateService currencyRateService, SalesIncomeService salesIncomeService, LoggerService loggerService) {
         this.repositoryHelper = repositoryHelper;
         this.salesInvoiceRepository = salesInvoiceRepository;
         this.stockOfGoodService = stockOfGoodService;
         this.currencyRateService = currencyRateService;
         this.salesIncomeService = salesIncomeService;
+        this.loggerService = loggerService;
     }
 
     @Override
     @Transactional
     public void create(SalesInvoice entity) {
         checkInputDataOnValid(entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: start; operation: create");
         repositoryHelper.create(salesInvoiceRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: finish; operation: create; id = " + entity.getId());
         createRecordsForTableStockAndGoods(entity);
     }
 
@@ -54,7 +60,9 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
         checkInputDataOnValid(entity);
         stockOfGoodService.deleteByDocumentIdAndName(entity.getId(), entity.getClass().getSimpleName());
         salesIncomeService.deleteBySalesInvoice(entity.getId());
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: start; operation: update; id = " + entity.getId());
         repositoryHelper.update(salesInvoiceRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: finish; operation: update; id = " + entity.getId());
         createRecordsForTableStockAndGoods(entity);
     }
 
@@ -63,7 +71,9 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
     public void delete(Long id) {
         stockOfGoodService.deleteByDocumentIdAndName(id, SalesInvoice.class.getSimpleName());
         salesIncomeService.deleteBySalesInvoice(id);
+        loggerService.commit(LoggerLevel.WARN, "object: " + SalesInvoice.class.getSimpleName() + "; stage: start; operation: delete; id = " + id);
         repositoryHelper.delete(salesInvoiceRepository, id);
+        loggerService.commit(LoggerLevel.WARN, "object: " + SalesInvoice.class.getSimpleName() + "; stage: finish; operation: delete; id = " + id);
     }
 
     @Override
@@ -89,6 +99,7 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
         if (!entity.getCurrency().getCode().equals(accountingCurrencyCode)) {
             Optional<CurrencyRate> currencyRateOptional = currencyRateService.findByDateAndAndCurrencyId(entity.getDate(), entity.getCurrency().getId());
             if (currencyRateOptional.isEmpty()) {
+                loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + ";" + "Can not find rate for currency: " + entity.getCurrency().getName());
                 throw new IncorrectInputData("Can not find rate for currency: " + entity.getCurrency().getName());
             }
             rate = currencyRateOptional.get().getRate().floatValue() / currencyRateOptional.get().getFrequencyRate();
@@ -152,16 +163,20 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService {
 
     private void checkInputDataOnValid(SalesInvoice entity) {
         if (CollectionUtils.isEmpty(entity.getSalesInvoiceGoods())) {
+            loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "tabular part is empty");
             throw new IncorrectInputData("tabular part is empty");
         } else {
             for (SalesInvoiceGood salesInvoiceGood : entity.getSalesInvoiceGoods()) {
                 if (salesInvoiceGood.getPrice() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "price can not be 0");
                     throw new IncorrectInputData("price can not be 0");
                 }
                 if (salesInvoiceGood.getQuantity() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "quantity can not be 0");
                     throw new IncorrectInputData("quantity can not be 0");
                 }
                 if (salesInvoiceGood.getSum() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "sum can not be 0");
                     throw new IncorrectInputData("sum can not be 0");
                 }
             }

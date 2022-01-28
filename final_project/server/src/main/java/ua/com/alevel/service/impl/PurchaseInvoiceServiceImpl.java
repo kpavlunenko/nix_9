@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.exception.IncorrectInputData;
+import ua.com.alevel.logger.LoggerLevel;
+import ua.com.alevel.logger.LoggerService;
 import ua.com.alevel.persistence.crud.CrudRepositoryHelper;
 import ua.com.alevel.persistence.entity.document.PurchaseInvoice;
 import ua.com.alevel.persistence.entity.document.tabularpart.PurchaseInvoiceGood;
@@ -30,22 +32,26 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     private final PurchaseInvoiceRepository purchaseInvoiceRepository;
     private final StockOfGoodService stockOfGoodService;
     private final CurrencyRateService currencyRateService;
+    private final LoggerService loggerService;
 
     public PurchaseInvoiceServiceImpl(CrudRepositoryHelper<PurchaseInvoice, PurchaseInvoiceRepository> repositoryHelper,
                                       PurchaseInvoiceRepository purchaseInvoiceRepository,
                                       StockOfGoodService stockOfGoodService,
-                                      CurrencyRateService currencyRateService) {
+                                      CurrencyRateService currencyRateService, LoggerService loggerService) {
         this.repositoryHelper = repositoryHelper;
         this.purchaseInvoiceRepository = purchaseInvoiceRepository;
         this.stockOfGoodService = stockOfGoodService;
         this.currencyRateService = currencyRateService;
+        this.loggerService = loggerService;
     }
 
     @Override
     @Transactional
     public void create(PurchaseInvoice entity) {
         checkInputDataOnValid(entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: start; operation: create");
         repositoryHelper.create(purchaseInvoiceRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: finish; operation: create; id = " + entity.getId());
         createRecordsForTableStockAndGoods(entity);
     }
 
@@ -54,7 +60,9 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     public void update(PurchaseInvoice entity) {
         checkInputDataOnValid(entity);
         stockOfGoodService.deleteByDocumentIdAndName(entity.getId(), entity.getClass().getSimpleName());
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: start; operation: update; id = " + entity.getId());
         repositoryHelper.update(purchaseInvoiceRepository, entity);
+        loggerService.commit(LoggerLevel.INFO, "object: " + entity.getClass().getSimpleName() + "; stage: finish; operation: update; id = " + entity.getId());
         createRecordsForTableStockAndGoods(entity);
     }
 
@@ -62,7 +70,9 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
     @Transactional
     public void delete(Long id) {
         stockOfGoodService.deleteByDocumentIdAndName(id, PurchaseInvoice.class.getSimpleName());
+        loggerService.commit(LoggerLevel.WARN, "object: " + PurchaseInvoice.class.getSimpleName() + "; stage: start; operation: delete; id = " + id);
         repositoryHelper.delete(purchaseInvoiceRepository, id);
+        loggerService.commit(LoggerLevel.WARN, "object: " + PurchaseInvoice.class.getSimpleName() + "; stage: finish; operation: delete; id = " + id);
     }
 
     @Override
@@ -88,6 +98,7 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
         if (!entity.getCurrency().getCode().equals(accountingCurrencyCode)) {
             Optional<CurrencyRate> currencyRateOptional = currencyRateService.findByDateAndAndCurrencyId(entity.getDate(), entity.getCurrency().getId());
             if (currencyRateOptional.isEmpty()) {
+                loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "Can not find rate for currency: " + entity.getCurrency().getName());
                 throw new IncorrectInputData("Can not find rate for currency: " + entity.getCurrency().getName());
             }
             rate = currencyRateOptional.get().getRate().floatValue() / currencyRateOptional.get().getFrequencyRate();
@@ -112,16 +123,20 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
 
     private void checkInputDataOnValid(PurchaseInvoice entity) {
         if (CollectionUtils.isEmpty(entity.getPurchaseInvoiceGoods())) {
+            loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "tabular part is empty");
             throw new IncorrectInputData("tabular part is empty");
         } else {
             for (PurchaseInvoiceGood purchaseInvoiceGood : entity.getPurchaseInvoiceGoods()) {
                 if (purchaseInvoiceGood.getPrice() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "price can not be 0");
                     throw new IncorrectInputData("price can not be 0");
                 }
                 if (purchaseInvoiceGood.getQuantity() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "quantity can not be 0");
                     throw new IncorrectInputData("quantity can not be 0");
                 }
                 if (purchaseInvoiceGood.getSum() == BigDecimal.ZERO) {
+                    loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "sum can not be 0");
                     throw new IncorrectInputData("sum can not be 0");
                 }
             }
