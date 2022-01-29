@@ -127,15 +127,15 @@ public class PurchaseInvoiceServiceImpl implements PurchaseInvoiceService {
             throw new IncorrectInputData("tabular part is empty");
         } else {
             for (PurchaseInvoiceGood purchaseInvoiceGood : entity.getPurchaseInvoiceGoods()) {
-                if (purchaseInvoiceGood.getPrice() == BigDecimal.ZERO) {
+                if (purchaseInvoiceGood.getPrice() == BigDecimal.ZERO || purchaseInvoiceGood.getPrice().floatValue() == 0) {
                     loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "price can not be 0");
                     throw new IncorrectInputData("price can not be 0");
                 }
-                if (purchaseInvoiceGood.getQuantity() == BigDecimal.ZERO) {
+                if (purchaseInvoiceGood.getQuantity() == BigDecimal.ZERO || purchaseInvoiceGood.getQuantity().floatValue() == 0) {
                     loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "quantity can not be 0");
                     throw new IncorrectInputData("quantity can not be 0");
                 }
-                if (purchaseInvoiceGood.getSum() == BigDecimal.ZERO) {
+                if (purchaseInvoiceGood.getSum() == BigDecimal.ZERO || purchaseInvoiceGood.getSum().floatValue() == 0) {
                     loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "sum can not be 0");
                     throw new IncorrectInputData("sum can not be 0");
                 }

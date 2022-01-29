@@ -37,6 +37,7 @@ public final class GenerationUtil {
         purchaseInvoice.setAgreement(agreement);
         purchaseInvoice.setCurrency(currency);
         purchaseInvoice.setDate(date);
+        purchaseInvoiceGoods.forEach(purchaseInvoiceGood -> purchaseInvoiceGood.setPurchaseInvoice(purchaseInvoice));
         purchaseInvoice.setPurchaseInvoiceGoods(purchaseInvoiceGoods);
         return purchaseInvoice;
     }
@@ -81,6 +82,7 @@ public final class GenerationUtil {
         Nomenclature nomenclature = new Nomenclature();
         nomenclature.setName(name);
         nomenclature.setProduct(true);
+        nomenclature.setService(false);
         return nomenclature;
     }
 
