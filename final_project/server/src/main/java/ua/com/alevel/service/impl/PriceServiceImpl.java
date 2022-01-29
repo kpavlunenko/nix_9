@@ -100,7 +100,7 @@ public class PriceServiceImpl implements PriceService {
     }
 
     private void checkInputDataOnValid(Price entity) {
-        if (entity.getPrice() == BigDecimal.ZERO) {
+        if (entity.getPrice() == BigDecimal.ZERO || entity.getPrice().floatValue() == 0) {
             loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "price can not be 0");
             throw new IncorrectInputData("price can not be 0");
         }

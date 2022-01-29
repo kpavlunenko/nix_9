@@ -66,7 +66,9 @@ public class PersonalServiceImpl implements PersonalService {
     @Override
     @Transactional
     public void delete(Long id) {
-
+        loggerService.commit(LoggerLevel.INFO, "object: " + Personal.class.getSimpleName() + "; stage: start; operation: delete; id = " + id);
+        repositoryHelper.delete(personalRepository, id);
+        loggerService.commit(LoggerLevel.INFO, "object: " + Personal.class.getSimpleName() + "; stage: finish; operation: delete; id = " + id);
     }
 
     @Override

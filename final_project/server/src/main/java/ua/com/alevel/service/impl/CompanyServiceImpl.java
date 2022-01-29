@@ -61,7 +61,7 @@ public class CompanyServiceImpl implements CompanyService {
         long countAgreements = agreementService.count(params);
         if (countAgreements != 0) {
             loggerService.commit(LoggerLevel.ERROR, "object: " + Company.class.getSimpleName() + "; operation: delete; id = " + id + "; problem = " + "With this company exist " + countAgreements + " agreements you can not delete this company");
-            throw new EntityNotFoundException("With this company exist " + countAgreements + " agreements you can not delete this company");
+            throw new IncorrectInputData("With this company exist " + countAgreements + " agreements you can not delete this company");
         }
         loggerService.commit(LoggerLevel.WARN, "object: " + Company.class.getSimpleName() + "; stage: start; operation: delete; id = " + id);
         repositoryHelper.delete(companyRepository, id);

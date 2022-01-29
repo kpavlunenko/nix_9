@@ -61,7 +61,7 @@ public class CounterpartyServiceImpl implements CounterpartyService {
         long countAgreements =  agreementService.count(params);
         if (countAgreements != 0) {
             loggerService.commit(LoggerLevel.ERROR, "object: " + Counterparty.class.getSimpleName() + "; operation: update/new; id = " + id + "; problem = " + "With this counterparty exist " + countAgreements + " agreements you can not delete this counterparty");
-            throw new EntityNotFoundException("With this counterparty exist " + countAgreements + " agreements you can not delete this counterparty");
+            throw new IncorrectInputData("With this counterparty exist " + countAgreements + " agreements you can not delete this counterparty");
         }
         loggerService.commit(LoggerLevel.WARN, "object: " + Counterparty.class.getSimpleName() + "; stage: start; operation: delete; id = " + id);
         repositoryHelper.delete(counterpartyRepository, id);

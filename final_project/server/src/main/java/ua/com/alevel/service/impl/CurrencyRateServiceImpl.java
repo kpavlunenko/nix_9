@@ -74,7 +74,7 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     }
 
     private void checkInputDataOnValid(CurrencyRate entity) {
-        if (entity.getRate() == BigDecimal.ZERO) {
+        if (entity.getRate() == BigDecimal.ZERO || entity.getRate() == null) {
             loggerService.commit(LoggerLevel.ERROR, "object: " + entity.getClass().getSimpleName() + "; operation: update/new; id = " + entity.getId() + "; problem = " + "rate can not be 0");
             throw new IncorrectInputData("rate can not be 0");
         }
